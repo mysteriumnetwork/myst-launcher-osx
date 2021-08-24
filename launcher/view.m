@@ -117,7 +117,7 @@ static const NSPoint buttonOrigin = {20, 20};
     //BOOL has = [vc1 hasVirtualization];
     //[self.button setTitle:@"OK"];
 
-    BOOL has = [vc1 installDocker:self];
+    BOOL has = [vc1 runDocker:self];
 }
 
 - (void)notificationHandler:(NSNotification *) notification{

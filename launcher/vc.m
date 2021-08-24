@@ -34,11 +34,13 @@ NSView *cv2 = nil;
                                    selector:@selector(onTimer)
                                    userInfo:nil
                                    repeats:YES];
+    
+    [self runDocker:self];
 }
 
 -(void)onTimer {
     NSLog(@"onTimer >>>");
-    [self installDocker:self];
+    [self runDocker:self];
 }
 
 - (void)viewDidLoad {
@@ -94,7 +96,7 @@ NSView *cv2 = nil;
 - (void)onInstallDockerFinish{}
 
 
-- (BOOL)installDocker:(id)sender {
+- (BOOL)runDocker:(id)sender {
     dispatch_group_t group = dispatch_group_create();
 
     dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {

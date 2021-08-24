@@ -22,7 +22,7 @@
 
 - (int)runCmd:(NSString *)commandToRun :(NSString *)strOutput;
 - (BOOL)hasVirtualization;
-- (BOOL)installDocker:(id)sender;
+- (BOOL)runDocker:(id)sender;
     
 //- (IBAction)myAction:(id)sender;
 //- (IBAction)myAction2:(id)sender;
