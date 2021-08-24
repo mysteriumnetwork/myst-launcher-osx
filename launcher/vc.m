@@ -9,8 +9,7 @@
 
 #import "vc.h"
 #import "view.h"
-#import "fff.h"
-#import "ff.h"
+#import "../gobridge/fff.h"
 
 @implementation ViewController
 
@@ -29,6 +28,17 @@ NSView *cv2 = nil;
     [cv2 init];
     
     [self setView:cv1];
+    
+    [NSTimer scheduledTimerWithTimeInterval:5
+                                   target:self
+                                   selector:@selector(onTimer)
+                                   userInfo:nil
+                                   repeats:YES];
+}
+
+-(void)onTimer {
+    NSLog(@"onTimer >>>");
+    [self installDocker:self];
 }
 
 - (void)viewDidLoad {

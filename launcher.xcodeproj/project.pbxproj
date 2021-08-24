@@ -70,7 +70,6 @@
 /* Begin PBXFileReference section */
 		9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gogogo.xcodeproj; path = gogogo/gogogo.xcodeproj; sourceTree = "<group>"; };
 		9A098D9E26CDC20200DE93D0 /* fff.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = fff.dylib; path = launcher/fff.dylib; sourceTree = "<group>"; };
-		9A098DA126CDC74B00DE93D0 /* fff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fff.h; sourceTree = "<group>"; };
 		9A098DA426CE2E0100DE93D0 /* gobridge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gobridge; sourceTree = "<group>"; };
 		9A289E3326CCE02700FDECD8 /* c.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = c.m; sourceTree = "<group>"; };
 		9A289E3626CCE04100FDECD8 /* c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c.h; sourceTree = "<group>"; };
@@ -166,7 +165,6 @@
 		9AC8756626C919CB00A99070 /* launcher */ = {
 			isa = PBXGroup;
 			children = (
-				9A098DA126CDC74B00DE93D0 /* fff.h */,
 				9AC8756726C919CC00A99070 /* _AppDelegate.h_ */,
 				9AC8756826C919CC00A99070 /* _AppDelegate.m_ */,
 				9A289E3726CCE07F00FDECD8 /* app.h */,
