@@ -1,11 +1,12 @@
 //#import "ModalWindowDelegate.h"
 //#import "app.h"
-#include "c.h"
-#import "view.h"
 
+#import "main_w.h"
 
 ViewController *vc1 = nil;
-	
+LauncherState *mod = nil;
+
+
 @interface Window : NSWindow {}
 - (instancetype) init;
 - (BOOL)windowShouldClose:(id)sender;
@@ -20,6 +21,8 @@ ViewController *vc1 = nil;
       
   vc1 = [[ViewController alloc] init];
   [self setContentViewController:vc1];
+    
+    
   [self setIsVisible:YES];
   return self;
 }
@@ -35,9 +38,11 @@ ViewController *vc1 = nil;
 
 int
 StartApp(void) {
+    mod = [[LauncherState alloc] init];
+    //mod.config = [[Config alloc] init];
+    mod.config.portBegin = 1234;
+
     [NSApplication sharedApplication];
-    
-  
     
     id menubar = [[NSMenu new] autorelease];
     id appMenuItem = [[NSMenuItem new] autorelease];
@@ -53,10 +58,10 @@ StartApp(void) {
 
     [appMenu addItem:quitMenuItem];
     [appMenuItem setSubmenu:appMenu];
-   
-    
     
     [[[[Window alloc] init] autorelease] makeMainWindow];
+    id d = [[MyAppDelegate alloc]init];
+    [NSApp setDelegate:d];
     [NSApp run];
     
     return 0;

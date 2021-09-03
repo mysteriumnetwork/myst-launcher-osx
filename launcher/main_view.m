@@ -6,7 +6,8 @@
 //  Copyright © 2021 mac mini. All rights reserved.
 //
 
-#import "view.h"
+#import "main_view.h"
+#import "settings.h"
 
 
 //static const NSSize itemSize = {100, 100};
@@ -19,10 +20,8 @@ static const NSPoint buttonOrigin = {20, 20};
 
 - (id)init {
     NSLog(@"init >");
-    
     self = [super init];
-    if (self) {
-    }
+    if (self) {}
     return self;
 }
 
@@ -55,20 +54,18 @@ static const NSPoint buttonOrigin = {20, 20};
 @end
 
 
-
 @implementation View2
 @synthesize button;
 @synthesize labelCurrentVersion;
-
+@synthesize labelLatestVersion;
 
 - (id)init {
     NSLog(@"init >");
 
     self = [super init];
     if (self) {
-        
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandler:) name:@"Eezy" object:@"my object"];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandler:) name:@"Eezy" object:nil];
     return self;
 }
 
@@ -82,30 +79,43 @@ static const NSPoint buttonOrigin = {20, 20};
 
         NSButton *newButton = [[[NSButton alloc] initWithFrame:(NSRect){buttonOrigin, buttonSize}] autorelease];
         [newButton setBezelStyle:NSBezelStyleRounded];
-        [newButton setTitle:@"Run command"];
+        [newButton setTitle:@"Settings"];
         [newButton setTarget:self];
         [newButton setAction:@selector(myAction:)];
         //[newButton setAutoresizingMask:NSViewMaxXMargin | NSViewMinYMargin];
         [self addSubview:newButton];
-
         
-        NSTextField *label1 = [[NSTextField alloc] initWithFrame:NSMakeRect(25, 70, 150, 20)];
-        [label1 setStringValue:@"Docker image:"];
-        [label1 setBezeled:NO];
-        [label1 setDrawsBackground:NO];
-        [label1 setEditable:NO];
-        [self addSubview:label1];
-
+        NSTextField *label11 = [[NSTextField alloc] initWithFrame:NSMakeRect(25, 70, 150, 20)];
+        [label11 setStringValue:@"Docker image:"];
+        [label11 setBezeled:NO];
+        [label11 setDrawsBackground:NO];
+        [label11 setEditable:NO];
+        [self addSubview:label11];
         
-        NSTextField *label2 = [[NSTextField alloc] initWithFrame:NSMakeRect(125, 70, 150, 20)];
-        [label2 setStringValue:@"_"];
-        [label2 setBezeled:NO];
-        [label2 setDrawsBackground:NO];
-        [label2 setEditable:NO];
-        [self addSubview:label2];
+        NSTextField *label12 = [[NSTextField alloc] initWithFrame:NSMakeRect(125, 70, 150, 20)];
+        [label12 setStringValue:@"_"];
+        [label12 setBezeled:NO];
+        [label12 setDrawsBackground:NO];
+        [label12 setEditable:NO];
+        [self addSubview:label12];
+        
+        NSTextField *label21 = [[NSTextField alloc] initWithFrame:NSMakeRect(25, 90, 150, 20)];
+        [label21 setStringValue:@"Latest image:"];
+        [label21 setBezeled:NO];
+        [label21 setDrawsBackground:NO];
+        [label21 setEditable:NO];
+        [self addSubview:label21];
+        
+        NSTextField *label22 = [[NSTextField alloc] initWithFrame:NSMakeRect(125, 90, 150, 20)];
+        [label22 setStringValue:@"_"];
+        [label22 setBezeled:NO];
+        [label22 setDrawsBackground:NO];
+        [label22 setEditable:NO];
+        [self addSubview:label22];
         
         self.button = newButton;
-        self.labelCurrentVersion = label2;
+        self.labelCurrentVersion = label12;
+        self.labelLatestVersion = label22;
 
     }
     return self;
@@ -113,19 +123,28 @@ static const NSPoint buttonOrigin = {20, 20};
 	
 - (IBAction) myAction: (NSButton*)button {
     NSLog(@"myAction >>> %@", button.title);
+    TriggerUIEvent((char *)@"action_123".UTF8String);
 
+    
+    id w = [[[Window1 alloc] init] autorelease];
+    //[self.window beginSheet:w completionHandler:nil ];
+    //[[self window] addChildWindow:w ordered:NSWindowAbove];
+
+    [[NSApplication sharedApplication] runModalForWindow:w];
+    
     //BOOL has = [vc1 hasVirtualization];
     //[self.button setTitle:@"OK"];
-
-    BOOL has = [vc1 runDocker:self];
+    //BOOL has = [vc1 runDocker:self];
 }
 
 - (void)notificationHandler:(NSNotification *) notification{
-     NSLog(@"%@ %@",notification.object, notification.userInfo);
+    NSLog(@"%@ %@", notification.object, notification.userInfo);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.button setTitle:@"OK"];
-        [self.labelCurrentVersion setStringValue: notification.userInfo[@"status"]];
+        //[self.button setTitle:@"OK"];
+
+        [self.labelLatestVersion setStringValue: notification.userInfo[@"latestVersion"]];
+        [self.labelCurrentVersion setStringValue: notification.userInfo[@"currentVersion"]];
     });
 }
    

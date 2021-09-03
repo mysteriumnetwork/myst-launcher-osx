@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #include <Cocoa/Cocoa.h>
-#import "c.h"
+#import "main_w.h"
 
 
 #ifndef view_h
@@ -24,6 +24,7 @@
 @interface View2 : NSView
 @property (weak) NSButton *button;
 @property (weak) NSTextField *labelCurrentVersion;
+@property (weak) NSTextField *labelLatestVersion;
 
 - (IBAction)myAction:(id)sender;
 @end

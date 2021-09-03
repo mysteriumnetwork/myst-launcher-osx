@@ -7,33 +7,31 @@
 //
 
 
-#import "vc.h"
-#import "view.h"
+#import "main_vc.h"
+#import "main_view.h"
 #import "../gobridge/fff.h"
 
 @implementation ViewController
 
-NSView *cv1 = nil;
-NSView *cv2 = nil;
+NSView *v1 = nil;
+NSView *v2 = nil;
 
 - (void)loadView {
-    //[self setView:[[BVView alloc] initWithFrame:NSZeroRect]];
     NSLog(@"loadView >>>");
+
+    v1 = [View1 alloc];
+    [v1 init];
     
-    //NSView *cv = [[BVView alloc] initWithFrame:[[self contentView] frame]];
-    cv1 = [View1 alloc];
-    [cv1 init];
+    v2 = [View2 alloc];
+    [v2 init];
     
-    cv2 = [View2 alloc];
-    [cv2 init];
+    [self setView:v2];
     
-    [self setView:cv1];
-    
-    [NSTimer scheduledTimerWithTimeInterval:5
-                                   target:self
-                                   selector:@selector(onTimer)
-                                   userInfo:nil
-                                   repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:15
+//                                   target:self
+//                                   selector:@selector(onTimer)
+//                                   userInfo:nil
+//                                   repeats:YES];
     
     [self runDocker:self];
 }
@@ -63,11 +61,11 @@ NSView *cv2 = nil;
     NSLog(@"pageControl > %d", id);
     switch (id) {
     case 1:
-        [self setView:cv1];
+        [self setView:v1];
         break;
         
     case 2:
-        [self setView:cv2];
+        [self setView:v2];
         break;
     }
 }
@@ -107,26 +105,23 @@ NSView *cv2 = nil;
         //int res = [vc1 runShellCmd:@"" :@"/usr/local/bin/docker ps":nil];
         //int res = [vc1 runCmd:@"/bin/ls" :@"-la /":nil];
         //NSLog(@"res >>> %d", res);
-
         //NSMutableArray *args = [[NSMutableArray alloc] init];
+        
+        
+
         NSState args = {};
-        //args.currentImage = [[NSMutableString alloc] init];
-        //[args.currentImage setString: @"aa"];
-        //[args.currentImage dealloc ];
-        
+        /*
         QueryState(&args);
-        NSLog(@"a> %s", args.currentVersion);
-        NSLog(@"a> %s", args.latestVersion);
-        
-        id dict = @{
+	    id dict = @{
             @"status": [[NSString alloc] initWithUTF8String:args.latestVersion],
             @"latestVersion": [[NSString alloc] initWithUTF8String:args.latestVersion],
             @"currentVersion": [[NSString alloc] initWithUTF8String:args.currentVersion],
+            @"isDockerRunning": @(args.dockerRunning),
         };
         [[NSNotificationCenter defaultCenter]postNotificationName:@"Eezy" object:@"my object" userInfo:dict];
-
-        
         FreeState(&args);
+        */
+        
         NSLog(@"Block1_ End");
     });
 

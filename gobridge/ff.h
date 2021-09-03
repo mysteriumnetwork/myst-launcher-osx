@@ -1,55 +1,33 @@
 #import <Foundation/Foundation.h>
 
-typedef struct _NSURLdata {
-    NSString *scheme;
-    NSString *user;
-    NSString *password;
-    NSString *host;
-    NSNumber *port;
-    NSString *path;
-    NSString *query;
-    NSString *fragment;
-} NSURLdata;
-
-const char* 
-nsstring2cstring(NSString*);
-
-int 
-nsnumber2int(NSNumber*);
-
-unsigned long 
-nsarraylen(NSArray*);
-
-const void* 
-nsarrayitem(NSArray*, unsigned long);
-
-const 
-NSURLdata* nsurldata(NSURL*);
-
-const 
-NSArray* UserApplicationSupportDirectories();
-
 ///
 typedef struct _NSState {
+
+    char *imageName;
     char *currentVersion;
     char *latestVersion;
     bool hasUpdate;
-    bool dockerRunning;
-    bool containerRunning;
-    
 
-//    NSString *user;
-//    NSString *password;
-//    NSString *host;
-//    NSNumber *port;
-//    NSString *path;
-//    NSString *query;
-//    NSString *fragment;
+    int  dockerRunning;
+    bool containerRunning;    
+
+    bool enablePortForwarding;
+	int  portRangeBegin;
+	int  portRangeEnd;
     
+    bool autoUpgrade;
 } NSState;
 
 
-void
-nsarray_additem(NSArray*, unsigned long);
+typedef struct _SetStateArgs {
+    bool enablePortForwarding;
+	int  portRangeBegin;
+	int  portRangeEnd;
+    bool autoUpgrade;
+} SetStateArgs;
 
-void nsstate_set(NSState *s);
+
+
+///
+void 
+macSend(NSState *s);

@@ -76,8 +76,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern void QueryState(NSState* st);
-extern void FreeState(NSState* s);
+extern void TriggerUIEvent(char* s);
+extern void SetStateAndConfig(SetStateArgs* s);
 
 #ifdef __cplusplus
 }
