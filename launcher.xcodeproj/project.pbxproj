@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A098D9F26CDC20200DE93D0 /* fff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A098D9E26CDC20200DE93D0 /* fff.dylib */; };
-		9A098DA026CDC21E00DE93D0 /* fff.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A098D9E26CDC20200DE93D0 /* fff.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A098DA526CE2E0100DE93D0 /* gobridge in Resources */ = {isa = PBXBuildFile; fileRef = 9A098DA426CE2E0100DE93D0 /* gobridge */; };
 		9A2B0BA026E60A3700E91E7B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63DEE126E607C900594C0B /* MainWindow.xib */; };
 		9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756726C919CC00A99070 /* AppDelegate.h */; };
 		9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756826C919CC00A99070 /* AppDelegate.m */; };
@@ -17,6 +14,8 @@
 		9A63DEDA26E5D86E00594C0B /* ModalWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63DED526E5D86E00594C0B /* ModalWindow.xib */; };
 		9A63DEDB26E5D86E00594C0B /* ModalWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DED826E5D86E00594C0B /* ModalWindowDelegate.m */; };
 		9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */; };
+		9A8BE55D26E7D5820097A8A9 /* fff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8BE55C26E7D5810097A8A9 /* fff.dylib */; };
+		9A8BE56326E80FC90097A8A9 /* fff.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8BE55C26E7D5810097A8A9 /* fff.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC8756B26C919D400A99070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756A26C919D400A99070 /* Assets.xcassets */; };
 		9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756C26C919D400A99070 /* MainMenu.xib */; };
 		9AC8757126C919D400A99070 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8757026C919D400A99070 /* main.m */; };
@@ -56,13 +55,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9A098D6826CD4C7000DE93D0 /* Embed Libraries */ = {
+		9A8BE56426E80FC90097A8A9 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 10;
 			files = (
-				9A098DA026CDC21E00DE93D0 /* fff.dylib in Embed Libraries */,
+				9A8BE56326E80FC90097A8A9 /* fff.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +70,6 @@
 
 /* Begin PBXFileReference section */
 		9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gogogo.xcodeproj; path = gogogo/gogogo.xcodeproj; sourceTree = "<group>"; };
-		9A098D9E26CDC20200DE93D0 /* fff.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = fff.dylib; path = launcher/fff.dylib; sourceTree = "<group>"; };
 		9A098DA426CE2E0100DE93D0 /* gobridge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gobridge; sourceTree = "<group>"; };
 		9A3AC6E726E11B0100D5F114 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		9A3AC6E826E11B6200D5F114 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
@@ -81,6 +79,7 @@
 		9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowDelegate.m; sourceTree = "<group>"; };
 		9A63DEDF26E605A800594C0B /* MainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowDelegate.h; sourceTree = "<group>"; };
 		9A63DEE126E607C900594C0B /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		9A8BE55C26E7D5810097A8A9 /* fff.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = fff.dylib; path = gobridge/fff.dylib; sourceTree = "<group>"; };
 		9AC8756426C919CB00A99070 /* launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC8756726C919CC00A99070 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AC8756826C919CC00A99070 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A098D9F26CDC20200DE93D0 /* fff.dylib in Frameworks */,
+				9A8BE55D26E7D5820097A8A9 /* fff.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +125,7 @@
 		9A098D6426CD499400DE93D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A098D9E26CDC20200DE93D0 /* fff.dylib */,
+				9A8BE55C26E7D5810097A8A9 /* fff.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,9 +210,9 @@
 			buildConfigurationList = 9AC8758B26C919D400A99070 /* Build configuration list for PBXNativeTarget "launcher" */;
 			buildPhases = (
 				9AC8756026C919CB00A99070 /* Sources */,
-				9AC8756126C919CB00A99070 /* Frameworks */,
 				9AC8756226C919CB00A99070 /* Resources */,
-				9A098D6826CD4C7000DE93D0 /* Embed Libraries */,
+				9AC8756126C919CB00A99070 /* Frameworks */,
+				9A8BE56426E80FC90097A8A9 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -333,7 +332,6 @@
 				9AC8756B26C919D400A99070 /* Assets.xcassets in Resources */,
 				9A2B0BA026E60A3700E91E7B /* MainWindow.xib in Resources */,
 				9A63DEDA26E5D86E00594C0B /* ModalWindow.xib in Resources */,
-				9A098DA526CE2E0100DE93D0 /* gobridge in Resources */,
 				9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,9 +357,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC8757126C919D400A99070 /* main.m in Sources */,
 				9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */,
 				9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */,
-				9AC8757126C919D400A99070 /* main.m in Sources */,
 				9A3AC6E926E11B6200D5F114 /* Model.m in Sources */,
 				9A63DEDB26E5D86E00594C0B /* ModalWindowDelegate.m in Sources */,
 				9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */,
@@ -529,7 +527,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = N66PUCPZAN;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -538,9 +536,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/launcher",
+					"$(PROJECT_DIR)/gobridge",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -552,7 +553,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = N66PUCPZAN;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -561,9 +562,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/launcher",
+					"$(PROJECT_DIR)/gobridge",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

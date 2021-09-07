@@ -7,12 +7,14 @@
 //
 
 #import "Model.h"
+#import "../gobridge/fff.h"
 
 @implementation LauncherState
 
 @synthesize portBegin;
 @synthesize portEnd;
 @synthesize enablePortForwarding;
+@synthesize autoUpgrade;
 
 @synthesize hasUpdate;
 @synthesize isDockerRunning;
@@ -29,17 +31,30 @@
 }
 
 - (void)notificationHandler:(NSNotification *) notification{
-    NSLog(@"model > %@ %@", notification.object, notification.userInfo[@"imageName"]);
+    NSLog(@"model > %@ %@", notification.object, notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
     self.enablePortForwarding = notification.userInfo[@"enablePortForwarding"];
+    self.autoUpgrade          = notification.userInfo[@"autoUpgrade"];
+    // enableNode
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
     self.currentVersion       = notification.userInfo[@"currentVersion"];
     self.latestVersion        = notification.userInfo[@"latestVersion"];
     self.isDockerRunning      = notification.userInfo[@"isDockerRunning"];
+}
+
+- (void)setState {
+    SetStateArgs s;
+
+    s.enablePortForwarding = [self.enablePortForwarding boolValue];
+    s.portRangeBegin = [self.portBegin intValue];
+    s.portRangeEnd = [self.portEnd intValue];
+    s.autoUpgrade = [self.autoUpgrade boolValue];
+
+    SetStateAndConfig(&s);
 }
 
 @end

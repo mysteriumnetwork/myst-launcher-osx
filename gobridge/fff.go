@@ -10,7 +10,6 @@ import "C"
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
 
 	"github.com/mysteriumnetwork/myst-launcher/app"
@@ -34,10 +33,9 @@ var (
 )
 
 func init() {
-	fmt.Println("goos>", runtime.GOOS)
 	utils.IsProcessRunning("Docker")
 
-	fmt.Println("init fff>")
+	fmt.Println("init fff 0.0.3>")
 	ap = app.NewApp()
 
 	mod = gui.NewUIModel()
@@ -63,6 +61,7 @@ func init() {
 		st.enablePortForwarding = C.bool(mod.Config.EnablePortForwarding)
 		st.portRangeBegin = C.int(mod.Config.PortRangeBegin)
 		st.portRangeEnd = C.int(mod.Config.PortRangeEnd)
+        st.autoUpgrade = C.bool(mod.Config.AutoUpgrade)
 
 		C.macSend(&st)
 
@@ -90,6 +89,8 @@ func SetStateAndConfig(s *C.SetStateArgs) {
     mod.Config.EnablePortForwarding = bool(s.enablePortForwarding)
     mod.Config.PortRangeBegin = int(s.portRangeBegin)
     mod.Config.PortRangeEnd = int(s.portRangeEnd)
+    mod.Config.AutoUpgrade = bool(s.autoUpgrade)
+    
 	mod.Config.Save()
 
 	ap.TriggerAction("upgrade")

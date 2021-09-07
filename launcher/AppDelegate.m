@@ -16,8 +16,11 @@ NSWindowController *modalWindowDelegate = nil;
 @interface AppDelegate ()
 @property (weak) IBOutlet ModalWindowDelegate *window;
 @property (weak) IBOutlet NSPopUpButton *button;
+@property (weak) IBOutlet NSMenuItem *item;
 
 - (IBAction)showMain:(id)sender;
+- (IBAction)enableNode:(id)sender;
+
 @end
 
 @implementation AppDelegate
@@ -30,6 +33,8 @@ NSWindowController *modalWindowDelegate = nil;
     }
     NSWindow *modalWindow = [modalWindowDelegate window];
     [modalWindowDelegate showWindow:modalWindow];
+    
+    [self setItem];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -41,4 +46,20 @@ NSWindowController *modalWindowDelegate = nil;
     [modalWindowDelegate showWindow:modalWindow];
 }
 
+- (IBAction)enableNode:(id)sender {
+    NSLog(@"enableNode %@", mod.autoUpgrade);
+
+    if ([mod.autoUpgrade isEqualToNumber:@0]) {
+        mod.autoUpgrade = @1;
+    } else {
+        mod.autoUpgrade = @0;
+    }
+    [mod setState];
+    
+    [self setItem];
+}
+
+- (void)setItem {
+    [self.item setState:(NSControlStateValue) [mod.autoUpgrade intValue]];
+}
 @end

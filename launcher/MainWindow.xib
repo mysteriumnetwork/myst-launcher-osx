@@ -12,6 +12,7 @@
                 <outlet property="labelHasUpdate" destination="CVC-Mb-8nl" id="ztm-BE-Ehn"/>
                 <outlet property="labelImageName" destination="694-Ni-LbW" id="ir1-3m-eov"/>
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
+                <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
                 <outlet property="v11" destination="EiT-Mj-1SZ" id="RE8-22-Tyj"/>
                 <outlet property="v21" destination="N56-00-vZm" id="wRR-FA-eet"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="NXo-At-roL"/>
@@ -118,11 +119,23 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="okPressed1:" target="-2" id="ceo-ky-jfF"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CVC-Mb-8nl">
                         <rect key="frame" x="203" y="176" width="133" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="---" id="qeo-2X-hAO">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARP-7b-bqG">
+                        <rect key="frame" x="203" y="114" width="197" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="---" id="MT6-h9-Vgo">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

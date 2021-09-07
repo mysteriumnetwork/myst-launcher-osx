@@ -7,8 +7,7 @@
 //
 
 #import "MainWindowDelegate.h"
-#import "Model.h"
-#import "main_w.h"
+#import "AppDelegate.h"
 #import "../gobridge/fff.h"
 
 
@@ -17,7 +16,6 @@
 - (id)init
 {
     if (self = [super initWithWindowNibName:@"MainWindow"]) {
-        NSLog(@"MainWindow > self %@", self);
 
         // enable window delegate extension
         [[self window] setDelegate:self];
@@ -28,7 +26,7 @@
          */
         //[self autorelease];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler123:) name:@"Eezy" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"Eezy" object:nil];
 
         [self refreshFrame];
     }
@@ -37,8 +35,6 @@
 
 - (void) windowDidLoad {
     //NSLog(@"MainWindow > windowDidLoad %@", self);
-    NSLog(@"MainWindow > cvc %@", self.v11);
-    
 }
 
 - (void) refreshFrame {
@@ -53,10 +49,15 @@
     }
     [self.labelHasUpdate setObjectValue:v];
     
+    if (mod.enablePortForwarding) {
+        v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
+    }
+    [self.labelNetworkMode setObjectValue: v];
+    
     //[self.checkBox setState: [mod.enablePortForwarding boolValue]];
 }
 
-- (void)notificationHandler123:(NSNotification *) notification
+- (void)notificationHandler:(NSNotification *) notification
 {
     NSLog(@"MainWindow > notificationHandler %@", notification.name);
     [self refreshFrame];
@@ -80,11 +81,14 @@
 - (IBAction)okPressed:(id)sender
 {
     NSLog(@"OK >>>");
-        
-    [[self window] setContentView:self.v21];
-    
-    //[self close];
-    //[NSApp stopModalWithCode:NSModalResponseOK];
+    //[[self window] setContentView:self.v21];
 }
 
+- (IBAction)okPressed1:(NSButton*)sender
+{
+    NSLog(@"OK >>> %d", (long)sender.state);
+
+    mod.autoUpgrade = @((long)sender.state);
+    [mod setState];
+}
 @end

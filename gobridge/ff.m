@@ -6,7 +6,6 @@ macSend(NSState *s) {
     NSLog(@"macCall >>>");
 
     id dict = @{
-
         @"imageName": [[NSString alloc] initWithUTF8String:s->imageName],
         @"latestVersion": [[NSString alloc] initWithUTF8String:s->latestVersion],
         @"currentVersion": [[NSString alloc] initWithUTF8String:s->currentVersion],
@@ -17,7 +16,7 @@ macSend(NSState *s) {
         @"isDockerRunning": @(s->dockerRunning),
         @"portRangeBegin": @(s->portRangeBegin),
         @"portRangeEnd": @(s->portRangeEnd),
-
+        @"autoUpgrade": @(s->autoUpgrade),
     };
     
     // free strings

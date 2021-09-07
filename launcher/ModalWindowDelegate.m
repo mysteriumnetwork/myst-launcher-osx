@@ -7,7 +7,6 @@
 //
 
 #import "ModalWindowDelegate.h"
-#import "Model.h"
 #import "AppDelegate.h"
 #import "../gobridge/fff.h"
 
@@ -28,7 +27,6 @@
     [self.editPortRangeEnd setStringValue:[NSString stringWithFormat:@"%@", mod.portEnd]];
     [self.checkBox setState: [mod.enablePortForwarding boolValue]];
     
-    //NSLog(@"ModalWindow > notificationHandler %@", self.checkBox);
     return self;
 }
 
