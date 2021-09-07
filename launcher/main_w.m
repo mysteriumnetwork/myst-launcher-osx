@@ -4,7 +4,7 @@
 #import "main_w.h"
 
 ViewController *vc1 = nil;
-LauncherState *mod = nil;
+//LauncherState *mod = nil;
 
 
 @interface Window : NSWindow {}
@@ -39,8 +39,6 @@ LauncherState *mod = nil;
 int
 StartApp(void) {
     mod = [[LauncherState alloc] init];
-    //mod.config = [[Config alloc] init];
-    mod.config.portBegin = 1234;
 
     [NSApplication sharedApplication];
     
@@ -60,7 +58,8 @@ StartApp(void) {
     [appMenuItem setSubmenu:appMenu];
     
     [[[[Window alloc] init] autorelease] makeMainWindow];
-    id d = [[MyAppDelegate alloc]init];
+
+    id d = [[AppDelegate alloc]init];
     [NSApp setDelegate:d];
     [NSApp run];
     

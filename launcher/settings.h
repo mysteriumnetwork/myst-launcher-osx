@@ -26,6 +26,7 @@
 - (IBAction)myAction:(id)sender;
 @end
 
+
 @interface ViewController1 : NSViewController
 //- (void)pageControl:(int)id;
 //- (int)runCmd:(NSString *)commandToRun :(NSString *)strOutput;

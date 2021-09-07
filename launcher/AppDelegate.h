@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #include <Cocoa/Cocoa.h>
+#import "Model.h"
 
-//#ifndef app_delegate_h
-//#define app_delegate_h
+#ifndef app_delegate_h
+#define app_delegate_h
 
-@interface MyAppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 @end
 
-//#endif /* app_delegate_h */
+extern LauncherState *mod;
+
+#endif /* app_delegate_h */

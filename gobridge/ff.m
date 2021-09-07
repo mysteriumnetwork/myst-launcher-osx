@@ -24,7 +24,6 @@ macSend(NSState *s) {
     free(s->latestVersion);
     
     dispatch_async(dispatch_get_main_queue(),^{
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"my_notification" object:nil, userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Eezy" object:nil userInfo:dict];
     });
     return;
