@@ -14,6 +14,8 @@
 		9A63DEDA26E5D86E00594C0B /* ModalWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63DED526E5D86E00594C0B /* ModalWindow.xib */; };
 		9A63DEDB26E5D86E00594C0B /* ModalWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DED826E5D86E00594C0B /* ModalWindowDelegate.m */; };
 		9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */; };
+		9A6FB69E26E8E82500069932 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB69D26E8E82500069932 /* Label.m */; };
+		9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB6A026E8EA4200069932 /* NSAttributedString.m */; };
 		9A8BE55D26E7D5820097A8A9 /* fff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8BE55C26E7D5810097A8A9 /* fff.dylib */; };
 		9A8BE56326E80FC90097A8A9 /* fff.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8BE55C26E7D5810097A8A9 /* fff.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC8756B26C919D400A99070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756A26C919D400A99070 /* Assets.xcassets */; };
@@ -79,6 +81,10 @@
 		9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowDelegate.m; sourceTree = "<group>"; };
 		9A63DEDF26E605A800594C0B /* MainWindowDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowDelegate.h; sourceTree = "<group>"; };
 		9A63DEE126E607C900594C0B /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		9A6FB69A26E8E82500069932 /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
+		9A6FB69D26E8E82500069932 /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label.m; sourceTree = "<group>"; };
+		9A6FB69F26E8EA1000069932 /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
+		9A6FB6A026E8EA4200069932 /* NSAttributedString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedString.m; sourceTree = "<group>"; };
 		9A8BE55C26E7D5810097A8A9 /* fff.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = fff.dylib; path = gobridge/fff.dylib; sourceTree = "<group>"; };
 		9AC8756426C919CB00A99070 /* launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC8756726C919CC00A99070 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +145,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A8BE56826E8E62C0097A8A9 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FB69A26E8E82500069932 /* Label.h */,
+				9A6FB69D26E8E82500069932 /* Label.m */,
+				9A6FB69F26E8EA1000069932 /* NSAttributedString.h */,
+				9A6FB6A026E8EA4200069932 /* NSAttributedString.m */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		9AC8755B26C919CB00A99070 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +197,7 @@
 				9A63DEE126E607C900594C0B /* MainWindow.xib */,
 				9A63DEDF26E605A800594C0B /* MainWindowDelegate.h */,
 				9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */,
+				9A8BE56826E8E62C0097A8A9 /* Label */,
 			);
 			path = launcher;
 			sourceTree = "<group>";
@@ -358,7 +376,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC8757126C919D400A99070 /* main.m in Sources */,
+				9A6FB69E26E8E82500069932 /* Label.m in Sources */,
 				9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */,
+				9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */,
 				9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */,
 				9A3AC6E926E11B6200D5F114 /* Model.m in Sources */,
 				9A63DEDB26E5D86E00594C0B /* ModalWindowDelegate.m in Sources */,

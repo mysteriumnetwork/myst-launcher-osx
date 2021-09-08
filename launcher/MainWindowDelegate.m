@@ -35,6 +35,11 @@
 
 - (void) windowDidLoad {
     //NSLog(@"MainWindow > windowDidLoad %@", self);
+    
+    self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
+    
+    [self.labelNetworkMode setTarget:self];
+    [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
 }
 
 - (void) refreshFrame {
@@ -53,8 +58,6 @@
         v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
     }
     [self.labelNetworkMode setObjectValue: v];
-    
-    //[self.checkBox setState: [mod.enablePortForwarding boolValue]];
 }
 
 - (void)notificationHandler:(NSNotification *) notification
@@ -84,11 +87,17 @@
     //[[self window] setContentView:self.v21];
 }
 
-- (IBAction)okPressed1:(NSButton*)sender
+- (IBAction)checkBoxClick:(NSButton*)sender
 {
-    NSLog(@"OK >>> %d", (long)sender.state);
-
     mod.autoUpgrade = @((long)sender.state);
     [mod setState];
+}
+
+- (IBAction)networkingLabelPressed:(id)sender
+{
+    NSLog(@"OK >>>>>>");
+
+    //mod.autoUpgrade = @((long)sender.state);
+    //[mod setState];
 }
 @end

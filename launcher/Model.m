@@ -31,7 +31,7 @@
 }
 
 - (void)notificationHandler:(NSNotification *) notification{
-    NSLog(@"model > %@ %@", notification.object, notification.userInfo);
+//    NSLog(@"model > %@ %@", notification.object, notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
