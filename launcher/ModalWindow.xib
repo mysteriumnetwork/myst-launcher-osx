@@ -19,7 +19,7 @@
         <window title="Modal Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mga-Zo-dn6">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="353" y="225" width="378" height="239"/>
+            <rect key="contentRect" x="95" y="81" width="378" height="239"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="nKb-P7-bcn">
                 <rect key="frame" x="0.0" y="0.0" width="378" height="239"/>

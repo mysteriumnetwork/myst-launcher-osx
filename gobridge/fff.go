@@ -58,6 +58,9 @@ func init() {
 		st.hasUpdate = C.bool(mod.ImgVer.HasUpdate)
 
 		st.dockerRunning = C.int(mod.StateDocker)
+        st.containerRunning = C.int(mod.StateContainer)
+        
+  
 		st.enablePortForwarding = C.bool(mod.Config.EnablePortForwarding)
 		st.portRangeBegin = C.int(mod.Config.PortRangeBegin)
 		st.portRangeEnd = C.int(mod.Config.PortRangeEnd)

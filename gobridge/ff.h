@@ -9,13 +9,13 @@ typedef struct _NSState {
     bool hasUpdate;
 
     int  dockerRunning;
-    bool containerRunning;    
+    int  containerRunning;
 
+    bool autoUpgrade;
+    bool enabled;
     bool enablePortForwarding;
 	int  portRangeBegin;
 	int  portRangeEnd;
-    
-    bool autoUpgrade;
 } NSState;
 
 

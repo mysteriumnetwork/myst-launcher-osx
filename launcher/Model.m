@@ -31,19 +31,21 @@
 }
 
 - (void)notificationHandler:(NSNotification *) notification{
-//    NSLog(@"model > %@ %@", notification.object, notification.userInfo);
+    NSLog(@"model > %@ %@", notification.object, notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
     self.enablePortForwarding = notification.userInfo[@"enablePortForwarding"];
     self.autoUpgrade          = notification.userInfo[@"autoUpgrade"];
-    // enableNode
+    self.enabled              = notification.userInfo[@"enabled"];
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
     self.currentVersion       = notification.userInfo[@"currentVersion"];
     self.latestVersion        = notification.userInfo[@"latestVersion"];
-    self.isDockerRunning      = notification.userInfo[@"isDockerRunning"];
+    
+    self.isDockerRunning      = notification.userInfo[@"dockerRunning"];
+    self.isContainerRunning   = notification.userInfo[@"containerRunning"];
 }
 
 - (void)setState {

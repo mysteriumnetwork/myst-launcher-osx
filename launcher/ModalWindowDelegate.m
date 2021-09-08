@@ -38,7 +38,7 @@
 -(void)windowWillClose:(NSNotification *)notification
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [NSApp stopModal];
+    [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
 
@@ -57,15 +57,10 @@
     mod.portBegin = @([self.editPortRangeBegin intValue]);
     mod.portEnd = @([self.editPortRangeEnd intValue]);
     mod.enablePortForwarding = [NSNumber numberWithBool:[self.checkBox integerValue]];
-
-    SetStateArgs s;
-    s.enablePortForwarding = [mod.enablePortForwarding boolValue];
-    s.portRangeBegin = [mod.portBegin intValue];
-    s.portRangeEnd = [mod.portEnd intValue];
-    SetStateAndConfig(&s);
+    [mod setState];
     
-    //[self close];
-    //[NSApp stopModalWithCode:NSModalResponseOK];
+    [self close];
+    [NSApp stopModalWithCode:NSModalResponseOK];
 }
 
 @end

@@ -10,10 +10,12 @@ macSend(NSState *s) {
         @"latestVersion": [[NSString alloc] initWithUTF8String:s->latestVersion],
         @"currentVersion": [[NSString alloc] initWithUTF8String:s->currentVersion],
         @"hasUpdate": @(s->hasUpdate),
+        @"dockerRunning": @(s->dockerRunning),
+        @"containerRunning": @(s->containerRunning),
 
 
+        @"enabled": @(s->enabled),
         @"enablePortForwarding": @(s->enablePortForwarding),
-        @"isDockerRunning": @(s->dockerRunning),
         @"portRangeBegin": @(s->portRangeBegin),
         @"portRangeEnd": @(s->portRangeEnd),
         @"autoUpgrade": @(s->autoUpgrade),

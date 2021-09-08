@@ -18,7 +18,10 @@
 @property (weak) IBOutlet NSTextField *labelCurrentVersion;
 @property (weak) IBOutlet NSTextField *labelLatestVersion;
 @property (weak) IBOutlet NSTextField *labelHasUpdate;
-@property (weak) IBOutlet Label *labelNetworkMode;
+@property (weak) IBOutlet Label       *labelNetworkMode;
+
+@property (weak) IBOutlet NSTextField *labelDocker;
+@property (weak) IBOutlet NSTextField *labelContainer;
 
 @property (weak) IBOutlet NSView *v11;
 @property (weak) IBOutlet NSView *v21;

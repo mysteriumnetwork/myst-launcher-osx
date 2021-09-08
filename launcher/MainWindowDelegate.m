@@ -7,6 +7,7 @@
 //
 
 #import "MainWindowDelegate.h"
+#import "ModalWindowDelegate.h"
 #import "AppDelegate.h"
 #import "../gobridge/fff.h"
 
@@ -43,11 +44,10 @@
 }
 
 - (void) refreshFrame {
-    // init data
-    
     [self.labelCurrentVersion setObjectValue: mod.currentVersion];
     [self.labelLatestVersion setObjectValue: mod.latestVersion];
     [self.labelImageName setObjectValue: mod.imageName];
+
     NSString *v = nil;
     if (mod.hasUpdate) {
         v = [mod.hasUpdate integerValue] ? @"YES" : @"NO";
@@ -58,6 +58,33 @@
         v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
     }
     [self.labelNetworkMode setObjectValue: v];
+    
+    [self.labelDocker setObjectValue: [self getRunStateString: [mod.isDockerRunning intValue]]];
+    [self.labelContainer setObjectValue: [self getRunStateString: [mod.isContainerRunning intValue]]];
+}
+
+
+NSString *const RunState0 = @"-";
+NSString *const RunState1 = @"Starting..";
+NSString *const RunState2 = @"Running [OK]";
+NSString *const RunState3 = @"Installing..";
+NSString *const RunState_ = @"?";
+
+
+-(NSString*) getRunStateString:(int)state {
+    switch (state) {
+        case 0:
+            return RunState0; break;
+        case 1:
+            return RunState1; break;
+        case 2:
+            return RunState2; break;
+        case 3:
+            return RunState3; break;
+
+        default:
+            return RunState_; break;
+    }
 }
 
 - (void)notificationHandler:(NSNotification *) notification
@@ -71,9 +98,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [NSApp stopModal];
 }
-
-
-#pragma mark Action methods
 
 - (IBAction)cancelPressed:(id)sender
 {
@@ -95,9 +119,12 @@
 
 - (IBAction)networkingLabelPressed:(id)sender
 {
-    NSLog(@"OK >>>>>>");
+    NSWindowController *modalWindowDelegate = [[ModalWindowDelegate alloc] init];
+    NSWindow *modalWindow = [modalWindowDelegate window];
 
-    //mod.autoUpgrade = @((long)sender.state);
-    //[mod setState];
+    NSModalResponse response = [NSApp runModalForWindow:modalWindow ]; // relativeToWindow:self.window - deprecated
+    if (response == NSModalResponseOK) {
+        NSLog(@"NSModalResponseOK");
+    }
 }
 @end
