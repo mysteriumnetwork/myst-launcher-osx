@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
+                <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="labelContainer" destination="8Qw-4J-Vie" id="Vgh-JQ-PSI"/>
                 <outlet property="labelCurrentVersion" destination="SwD-U7-enq" id="Z5V-c8-HnB"/>
                 <outlet property="labelDocker" destination="JXP-LC-0R1" id="8ds-0s-tbZ"/>

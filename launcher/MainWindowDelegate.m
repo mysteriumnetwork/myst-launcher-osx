@@ -10,7 +10,7 @@
 #import "ModalWindowDelegate.h"
 #import "AppDelegate.h"
 #import "../gobridge/fff.h"
-
+#import "utils.h"
 
 @implementation MainWindowDelegate
 
@@ -27,8 +27,7 @@
          */
         //[self autorelease];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"Eezy" object:nil];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [self refreshFrame];
     }
     return self;
@@ -38,7 +37,6 @@
     //NSLog(@"MainWindow > windowDidLoad %@", self);
     
     self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
-    
     [self.labelNetworkMode setTarget:self];
     [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
 }
@@ -58,38 +56,13 @@
         v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
     }
     [self.labelNetworkMode setObjectValue: v];
-    
-    [self.labelDocker setObjectValue: [self getRunStateString: [mod.isDockerRunning intValue]]];
-    [self.labelContainer setObjectValue: [self getRunStateString: [mod.isContainerRunning intValue]]];
+    [self.labelDocker setObjectValue:  [Utils getRunStateString:mod.isDockerRunning] ];
+    [self.labelContainer setObjectValue:  [Utils getRunStateString:mod.isContainerRunning] ];
+    [self.checkBox setState:(NSControlStateValue) [mod.autoUpgrade boolValue]];
 }
 
-
-NSString *const RunState0 = @"-";
-NSString *const RunState1 = @"Starting..";
-NSString *const RunState2 = @"Running [OK]";
-NSString *const RunState3 = @"Installing..";
-NSString *const RunState_ = @"?";
-
-
--(NSString*) getRunStateString:(int)state {
-    switch (state) {
-        case 0:
-            return RunState0; break;
-        case 1:
-            return RunState1; break;
-        case 2:
-            return RunState2; break;
-        case 3:
-            return RunState3; break;
-
-        default:
-            return RunState_; break;
-    }
-}
-
-- (void)notificationHandler:(NSNotification *) notification
+- (void)notificationHandlerState:(NSNotification *) notification
 {
-    NSLog(@"MainWindow > notificationHandler %@", notification.name);
     [self refreshFrame];
 }
 
@@ -107,8 +80,7 @@ NSString *const RunState_ = @"?";
 
 - (IBAction)okPressed:(id)sender
 {
-    NSLog(@"OK >>>");
-    //[[self window] setContentView:self.v21];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
 }
 
 - (IBAction)checkBoxClick:(NSButton*)sender

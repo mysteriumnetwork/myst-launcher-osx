@@ -19,7 +19,6 @@
 @property (weak) IBOutlet NSTextField *labelLatestVersion;
 @property (weak) IBOutlet NSTextField *labelHasUpdate;
 @property (weak) IBOutlet Label       *labelNetworkMode;
-
 @property (weak) IBOutlet NSTextField *labelDocker;
 @property (weak) IBOutlet NSTextField *labelContainer;
 
@@ -30,6 +29,5 @@
 - (IBAction)okPressed:(id)sender;
 - (IBAction)checkBoxClick:(NSButton*)sender;
 - (IBAction)networkingLabelPressed:(id)sender;
-
 
 @end

@@ -34,7 +34,20 @@ NSWindowController *modalWindowDelegate = nil;
     NSWindow *modalWindow = [modalWindowDelegate window];
     [modalWindowDelegate showWindow:modalWindow];
     
+//    [self setMenuItemState];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerConfig:) name:@"new_config" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
+}
+
+- (void)notificationHandlerConfig:(NSNotification *) notification{
+    //self.itemEnableNode = notification.userInfo[@"enabled"];
+    NSLog(@"notificationHandlerConfig");
     [self setMenuItemState];
+}
+- (void)notificationHandlerState:(NSNotification *) notification{
+    //self.itemEnableNode = notification.userInfo[@"enabled"];
+    NSLog(@"notificationHandlerState");
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -47,19 +60,18 @@ NSWindowController *modalWindowDelegate = nil;
 }
 
 - (IBAction)enableNode:(id)sender {
-    NSLog(@"enableNode %@", mod.autoUpgrade);
+    NSLog(@"enableNode %@", mod.enabled);
 
-    if ([mod.autoUpgrade isEqualToNumber:@0]) {
-        mod.autoUpgrade = @1;
+    if ([mod.enabled isEqualToNumber:@0]) {
+        mod.enabled = @1;
     } else {
-        mod.autoUpgrade = @0;
+        mod.enabled = @0;
     }
     [mod setState];
-    
     [self setMenuItemState];
 }
 
 - (void)setMenuItemState {
-    [self.itemEnableNode setState:(NSControlStateValue) [mod.autoUpgrade intValue]];
+    [self.itemEnableNode setState:(NSControlStateValue) [mod.enabled intValue]];
 }
 @end

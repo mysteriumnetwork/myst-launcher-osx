@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A16EF8B26EA5EB00036447D /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A16EF8A26EA5EB00036447D /* utils.m */; };
 		9A2B0BA026E60A3700E91E7B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63DEE126E607C900594C0B /* MainWindow.xib */; };
 		9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756726C919CC00A99070 /* AppDelegate.h */; };
 		9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756826C919CC00A99070 /* AppDelegate.m */; };
@@ -26,20 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A098D9326CD517D00DE93D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A098D7426CD517B00DE93D0;
-			remoteInfo = gogogo;
-		};
-		9A098D9526CD517D00DE93D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A098D7D26CD517B00DE93D0;
-			remoteInfo = gogogoTests;
-		};
 		9AC8757826C919D400A99070 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC8755C26C919CB00A99070 /* Project object */;
@@ -71,8 +58,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gogogo.xcodeproj; path = gogogo/gogogo.xcodeproj; sourceTree = "<group>"; };
 		9A098DA426CE2E0100DE93D0 /* gobridge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gobridge; sourceTree = "<group>"; };
+		9A16EF8A26EA5EB00036447D /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		9A16EF8C26EA5EF20036447D /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		9A3AC6E726E11B0100D5F114 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		9A3AC6E826E11B6200D5F114 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9A63DED526E5D86E00594C0B /* ModalWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalWindow.xib; sourceTree = "<group>"; };
@@ -136,15 +124,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A098D8F26CD517B00DE93D0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A098D9426CD517D00DE93D0 /* gogogo.framework */,
-				9A098D9626CD517D00DE93D0 /* gogogoTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A8BE56826E8E62C0097A8A9 /* Label */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				9A098DA426CE2E0100DE93D0 /* gobridge */,
-				9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */,
 				9AC8756626C919CB00A99070 /* launcher */,
 				9AC8757A26C919D400A99070 /* launcherTests */,
 				9AC8758526C919D400A99070 /* launcherUITests */,
@@ -183,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				9AC8757026C919D400A99070 /* main.m */,
+				9A16EF8C26EA5EF20036447D /* utils.h */,
+				9A16EF8A26EA5EB00036447D /* utils.m */,
 				9AC8756726C919CC00A99070 /* AppDelegate.h */,
 				9AC8756826C919CC00A99070 /* AppDelegate.m */,
 				9AC8756A26C919D400A99070 /* Assets.xcassets */,
@@ -310,12 +290,6 @@
 			mainGroup = 9AC8755B26C919CB00A99070;
 			productRefGroup = 9AC8756526C919CB00A99070 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9A098D8F26CD517B00DE93D0 /* Products */;
-					ProjectRef = 9A098D8E26CD517B00DE93D0 /* gogogo.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9AC8756326C919CB00A99070 /* launcher */,
@@ -324,23 +298,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9A098D9426CD517D00DE93D0 /* gogogo.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = gogogo.framework;
-			remoteRef = 9A098D9326CD517D00DE93D0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A098D9626CD517D00DE93D0 /* gogogoTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = gogogoTests.xctest;
-			remoteRef = 9A098D9526CD517D00DE93D0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AC8756226C919CB00A99070 /* Resources */ = {
@@ -381,6 +338,7 @@
 				9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */,
 				9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */,
 				9A3AC6E926E11B6200D5F114 /* Model.m in Sources */,
+				9A16EF8B26EA5EB00036447D /* utils.m in Sources */,
 				9A63DEDB26E5D86E00594C0B /* ModalWindowDelegate.m in Sources */,
 				9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */,
 			);

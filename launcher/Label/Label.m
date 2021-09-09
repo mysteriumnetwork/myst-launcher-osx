@@ -20,7 +20,9 @@
     return self;
 }
 
-/* intercept setObjectValue to add attributes */
+/*
+ *  Override setObjectValue method to intercept it to add attributes
+ */
 - (void)setObjectValue:(id)object
 {
     [super setObjectValue:object];
@@ -29,7 +31,6 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    NSLog(@"click");
     [self.target performSelector: self.action ];
 }
 

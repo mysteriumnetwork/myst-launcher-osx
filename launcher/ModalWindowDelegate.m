@@ -15,7 +15,7 @@
 - (id)init
 {
     self = [super initWithWindowNibName:@"ModalWindow"];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandler:) name:@"Eezy" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"config" object:nil];
 
     // enable window delegate extension
     [[self window] setDelegate:self];
@@ -32,7 +32,7 @@
 
 - (void)notificationHandler:(NSNotification *) notification
 {
-    NSLog(@"ModalWindow > notificationHandler %@", notification.userInfo);
+//    NSLog(@"ModalWindow > notificationHandler %@", notification.userInfo);
 }
 
 -(void)windowWillClose:(NSNotification *)notification
@@ -41,9 +41,6 @@
     [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
-
-#pragma mark Action methods
-
 - (IBAction)cancelPressed:(id)sender
 {
     [self close];
@@ -51,9 +48,7 @@
 }
 
 - (IBAction)okPressed:(id)sender
-{
-    NSLog(@"");
-    
+{   
     mod.portBegin = @([self.editPortRangeBegin intValue]);
     mod.portEnd = @([self.editPortRangeEnd intValue]);
     mod.enablePortForwarding = [NSNumber numberWithBool:[self.checkBox integerValue]];

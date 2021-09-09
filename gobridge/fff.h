@@ -76,7 +76,7 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern void TriggerUIEvent(char* s);
+extern void SetModalResult(int rc);
 extern void SetStateAndConfig(SetStateArgs* s);
 
 #ifdef __cplusplus

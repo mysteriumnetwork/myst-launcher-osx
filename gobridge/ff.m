@@ -1,9 +1,8 @@
 #import "ff.h"
 
 
-void
-macSend(NSState *s) {
-    NSLog(@"macCall >>>");
+void macSendState(NSState *s) {
+    NSLog(@"macSendState >>>");
 
     id dict = @{
         @"imageName": [[NSString alloc] initWithUTF8String:s->imageName],
@@ -12,24 +11,51 @@ macSend(NSState *s) {
         @"hasUpdate": @(s->hasUpdate),
         @"dockerRunning": @(s->dockerRunning),
         @"containerRunning": @(s->containerRunning),
+    };
+    
+    // free strings
+    free(s->latestVersion);
+    free(s->currentVersion);
+    free(s->imageName);
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"state" object:nil userInfo:dict];
+    });
+    return;
+}
 
+void macSendConfig(NSConfig *s) {
+    NSLog(@"macSendConfig >>>");
 
+    id dict = @{       
         @"enabled": @(s->enabled),
         @"enablePortForwarding": @(s->enablePortForwarding),
         @"portRangeBegin": @(s->portRangeBegin),
         @"portRangeEnd": @(s->portRangeEnd),
         @"autoUpgrade": @(s->autoUpgrade),
     };
-    
-    // free strings
-    free(s->latestVersion);
-    
+       
     dispatch_async(dispatch_get_main_queue(),^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Eezy" object:nil userInfo:dict];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"config" object:nil userInfo:dict];
     });
     return;
 }
 
+void macSendModal(NSModal *s) {
+    NSLog(@"macSendNodal >>>");
 
-
-
+    id dict = @{
+        @"title": @(s->title),
+        @"msg": @(s->msg),
+        @"modal_type": @(s->modal_type),
+    };
+    
+    // free strings
+    free(s->title);
+    free(s->msg);
+    
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"modal" object:nil userInfo:dict];
+    });
+    return;
+}

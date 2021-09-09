@@ -6,7 +6,7 @@
 #CC=clang go build -o ff.dylib -buildmode=c-shared ff.go
 
 clang -c -x objective-c ff.m
-CC=clang go build -o fff.dylib -buildmode=c-shared fff.go
+CC=clang go build -o fff.dylib -buildmode=c-shared *.go
 
 # set proper LC_ID_DYLIB. @rpath - means a library could be found in runtime path.
 # otherwise app (dynamic linker) wont be be able to find it during start.
