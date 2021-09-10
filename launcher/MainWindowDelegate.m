@@ -21,7 +21,6 @@
         [self autorelease];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
-        [self refreshFrame];
     }
     return self;
 }
@@ -34,9 +33,12 @@
     [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
     
 //    [self.img setImage:[NSImage imageNamed:@"playstore-icon (1)"]];
-    NSImage *appIcon = [NSImage imageNamed:@"AppIcon"];
-    [appIcon setSize: NSMakeSize(96, 96)];
-    [self.img setImage:appIcon];
+    img1 = [NSImage imageNamed:@"img_128x128"];
+    img2 = [NSImage imageNamed:@"img_128x128-active"];
+    [img1 setSize: NSMakeSize(96, 96)];
+    [img2 setSize: NSMakeSize(96, 96)];
+
+    [self refreshFrame];
 }
 
 - (void) refreshFrame {
@@ -59,6 +61,12 @@
     [self.labelDocker setObjectValue:  [Utils getRunStateString:mod.isDockerRunning] ];
     [self.labelContainer setObjectValue:  [Utils getRunStateString:mod.isContainerRunning] ];
     [self.checkBox setState:(NSControlStateValue) [mod.autoUpgrade boolValue]];
+    
+    if ([mod.isContainerRunning intValue]==2) {
+        [self.img setImage:img2];
+    } else {
+        [self.img setImage:img1];
+    }
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification

@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "Label.h"
 
-@interface MainWindowDelegate : NSWindowController <NSWindowDelegate>
+@interface MainWindowDelegate : NSWindowController <NSWindowDelegate> {
+    NSImage *img1, *img2;
+}
 
 @property (weak) IBOutlet NSButton *checkBox;
 @property (weak) IBOutlet NSButton *button;
