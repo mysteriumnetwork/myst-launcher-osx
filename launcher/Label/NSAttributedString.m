@@ -2,8 +2,8 @@
 //  NSAttributedStringExt.m
 //  launcher
 //
-//  Created by mac mini on 08/09/2021.
-//  Copyright © 2021 mac mini. All rights reserved.
+//  Created by @zensey on 08/09/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -2,10 +2,9 @@
 //  ModalWindowDelegate.m
 //  Cocoa Modal Window
 //
-//  Created by Nikola Grujic on 17/01/2020.
-//  Copyright © 2020 Mac Developers. All rights reserved.
+//  Created by @zensey on 15/08/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
-
 #import "ModalWindowDelegate.h"
 #import "AppDelegate.h"
 #import "../gobridge/fff.h"
@@ -15,7 +14,6 @@
 - (id)init
 {
     self = [super initWithWindowNibName:@"ModalWindow"];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"config" object:nil];
 
     // enable window delegate extension
     [[self window] setDelegate:self];

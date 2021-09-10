@@ -1,11 +1,10 @@
 //
-//  ModalWindowDelegate.m
-//  Cocoa Modal Window
+//  MainWindowDelegate.m
+//  Launcher Main Window
 //
-//  Created by Nikola Grujic on 17/01/2020.
-//  Copyright © 2020 Mac Developers. All rights reserved.
+//  Created by @zensey on 15/08/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
-
 #import "MainWindowDelegate.h"
 #import "ModalWindowDelegate.h"
 #import "AppDelegate.h"
@@ -17,15 +16,9 @@
 - (id)init
 {
     if (self = [super initWithWindowNibName:@"MainWindow"]) {
-
         // enable window delegate extension
         [[self window] setDelegate:self];
-        
-        /*
-         *  dont autorelease, as with ARC the window controller gets deallocated unless you make it
-         *  a property of the App Delegate
-         */
-        //[self autorelease];
+        [self autorelease];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [self refreshFrame];
@@ -39,9 +32,16 @@
     self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
     [self.labelNetworkMode setTarget:self];
     [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
+    
+//    [self.img setImage:[NSImage imageNamed:@"playstore-icon (1)"]];
+    NSImage *appIcon = [NSImage imageNamed:@"AppIcon"];
+    [appIcon setSize: NSMakeSize(96, 96)];
+    [self.img setImage:appIcon];
 }
 
 - (void) refreshFrame {
+    NSLog(@"refreshFrame >");
+    
     [self.labelCurrentVersion setObjectValue: mod.currentVersion];
     [self.labelLatestVersion setObjectValue: mod.latestVersion];
     [self.labelImageName setObjectValue: mod.imageName];

@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
                 <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
+                <outlet property="img" destination="mNr-bj-xQN" id="dgF-ed-nX9"/>
                 <outlet property="labelContainer" destination="8Qw-4J-Vie" id="Vgh-JQ-PSI"/>
                 <outlet property="labelCurrentVersion" destination="SwD-U7-enq" id="Z5V-c8-HnB"/>
                 <outlet property="labelDocker" destination="JXP-LC-0R1" id="8ds-0s-tbZ"/>
@@ -24,12 +25,12 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Mysterium node launcher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g" userLabel="MWindow">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="418" height="454"/>
+            <rect key="contentRect" x="196" y="240" width="418" height="503"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="418" height="454"/>
+                <rect key="frame" x="0.0" y="0.0" width="418" height="503"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n51-wo-s1i">
@@ -180,9 +181,14 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNr-bj-xQN">
+                        <rect key="frame" x="20" y="382" width="101" height="101"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="R9K-Sb-3PU"/>
+                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="109" y="288"/>
+            <point key="canvasLocation" x="109" y="312.5"/>
         </window>
         <viewController id="UGd-bo-Jv4"/>
         <customView id="N56-00-vZm">

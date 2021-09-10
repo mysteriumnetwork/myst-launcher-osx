@@ -1,9 +1,9 @@
 //
-//  ModalWindowDelegate.h
-//  Cocoa Modal Window
+//  MainWindowDelegate.h
+//  Launcher Main Window
 //
-//  Created by Nikola Grujic on 17/01/2020.
-//  Copyright © 2020 Mac Developers. All rights reserved.
+//  Created by @zensey on 15/08/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -24,6 +24,7 @@
 
 @property (weak) IBOutlet NSView *v11;
 @property (weak) IBOutlet NSView *v21;
+@property (weak) IBOutlet NSImageView *img;
 
 - (IBAction)cancelPressed:(id)sender;
 - (IBAction)okPressed:(id)sender;

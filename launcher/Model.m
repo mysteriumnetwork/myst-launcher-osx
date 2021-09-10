@@ -2,8 +2,8 @@
 //  model.m
 //  launcher
 //
-//  Created by mac mini on 02/09/2021.
-//  Copyright © 2021 mac mini. All rights reserved.
+//  Created by @zensey on 02/09/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -51,7 +51,7 @@
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
-    NSLog(@"config > %@ %@", notification.object, notification.userInfo); //
+//    NSLog(@"config > %@ %@", notification.object, notification.userInfo); //
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
@@ -63,7 +63,7 @@
 }
 
 - (void)notificationHandlerModal:(NSNotification *) notification{
-    NSLog(@"modal > %@ %@", notification.object, notification.userInfo); //
+//    NSLog(@"modal > %@ %@", notification.object, notification.userInfo); //
     
     NSAlert *a = [[[NSAlert alloc] init] autorelease];
     [a setMessageText:notification.userInfo[@"title"]];

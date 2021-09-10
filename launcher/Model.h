@@ -2,8 +2,8 @@
 //  model.h
 //  launcher
 //
-//  Created by mac mini on 02/09/2021.
-//  Copyright © 2021 mac mini. All rights reserved.
+//  Created by @zensey on 02/09/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

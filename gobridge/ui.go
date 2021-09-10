@@ -8,8 +8,6 @@ package main
 */
 import "C"
 
-import "fmt"
-
 type UiProxy struct {
 	result chan int
 }

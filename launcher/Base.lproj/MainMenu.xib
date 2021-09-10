@@ -16,6 +16,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="itemEnableNode" destination="NMo-om-nkz" id="pHd-EP-dkz"/>
+                <outlet property="statusBarMenu" destination="9Rz-46-1v1" id="TGN-b0-jWj"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -149,7 +150,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-31" y="107"/>
+            <point key="canvasLocation" x="-7" y="55"/>
         </menu>
         <window title="launcher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -160,9 +161,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="269" height="192"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <point key="canvasLocation" x="2.5" y="-291"/>
+            <point key="canvasLocation" x="27" y="-305"/>
         </window>
         <viewController id="6se-hQ-ro8"/>
         <userDefaultsController representsSharedInstance="YES" id="Bmx-KA-0Zd"/>
+        <menu title="Menu2" id="9Rz-46-1v1">
+            <items>
+                <menuItem title="Open Node UI" id="e8H-V9-hcv">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Show Main Window" id="BFM-kg-fcn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showMain:" target="Voe-Tx-rLC" id="VdA-7x-dMc"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="xu0-Cb-5LW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-320" y="-75"/>
+        </menu>
     </objects>
 </document>

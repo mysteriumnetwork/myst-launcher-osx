@@ -2,8 +2,8 @@
 //  launcherTests.m
 //  launcherTests
 //
-//  Created by mac mini on 15/08/2021.
-//  Copyright © 2021 mac mini. All rights reserved.
+//  Created by @zensey on 15/08/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

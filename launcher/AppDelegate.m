@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  launcher
 //
-//  Created by mac mini on 15/08/2021.
-//  Copyright © 2021 mac mini. All rights reserved.
+//  Created by @zensey on 15/08/2021.
+//  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 	
 #import "AppDelegate.h"
@@ -11,32 +11,45 @@
 #import "ModalWindowDelegate.h"
 
 LauncherState *mod = nil;
-NSWindowController *modalWindowDelegate = nil;
-
-@interface AppDelegate ()
-@property (weak) IBOutlet ModalWindowDelegate *window;
-@property (weak) IBOutlet NSPopUpButton *button;
-@property (weak) IBOutlet NSMenuItem *itemEnableNode;
-
-- (IBAction)showMain:(id)sender;
-- (IBAction)enableNode:(id)sender;
-
-@end
 
 @implementation AppDelegate
+@synthesize statusBarMenu;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {   
     mod = [[LauncherState alloc] init];
 
-    if (modalWindowDelegate == nil) {
-        modalWindowDelegate = [[MainWindowDelegate alloc] init];
+    if (!self.modalWindowDelegate) {
+        self.modalWindowDelegate = [[MainWindowDelegate alloc] init];
     }
-    NSWindow *modalWindow = [modalWindowDelegate window];
-    [modalWindowDelegate showWindow:modalWindow];
+    NSWindow *modalWindow = [self.modalWindowDelegate window];
+    [self.modalWindowDelegate showWindow:modalWindow];
     
-//    [self setMenuItemState];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerConfig:) name:@"new_config" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
+
+    
+    NSStatusItem  *statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+    statusItem.button.image = [NSImage imageNamed:@"icon"];
+    statusItem.button.action = @selector(statusButtonClicked:);
+    statusItem.button.target = self;
+    [statusItem setMenu:self.statusBarMenu];
+
+//    [[NSApplication sharedApplication] setApplicationIconImage:[NSImage imageNamed:@"AppIcon"]];
+}
+
+- (void)statusButtonClicked:(id)sender
+{
+//      [NSApp hide:nil];
+
+//    if (NSApp.hidden || !self.mainWindow.visible)
+//    {
+//        [NSApp unhide:nil];
+//        [NSApp activateIgnoringOtherApps:YES];
+//        [self.mainWindow setIsVisible:YES];
+//    } else {
+//        [NSApp hide:nil];
+//    }
+    
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
@@ -44,9 +57,10 @@ NSWindowController *modalWindowDelegate = nil;
     NSLog(@"notificationHandlerConfig");
     [self setMenuItemState];
 }
+
 - (void)notificationHandlerState:(NSNotification *) notification{
     //self.itemEnableNode = notification.userInfo[@"enabled"];
-    NSLog(@"notificationHandlerState");
+//    NSLog(@"notificationHandlerState");
 
 }
 
@@ -55,8 +69,8 @@ NSWindowController *modalWindowDelegate = nil;
 }
 
 - (IBAction)showMain:(id)sender {   
-    NSWindow *modalWindow = [modalWindowDelegate window];
-    [modalWindowDelegate showWindow:modalWindow];
+    NSWindow *modalWindow = [self.modalWindowDelegate window];
+    [self.modalWindowDelegate showWindow:modalWindow];
 }
 
 - (IBAction)enableNode:(id)sender {
