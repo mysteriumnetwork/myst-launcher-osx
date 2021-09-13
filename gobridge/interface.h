@@ -17,8 +17,8 @@ typedef struct _NSConfig {
     bool autoUpgrade;
     bool enabled;
     bool enablePortForwarding;
-	int  portRangeBegin;
-	int  portRangeEnd;
+    int  portRangeBegin;
+    int  portRangeEnd;
 } NSConfig;
 
 typedef struct _NSModal {
@@ -30,8 +30,8 @@ typedef struct _NSModal {
 
 typedef struct _SetStateArgs {
     bool enablePortForwarding;
-	int  portRangeBegin;
-	int  portRangeEnd;
+    int  portRangeBegin;
+    int  portRangeEnd;
     bool autoUpgrade;
     bool enabled;
 } SetStateArgs;
