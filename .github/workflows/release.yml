@@ -29,7 +29,8 @@ jobs:
 
       - name: "Build"
         run: |
-          go version 
+          go version
+          cd gobridge; sh -c ./mk.sh
 
           # export GO_HOME=$HOME/go1.16/go &&
           # export GOPATH=$HOME/go &&
