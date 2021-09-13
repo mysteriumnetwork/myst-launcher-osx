@@ -12,7 +12,6 @@ import "fmt"
 
 type UiProxy struct {
 	result chan int
-
 	waitClick chan int
 }
 
@@ -25,9 +24,7 @@ func newUiProxy() *UiProxy {
 }
 
 func (g *UiProxy) ShowMain() {}
-
 func (g *UiProxy) ShowNotificationInstalled() {}
-
 func (g *UiProxy) ShowNotificationUpgrade() {}
 
 func (g *UiProxy) ConfirmModal(title, message string) int {
@@ -70,8 +67,6 @@ func (g *UiProxy) CloseUI() {
 	// g.model.WantExit = true
 	// g.bus.Publish("exit")
 }
-
-///
 
 // returns false, if dialogue was terminated
 func (g *UiProxy) WaitDialogueComplete() bool {

@@ -9,11 +9,17 @@
 #import "AppDelegate.h"
 #import "MainWindowDelegate.h"
 #import "ModalWindowDelegate.h"
+#import "../gobridge/gobridge.h"
 
 LauncherState *mod = nil;
 
 @implementation AppDelegate
 @synthesize statusBarMenu;
+
+- (void) applicationWillTerminate:(NSNotification *)aNotification {
+    NSLog(@"applicationWillTerminate >");
+    OnAppExit();
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {   
     mod = [[LauncherState alloc] init];
@@ -40,7 +46,6 @@ LauncherState *mod = nil;
 - (void)statusButtonClicked:(id)sender
 {
 //      [NSApp hide:nil];
-
 //    if (NSApp.hidden || !self.mainWindow.visible)
 //    {
 //        [NSApp unhide:nil];
@@ -60,12 +65,6 @@ LauncherState *mod = nil;
 
 - (void)notificationHandlerState:(NSNotification *) notification{
     //self.itemEnableNode = notification.userInfo[@"enabled"];
-//    NSLog(@"notificationHandlerState");
-
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    NSLog(@"applicationWillTerminate");
 }
 
 - (IBAction)showMain:(id)sender {   

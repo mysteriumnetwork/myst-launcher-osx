@@ -27,9 +27,7 @@
     return self;
 }
 
-- (void) windowDidLoad {
-    NSLog(@"MainWindow > windowDidLoad %@", self);
-    
+- (void) windowDidLoad {  
     self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
     [self.labelNetworkMode setTarget:self];
     [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
@@ -118,7 +116,6 @@
 // Installation mode
 - (void)notificationHandlerMode:(NSNotification *) notification
 {
-    NSLog(@"notificationHandlerMode > %@", notification);
     NSNumber *n = notification.userInfo[@"mode"];
     
     switch ([n intValue]) {

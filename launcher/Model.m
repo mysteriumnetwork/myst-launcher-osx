@@ -40,7 +40,7 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
+//    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];

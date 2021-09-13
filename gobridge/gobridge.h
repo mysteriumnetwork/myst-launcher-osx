@@ -78,6 +78,7 @@ extern "C" {
 
 extern void SetModalResult(int rc);
 extern void DialogueComplete();
+extern void OnAppExit();
 extern void SetStateAndConfig(SetStateArgs* s);
 
 #ifdef __cplusplus

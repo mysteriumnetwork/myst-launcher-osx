@@ -94,8 +94,16 @@ func SetModalResult(rc C.int) {
 //export DialogueComplete
 func DialogueComplete() {
 	fmt.Println("DialogueComplete >")
-
 	ui.DialogueComplete()
+}
+
+//export OnAppExit
+func OnAppExit() {
+    fmt.Println("OnAppExit >")
+
+    ap.TriggerAction("stop")
+    // wait for SuperviseDockerNode to finish its work
+    ap.WaitGroup.Wait()
 }
 
 //export SetStateAndConfig
