@@ -28,19 +28,16 @@ var (
 )
 
 func init() {
-	fmt.Println("init>")
+	fmt.Println("gobridge init>")
 	ap = app.NewApp()
 
 	mod = model.NewUIModel()
-	fmt.Println("init fff>", mod.Config)
 	sendConfig()
 
 	mod.UIBus.Subscribe("state-change", func() {
-		fmt.Println("state-change >", mod.State)
 		C.macSendMode(C.int(mod.State))
 	})
 	mod.UIBus.Subscribe("log", func(p []byte) {
-		//fmt.Println("log > > >", p)
 		C.macSendLog(C.CString(string(p)))
 	})
 	log.SetOutput(ap)
@@ -85,20 +82,20 @@ func sendConfig() {
 	C.macSendConfig(&cf)
 }
 
-//export SetModalResult
-func SetModalResult(rc C.int) {
+//export GoSetModalResult
+func GoSetModalResult(rc C.int) {
 	fmt.Println("CloseModal >", int(rc))
 	ui.SetModalReturnCode(int(rc))
 }
 
-//export DialogueComplete
-func DialogueComplete() {
+//export GoDialogueComplete
+func GoDialogueComplete() {
 	fmt.Println("DialogueComplete >")
 	ui.DialogueComplete()
 }
 
-//export OnAppExit
-func OnAppExit() {
+//export GoOnAppExit
+func GoOnAppExit() {
     fmt.Println("OnAppExit >")
 
     ap.TriggerAction("stop")
@@ -106,8 +103,8 @@ func OnAppExit() {
     ap.WaitGroup.Wait()
 }
 
-//export SetStateAndConfig
-func SetStateAndConfig(s *C.SetStateArgs) {
+//export GoSetStateAndConfig
+func GoSetStateAndConfig(s *C.SetStateArgs) {
 	fmt.Println("SetState >", s)
 	saveConf := false
 
@@ -138,7 +135,5 @@ func SetStateAndConfig(s *C.SetStateArgs) {
 	}
 }
 
-///
-func main() {
-	ap.WaitGroup.Wait()
-}
+// required by runtime
+func main() {}

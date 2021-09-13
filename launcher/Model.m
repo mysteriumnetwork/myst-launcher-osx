@@ -93,10 +93,10 @@
     NSInteger rc = [a runModal];
     switch(rc) {
         case NSAlertFirstButtonReturn:
-            SetModalResult(IDYES);
+            GoSetModalResult(IDYES);
             break;
         case NSAlertSecondButtonReturn:
-            SetModalResult(IDNO);
+            GoSetModalResult(IDNO);
             break;
     }
 }
@@ -110,7 +110,7 @@
     s.autoUpgrade = [self.autoUpgrade boolValue];
     s.enabled = [self.enabled boolValue];
 
-    SetStateAndConfig(&s);
+    GoSetStateAndConfig(&s);
 }
 
 @end

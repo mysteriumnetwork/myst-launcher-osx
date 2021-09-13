@@ -149,7 +149,7 @@
 
 - (IBAction)finishPressed:(id)sender
 {
-    DialogueComplete();
+    GoDialogueComplete();
 }
 
 

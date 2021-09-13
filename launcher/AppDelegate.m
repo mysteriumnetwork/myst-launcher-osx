@@ -18,7 +18,7 @@ LauncherState *mod = nil;
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
     NSLog(@"applicationWillTerminate >");
-    OnAppExit();
+    GoOnAppExit();
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {   
@@ -39,8 +39,6 @@ LauncherState *mod = nil;
     statusItem.button.action = @selector(statusButtonClicked:);
     statusItem.button.target = self;
     [statusItem setMenu:self.statusBarMenu];
-
-//    [[NSApplication sharedApplication] setApplicationIconImage:[NSImage imageNamed:@"AppIcon"]];
 }
 
 - (void)statusButtonClicked:(id)sender
@@ -54,7 +52,6 @@ LauncherState *mod = nil;
 //    } else {
 //        [NSApp hide:nil];
 //    }
-    
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
