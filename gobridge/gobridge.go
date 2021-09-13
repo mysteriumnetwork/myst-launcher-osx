@@ -3,51 +3,47 @@ package main
 /*
 #cgo CFLAGS: -x objective-c
 #cgo LDFLAGS: -framework Foundation
-#cgo LDFLAGS: -L./ -lff.o
-#include "ff.h"
+#cgo LDFLAGS: -L./ -linterface.o
+#include "interface.h"
 */
 import "C"
 
 import (
 	"fmt"
-	"sync"
+	"log"
 
 	"github.com/mysteriumnetwork/myst-launcher/app"
-	"github.com/mysteriumnetwork/myst-launcher/gui"
 	"github.com/mysteriumnetwork/myst-launcher/model"
 	"github.com/mysteriumnetwork/myst-launcher/myst"
-	"github.com/mysteriumnetwork/myst-launcher/utils"
 )
 
 var (
 	manager *myst.Manager
 	cfg     model.Config
 	mon     *myst.DockerMonitor
-	mod     *gui.UIModel
+	mod     *model.UIModel
 
 	ap *app.AppState
-    ui gui.Gui_
-
-	// native
-	mu sync.Mutex
+	ui model.Gui_
 )
 
 func init() {
-	utils.IsProcessRunning("Docker")
-
-	fmt.Println("init fff 0.0.3>")
+	fmt.Println("init>")
 	ap = app.NewApp()
 
-	mod = gui.NewUIModel()
+	mod = model.NewUIModel()
 	fmt.Println("init fff>", mod.Config)
 	sendConfig()
 
-	mod.UIBus.Subscribe("container-state", func() {
-		//fmt.Println("container-state")
-		//g.dlg.Synchronize(func() {
-		//	g.setImage()
-		//})
+	mod.UIBus.Subscribe("state-change", func() {
+		fmt.Println("state-change >", mod.State)
+		C.macSendMode(C.int(mod.State))
 	})
+	mod.UIBus.Subscribe("log", func(p []byte) {
+		//fmt.Println("log > > >", p)
+		C.macSendLog(C.CString(string(p)))
+	})
+	log.SetOutput(ap)
 
 	mod.UIBus.Subscribe("model-change", sendState)
 	ui = newUiProxy()
@@ -57,12 +53,10 @@ func init() {
 	ap.SetUI(ui)
 
 	ap.WaitGroup.Add(1)
-
 	go ap.SuperviseDockerNode()
 }
 
 func sendState() {
-	// mu.Lock()
 	var st C.NSState
 
 	st.imageName = C.CString(mod.ImgVer.ImageName)
@@ -72,14 +66,13 @@ func sendState() {
 	st.dockerRunning = C.int(mod.StateDocker)
 	st.containerRunning = C.int(mod.StateContainer)
 
-	// st.enablePortForwarding = C.bool(mod.Config.EnablePortForwarding)
-	// st.portRangeBegin = C.int(mod.Config.PortRangeBegin)
-	// st.portRangeEnd = C.int(mod.Config.PortRangeEnd)
-	// st.autoUpgrade = C.bool(mod.Config.AutoUpgrade)
+	// instllation state
+	st.checkVTx = C.bool(mod.CheckVTx)
+	st.checkDocker = C.bool(mod.CheckDocker)
 
 	C.macSendState(&st)
-	// mu.Unlock()
 }
+
 func sendConfig() {
 	var cf C.NSConfig
 
@@ -92,16 +85,17 @@ func sendConfig() {
 	C.macSendConfig(&cf)
 }
 
-//export TriggerUIEvent
-//func TriggerUIEvent(s *C.char) {
-//	call := C.GoString(s)
-//	fmt.Println("TriggerEvent >", call)
-//}
-
 //export SetModalResult
 func SetModalResult(rc C.int) {
-    fmt.Println("CloseModal >", int(rc))
-    ui.SetModalReturnCode(int(rc))
+	fmt.Println("CloseModal >", int(rc))
+	ui.SetModalReturnCode(int(rc))
+}
+
+//export DialogueComplete
+func DialogueComplete() {
+	fmt.Println("DialogueComplete >")
+
+	ui.DialogueComplete()
 }
 
 //export SetStateAndConfig
@@ -136,24 +130,7 @@ func SetStateAndConfig(s *C.SetStateArgs) {
 	}
 }
 
-// func QueryState(st *C.NSState) {
-// 	fmt.Println("p>", st)
-// 	/*
-// 		fmt.Println("p>", manager.CanPingDocker())
-// 		// C.macSend()
-// 		mod.ImgVer.CurrentImgDigest = manager.GetCurrentImageDigest()
-// 		myst.CheckVersionAndUpgrades(mod)
-// 		fmt.Println("d>>", mod.ImgVer, mod.ImgVer.VersionLatest)
-// 		isRunning, _ := mon.IsRunning()
-// 		st.dockerRunning = C.bool(isRunning)
-// 		st.currentVersion = C.CString(mod.ImgVer.VersionCurrent)
-// 		st.latestVersion = C.CString(mod.ImgVer.VersionLatest)
-// 		st.hasUpdate = C.bool(mod.ImgVer.HasUpdate)
-// 	*/
-// }
-
 ///
-
 func main() {
 	ap.WaitGroup.Wait()
 }

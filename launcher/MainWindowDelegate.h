@@ -23,14 +23,25 @@
 @property (weak) IBOutlet Label       *labelNetworkMode;
 @property (weak) IBOutlet NSTextField *labelDocker;
 @property (weak) IBOutlet NSTextField *labelContainer;
-
-@property (weak) IBOutlet NSView *v11;
-@property (weak) IBOutlet NSView *v21;
 @property (weak) IBOutlet NSImageView *img;
+
+
+@property (strong) IBOutlet NSView *v11;
+@property (strong) IBOutlet NSView *v21;
 
 - (IBAction)cancelPressed:(id)sender;
 - (IBAction)okPressed:(id)sender;
 - (IBAction)checkBoxClick:(NSButton*)sender;
 - (IBAction)networkingLabelPressed:(id)sender;
+
+// installation
+@property (weak) IBOutlet NSButton *checkBoxVirtualization;
+@property (weak) IBOutlet NSButton *checkBoxDocker;
+@property (weak) IBOutlet NSButton *finishButton;
+
+@property (weak) IBOutlet NSScrollView *scrollView;
+- (IBAction)finishPressed:(id)sender;
+
+
 
 @end

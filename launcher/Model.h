@@ -27,6 +27,10 @@
     
     NSNumber *isDockerRunning;
     NSNumber *isContainerRunning;
+    
+    // installation
+    NSNumber *checkDocker;
+    NSNumber *checkVTx;
 }
 
 @property (readwrite, copy) NSNumber *portBegin;
@@ -42,6 +46,8 @@
 @property (readwrite, copy) NSNumber *isDockerRunning;
 @property (readwrite, copy) NSNumber *isContainerRunning;
 
+@property (readwrite, copy) NSNumber *checkDocker;
+@property (readwrite, copy) NSNumber *checkVTx;
 - (void)setState;
 
 @end

@@ -7,7 +7,7 @@
 //
 #import "ModalWindowDelegate.h"
 #import "AppDelegate.h"
-#import "../gobridge/fff.h"
+#import "../gobridge/gobridge.h"
 
 @implementation ModalWindowDelegate
 
@@ -29,9 +29,7 @@
 }
 
 - (void)notificationHandler:(NSNotification *) notification
-{
-//    NSLog(@"ModalWindow > notificationHandler %@", notification.userInfo);
-}
+{}
 
 -(void)windowWillClose:(NSNotification *)notification
 {
@@ -45,10 +43,38 @@
     [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
+- (bool)validatePortRange:(int)portBegin :(int)portEnd
+{
+    if (portEnd-portBegin+1 < 100) {
+        return false;
+    }
+    if (portBegin > 65535) {
+        return false;
+    }
+    if (portEnd > 65535) {
+        return false;
+    }
+    return true;
+}
+
 - (IBAction)okPressed:(id)sender
-{   
-    mod.portBegin = @([self.editPortRangeBegin intValue]);
-    mod.portEnd = @([self.editPortRangeEnd intValue]);
+{
+    int portBegin = [self.editPortRangeBegin intValue];
+    int portEnd = [self.editPortRangeEnd intValue];
+    bool valid = [self validatePortRange:portBegin :portEnd];
+    
+    if (!valid) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Port range"];
+        [alert setInformativeText:@"Wrong port range.\nPorts shall be in range of 1000..65535.\nNumber of ports in the range shall be at least 100."];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert beginSheetModalForWindow:self.window completionHandler:nil];
+        return;
+    }
+    
+    mod.portBegin = @(portBegin);
+    mod.portEnd = @(portEnd);
     mod.enablePortForwarding = [NSNumber numberWithBool:[self.checkBox integerValue]];
     [mod setState];
     

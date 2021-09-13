@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <Cocoa/Cocoa.h>
+#import <Cocoa/Cocoa.h>
 #import "Model.h"
-#import "../gobridge/fff.h"
+#include "../gobridge/gobridge.h"
 
 @implementation LauncherState
 
@@ -25,6 +25,8 @@
 @synthesize currentVersion;
 @synthesize imageName;
 @synthesize latestVersion;
+@synthesize checkVTx;
+@synthesize checkDocker;
 
 - (id) init
 {
@@ -38,7 +40,7 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-//    NSLog(@"state > %@ %@", notification.object, notification.userInfo); //
+    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
@@ -46,6 +48,10 @@
     self.latestVersion        = notification.userInfo[@"latestVersion"];
     self.isDockerRunning      = notification.userInfo[@"dockerRunning"];
     self.isContainerRunning   = notification.userInfo[@"containerRunning"];
+    
+    self.checkVTx    = notification.userInfo[@"checkVTx"];
+    self.checkDocker = notification.userInfo[@"checkDocker"];
+
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_state" object:nil];
 }

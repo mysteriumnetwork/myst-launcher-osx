@@ -1,8 +1,8 @@
-#import "ff.h"
+#import "interface.h"
 
 
 void macSendState(NSState *s) {
-    NSLog(@"macSendState >>>");
+    NSLog(@"macSendState >>>1");
 
     id dict = @{
         @"imageName": [[NSString alloc] initWithUTF8String:s->imageName],
@@ -11,6 +11,10 @@ void macSendState(NSState *s) {
         @"hasUpdate": @(s->hasUpdate),
         @"dockerRunning": @(s->dockerRunning),
         @"containerRunning": @(s->containerRunning),
+        
+        // instllation state
+        @"checkVTx": @(s->checkVTx),
+        @"checkDocker": @(s->checkDocker),
     };
     
     // free strings
@@ -56,6 +60,31 @@ void macSendModal(NSModal *s) {
     
     dispatch_async(dispatch_get_main_queue(),^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"modal" object:nil userInfo:dict];
+    });
+    return;
+}
+
+void macSendMode(int s) {
+    NSLog(@"macSendMode >>>");
+
+    id dict = @{
+        @"mode": @(s),
+    };
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mode" object:nil userInfo:dict];
+    });
+    return;
+}
+
+void macSendLog(char *s) {
+    NSLog(@"macSendLog >>>");
+
+    id dict = @{
+        @"msg": [[NSString alloc] initWithUTF8String:s],
+    };
+    free(s);
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"log" object:nil userInfo:dict];
     });
     return;
 }

@@ -19,12 +19,12 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
-#line 3 "fff.go"
+#line 3 "gobridge.go"
 
 
 
 
-#include "ff.h"
+#include "interface.h"
 
 #line 1 "cgo-generated-wrapper"
 
@@ -77,6 +77,7 @@ extern "C" {
 #endif
 
 extern void SetModalResult(int rc);
+extern void DialogueComplete();
 extern void SetStateAndConfig(SetStateArgs* s);
 
 #ifdef __cplusplus

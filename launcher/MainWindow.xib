@@ -9,6 +9,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
                 <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
+                <outlet property="checkBoxDocker" destination="5ZG-Kl-H3V" id="3Qo-Yj-zMe"/>
+                <outlet property="checkBoxVirtualization" destination="PGg-4s-fBj" id="f6w-1b-qoL"/>
+                <outlet property="finishButton" destination="les-Qz-lh6" id="ghC-uF-XcR"/>
                 <outlet property="img" destination="mNr-bj-xQN" id="dgF-ed-nX9"/>
                 <outlet property="labelContainer" destination="8Qw-4J-Vie" id="Vgh-JQ-PSI"/>
                 <outlet property="labelCurrentVersion" destination="SwD-U7-enq" id="Z5V-c8-HnB"/>
@@ -17,6 +20,7 @@
                 <outlet property="labelImageName" destination="694-Ni-LbW" id="ir1-3m-eov"/>
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
+                <outlet property="scrollView" destination="C1s-Fp-bfO" id="0wf-rq-geJ"/>
                 <outlet property="v11" destination="EiT-Mj-1SZ" id="RE8-22-Tyj"/>
                 <outlet property="v21" destination="N56-00-vZm" id="wRR-FA-eet"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="NXo-At-roL"/>
@@ -192,20 +196,84 @@
         </window>
         <viewController id="UGd-bo-Jv4"/>
         <customView id="N56-00-vZm" userLabel="setup view">
-            <rect key="frame" x="0.0" y="0.0" width="366" height="255"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="418" height="532"/>
+            <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4BA-ha-k7s">
-                    <rect key="frame" x="18" y="219" width="49" height="16"/>
+                    <rect key="frame" x="18" y="496" width="230" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label 2" id="9m2-6U-GrB">
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Installation / Requrement checking" id="9m2-6U-GrB">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8aQ-3M-hsr">
+                    <rect key="frame" x="18" y="236" width="27" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Log" id="Y4j-LB-XAJ">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="les-Qz-lh6">
+                    <rect key="frame" x="272" y="35" width="132" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Finish" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEA-DN-ezd">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="finishPressed:" target="-2" id="Rbg-YR-9Bg"/>
+                    </connections>
+                </button>
+                <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1s-Fp-bfO">
+                    <rect key="frame" x="20" y="93" width="378" height="135"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
+                        <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
+                                <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="363" height="135"/>
+                                <size key="maxSize" width="378" height="10000000"/>
+                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="nzq-nM-kEz">
+                        <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="XfU-fR-p0i">
+                        <rect key="frame" x="363" y="0.0" width="15" height="135"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGg-4s-fBj">
+                    <rect key="frame" x="18" y="428" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Virtualization support" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Amy-0Z-JPR">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-Kl-H3V">
+                    <rect key="frame" x="18" y="402" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nib-nF-vVK">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="83" y="809"/>
+            <point key="canvasLocation" x="109" y="931"/>
         </customView>
+        <userDefaultsController representsSharedInstance="YES" id="FFb-gW-zuY"/>
     </objects>
 </document>

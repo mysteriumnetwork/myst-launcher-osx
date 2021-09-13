@@ -9,6 +9,8 @@ typedef struct _NSState {
     int  dockerRunning;
     int  containerRunning;
 
+    bool checkVTx;
+    bool checkDocker;
 } NSState;
 
 typedef struct _NSConfig {
@@ -40,6 +42,8 @@ typedef struct _SetStateArgs {
 void macSendState(NSState *s);
 void macSendConfig(NSConfig *s);
 void macSendModal(NSModal *s);
+void macSendMode(int s);
+void macSendLog(char *s);
 
 ///
 typedef enum {
@@ -62,4 +66,12 @@ typedef enum {
     MODAL_YesNoModal   = 2,
     MODAL_ErrorModal   = 3,
 } MODAL_TYPE;
+
+typedef enum {
+    UIState_Initial           = 0,
+    UIState_InstallNeeded     = -1,
+    UIState_InstallInProgress = -2,
+    UIState_InstallFinished   = -3,
+    UIState_InstallError      = -4,
+} UI_STATE;
 
