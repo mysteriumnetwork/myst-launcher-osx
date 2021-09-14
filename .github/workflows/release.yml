@@ -13,11 +13,6 @@ jobs:
     name: Release
     runs-on: macos-latest
 
-    # strategy:
-    #   matrix:
-    #     goos: [darwin]
-    #     goarch: [amd64]
-
     steps:
       - uses: actions/checkout@v2
 
@@ -29,7 +24,6 @@ jobs:
 
       - name: "Build"
         run: |
-          go version
           pushd ..
           git clone https://github.com/mysteriumnetwork/myst-launcher
           pushd myst-launcher 
@@ -37,7 +31,6 @@ jobs:
           popd
           popd
           
-          pwd; ls -la;
           echo "Make gobridge >>>"
           cd gobridge; sh -c ./mk.sh
           cd ..
@@ -45,10 +38,11 @@ jobs:
           echo "Make dmg >>>"
           sh -c ./make_dmg.sh
 
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   if: startsWith(github.ref, 'refs/tags/')
-      #   with:
-      #     files: cmd/tap-over-https-gui/tap-over-https-gui-${{ env.RELEASE_VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          myst_launcher.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
