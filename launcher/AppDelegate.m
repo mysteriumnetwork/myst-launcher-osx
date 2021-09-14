@@ -20,8 +20,8 @@ LauncherState *mod = nil;
 @synthesize statusBarMenu;
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
-    NSLog(@"applicationWillTerminate >");
     GoOnAppExit();
+    NSLog(@"application exit >");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
