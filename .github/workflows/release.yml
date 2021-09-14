@@ -39,6 +39,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            myst_launcher_macos_amd64.dmg
+            mysterium_launcher_macos_amd64.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
