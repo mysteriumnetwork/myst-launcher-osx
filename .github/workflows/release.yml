@@ -1,0 +1,48 @@
+# .github/workflows/release.yaml
+
+# on:
+#   release:
+#     types: [created]
+
+on:
+  push:
+    tags: ["*"]
+
+jobs:
+  releases-macos-amd64:
+    name: Release
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+
+      - name: "Build"
+        run: |
+          pushd ..
+          git clone https://github.com/mysteriumnetwork/myst-launcher
+          pushd myst-launcher 
+          git switch feature/split-model-ui
+          popd
+          popd
+          
+          echo "Make gobridge >>>"
+          cd gobridge; sh -c ./mk.sh
+          cd ..
+
+          echo "Make dmg >>>"
+          sh -c ./make_dmg.sh
+
+    - name: Upload
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          myst_launcher.dmg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
