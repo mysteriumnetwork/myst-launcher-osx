@@ -48,6 +48,11 @@ LauncherState *mod = nil;
     [statusItem setMenu:self.statusBarMenu];
 }
 
+- (IBAction)openNodeUIAction:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
+}
+
 - (void)statusButtonClicked:(id)sender
 {
 //      [NSApp hide:nil];
