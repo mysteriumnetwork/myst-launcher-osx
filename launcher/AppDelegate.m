@@ -11,6 +11,9 @@
 #import "ModalWindowDelegate.h"
 #import "../gobridge/gobridge.h"
 
+#include <sys/stat.h>
+#include <copyfile.h>
+
 LauncherState *mod = nil;
 
 @implementation AppDelegate
@@ -21,7 +24,11 @@ LauncherState *mod = nil;
     GoOnAppExit();
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {   
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    GoInit((char*)[resourcePath UTF8String]);
+    GoStart();
+    
     mod = [[LauncherState alloc] init];
 
     if (!self.modalWindowDelegate) {

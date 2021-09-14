@@ -17,6 +17,7 @@
 		9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */; };
 		9A6FB69E26E8E82500069932 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB69D26E8E82500069932 /* Label.m */; };
 		9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB6A026E8EA4200069932 /* NSAttributedString.m */; };
+		9A725ABE26F0CC6C00E0A64A /* com.mysterium.launcher.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */; };
 		9A93390526EF6856004D9F30 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756F26C919D400A99070 /* Info.plist */; };
 		9AC8756B26C919D400A99070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756A26C919D400A99070 /* Assets.xcassets */; };
 		9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756C26C919D400A99070 /* MainMenu.xib */; };
@@ -74,6 +75,7 @@
 		9A6FB69D26E8E82500069932 /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label.m; sourceTree = "<group>"; };
 		9A6FB69F26E8EA1000069932 /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		9A6FB6A026E8EA4200069932 /* NSAttributedString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedString.m; sourceTree = "<group>"; };
+		9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.mysterium.launcher.plist; sourceTree = "<group>"; };
 		9AC8756426C919CB00A99070 /* Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC8756726C919CC00A99070 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AC8756826C919CC00A99070 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		9AC8756626C919CB00A99070 /* launcher */ = {
 			isa = PBXGroup;
 			children = (
+				9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */,
 				9AC8757026C919D400A99070 /* main.m */,
 				9A16EF8C26EA5EF20036447D /* utils.h */,
 				9A16EF8A26EA5EB00036447D /* utils.m */,
@@ -312,6 +315,7 @@
 				9A63DEDA26E5D86E00594C0B /* ModalWindow.xib in Resources */,
 				9A93390526EF6856004D9F30 /* Info.plist in Resources */,
 				9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */,
+				9A725ABE26F0CC6C00E0A64A /* com.mysterium.launcher.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

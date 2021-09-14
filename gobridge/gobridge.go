@@ -10,7 +10,9 @@ import "C"
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
+	"os"
 
 	"github.com/mysteriumnetwork/myst-launcher/app"
 	"github.com/mysteriumnetwork/myst-launcher/model"
@@ -29,8 +31,35 @@ var (
 
 func init() {
 	fmt.Println("gobridge init>")
-	ap = app.NewApp()
+}
 
+func copyFile(sourceFile, destinationFile string) {
+	input, err := ioutil.ReadFile(sourceFile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = ioutil.WriteFile(destinationFile, input, 0644)
+	if err != nil {
+		fmt.Println("Error creating", destinationFile)
+		fmt.Println(err)
+		return
+	}
+}
+
+//export GoInit
+func GoInit(res_path *C.char) {
+	cfg.ResourcePath = C.GoString(res_path)
+	fmt.Println("resPath >", cfg.ResourcePath)
+
+	fileName := "com.mysterium.launcher.plist"
+	copyFile(cfg.ResourcePath+"/"+fileName, os.Getenv("HOME")+"/Library/LaunchAgents/"+fileName)
+}
+
+//export GoStart
+func GoStart() {
+	ap = app.NewApp()
 	mod = model.NewUIModel()
 	sendConfig()
 
@@ -96,11 +125,11 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-    fmt.Println("OnAppExit >")
+	fmt.Println("OnAppExit >")
 
-    ap.TriggerAction("stop")
-    // wait for SuperviseDockerNode to finish its work
-    ap.WaitGroup.Wait()
+	ap.TriggerAction("stop")
+	// wait for SuperviseDockerNode to finish its work
+	ap.WaitGroup.Wait()
 }
 
 //export GoSetStateAndConfig
