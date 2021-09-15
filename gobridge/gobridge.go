@@ -54,7 +54,10 @@ func GoInit(res_path *C.char) {
 	fmt.Println("resPath >", cfg.ResourcePath)
 
 	fileName := "com.mysterium.launcher.plist"
-	copyFile(cfg.ResourcePath+"/"+fileName, os.Getenv("HOME")+"/Library/LaunchAgents/"+fileName)
+
+	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
+	os.MkdirAll(targetDir, 0755)
+	copyFile(cfg.ResourcePath+"/"+fileName, targetDir+fileName)
 }
 
 //export GoStart

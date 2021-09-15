@@ -13,7 +13,9 @@
   <string>com.mysterium.launcher</string>
   <key>ProgramArguments</key>
   <array>
-    <string>open -g /Applications/Launcher.app</string>
+    <string>open</string>
+    <string>-g</string>
+    <string>/Applications/Mysterium Launcher.app</string>
   </array>
   <key>RunAtLoad</key>
   <true/>
