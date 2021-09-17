@@ -19,7 +19,6 @@
     [[self window] setDelegate:self];
     [self autorelease];
     
-    
     // init data
     [self.editPortRangeBegin setStringValue:[NSString stringWithFormat:@"%@", mod.portBegin]];
     [self.editPortRangeEnd setStringValue:[NSString stringWithFormat:@"%@", mod.portEnd]];

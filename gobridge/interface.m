@@ -2,7 +2,7 @@
 
 
 void macSendState(NSState *s) {
-    NSLog(@"macSendState >>>1");
+    NSLog(@"macSendState >>>");
 
     id dict = @{
         @"imageName": [[NSString alloc] initWithUTF8String:s->imageName],
@@ -15,6 +15,8 @@ void macSendState(NSState *s) {
         // instllation state
         @"checkVTx": @(s->checkVTx),
         @"checkDocker": @(s->checkDocker),
+        @"downloadFiles": @(s->downloadFiles),
+        @"installDocker": @(s->installDocker),
     };
     
     // free strings
@@ -29,7 +31,7 @@ void macSendState(NSState *s) {
 }
 
 void macSendConfig(NSConfig *s) {
-    NSLog(@"macSendConfig >>>");
+//    NSLog(@"macSendConfig >>>");
 
     id dict = @{       
         @"enabled": @(s->enabled),
@@ -46,7 +48,7 @@ void macSendConfig(NSConfig *s) {
 }
 
 void macSendModal(NSModal *s) {
-    NSLog(@"macSendNodal >>>");
+//    NSLog(@"macSendNodal >>>");
 
     id dict = @{
         @"title": @(s->title),
@@ -65,7 +67,7 @@ void macSendModal(NSModal *s) {
 }
 
 void macSendMode(int s) {
-    NSLog(@"macSendMode >>>");
+//    NSLog(@"macSendMode >>>");
 
     id dict = @{
         @"mode": @(s),
@@ -77,7 +79,7 @@ void macSendMode(int s) {
 }
 
 void macSendLog(char *s) {
-    NSLog(@"macSendLog >>>");
+//    NSLog(@"macSendLog >>>");
 
     id dict = @{
         @"msg": [[NSString alloc] initWithUTF8String:s],

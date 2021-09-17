@@ -31,6 +31,8 @@
     // installation
     NSNumber *checkDocker;
     NSNumber *checkVTx;
+    NSNumber *downloadFiles;
+    NSNumber *installDocker;
 }
 
 @property (readwrite, copy) NSNumber *portBegin;
@@ -48,6 +50,10 @@
 
 @property (readwrite, copy) NSNumber *checkDocker;
 @property (readwrite, copy) NSNumber *checkVTx;
+@property (readwrite, copy) NSNumber *downloadFiles;
+@property (readwrite, copy) NSNumber *installDocker;
+
+
 - (void)setState;
 
 @end

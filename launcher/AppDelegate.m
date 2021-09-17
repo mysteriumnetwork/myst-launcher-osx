@@ -46,6 +46,8 @@ LauncherState *mod = nil;
     statusItem.button.action = @selector(statusButtonClicked:);
     statusItem.button.target = self;
     [statusItem setMenu:self.statusBarMenu];
+    
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (IBAction)openNodeUIAction:(id)sender

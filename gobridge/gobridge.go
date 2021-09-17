@@ -58,10 +58,11 @@ func GoInit(res_path *C.char) {
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
 	copyFile(cfg.ResourcePath+"/"+fileName, targetDir+fileName)
-}
+ }
 
 //export GoStart
 func GoStart() {
+    fmt.Println("GoStart >")
 	ap = app.NewApp()
 	mod = model.NewUIModel()
 	sendConfig()
@@ -98,6 +99,8 @@ func sendState() {
 	// instllation state
 	st.checkVTx = C.bool(mod.CheckVTx)
 	st.checkDocker = C.bool(mod.CheckDocker)
+    st.downloadFiles = C.bool(mod.DownloadFiles)
+    st.installDocker = C.bool(mod.InstallDocker)
 
 	C.macSendState(&st)
 }
@@ -128,9 +131,8 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-	fmt.Println("OnAppExit >")
-
 	ap.TriggerAction("stop")
+
 	// wait for SuperviseDockerNode to finish its work
 	ap.WaitGroup.Wait()
 }

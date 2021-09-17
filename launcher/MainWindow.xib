@@ -10,6 +10,8 @@
             <connections>
                 <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="checkBoxDocker" destination="5ZG-Kl-H3V" id="3Qo-Yj-zMe"/>
+                <outlet property="checkBoxDownloadFiles" destination="j92-Db-0CW" id="95d-0N-zQX"/>
+                <outlet property="checkBoxInstallDocker" destination="cgz-Y5-Qa1" id="8H8-of-sRE"/>
                 <outlet property="checkBoxVirtualization" destination="PGg-4s-fBj" id="f6w-1b-qoL"/>
                 <outlet property="finishButton" destination="les-Qz-lh6" id="ghC-uF-XcR"/>
                 <outlet property="img" destination="mNr-bj-xQN" id="dgF-ed-nX9"/>
@@ -20,7 +22,8 @@
                 <outlet property="labelImageName" destination="694-Ni-LbW" id="ir1-3m-eov"/>
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
-                <outlet property="scrollView" destination="C1s-Fp-bfO" id="0wf-rq-geJ"/>
+                <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
+                <outlet property="textView" destination="kIS-do-nAD" id="3O6-Wl-AOH"/>
                 <outlet property="v11" destination="EiT-Mj-1SZ" id="RE8-22-Tyj"/>
                 <outlet property="v21" destination="N56-00-vZm" id="wRR-FA-eet"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="NXo-At-roL"/>
@@ -186,7 +189,7 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNr-bj-xQN">
-                        <rect key="frame" x="20" y="411" width="101" height="101"/>
+                        <rect key="frame" x="20" y="445" width="68" height="68"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="R9K-Sb-3PU"/>
                     </imageView>
@@ -209,9 +212,9 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8aQ-3M-hsr">
-                    <rect key="frame" x="18" y="236" width="27" height="16"/>
+                    <rect key="frame" x="18" y="236" width="92" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Log" id="Y4j-LB-XAJ">
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Installation log" id="Y4j-LB-XAJ">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -266,7 +269,23 @@
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-Kl-H3V">
                     <rect key="frame" x="18" y="402" width="230" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nib-nF-vVK">
+                    <buttonCell key="cell" type="check" title="Check docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nib-nF-vVK">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j92-Db-0CW">
+                    <rect key="frame" x="18" y="374" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Download docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XqU-hA-u1J">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgz-Y5-Qa1">
+                    <rect key="frame" x="18" y="347" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Install docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rSE-KW-JHE">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

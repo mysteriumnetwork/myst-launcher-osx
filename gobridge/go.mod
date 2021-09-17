@@ -11,7 +11,6 @@ require (
 	github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6 // indirect
 	github.com/mysteriumnetwork/myst-launcher v0.0.0
 	github.com/stretchr/testify v1.7.0 // indirect
-	github.com/winlabs/gowin32 v0.0.0-20210302152218-c9e40aa88058 // indirect
 	golang.org/x/net v0.0.0-20210813160813-60bc85c4be6d // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac // indirect
 	google.golang.org/grpc v1.40.0 // indirect

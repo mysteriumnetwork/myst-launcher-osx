@@ -27,6 +27,8 @@
 @synthesize latestVersion;
 @synthesize checkVTx;
 @synthesize checkDocker;
+@synthesize downloadFiles;
+@synthesize installDocker;
 
 - (id) init
 {
@@ -40,7 +42,7 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-//    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
+    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
@@ -49,8 +51,10 @@
     self.isDockerRunning      = notification.userInfo[@"dockerRunning"];
     self.isContainerRunning   = notification.userInfo[@"containerRunning"];
     
-    self.checkVTx    = notification.userInfo[@"checkVTx"];
-    self.checkDocker = notification.userInfo[@"checkDocker"];
+    self.checkVTx      = notification.userInfo[@"checkVTx"];
+    self.checkDocker   = notification.userInfo[@"checkDocker"];
+    self.downloadFiles = notification.userInfo[@"downloadFiles"];
+    self.installDocker = notification.userInfo[@"installDocker"];
 
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_state" object:nil];
