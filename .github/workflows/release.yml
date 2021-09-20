@@ -51,10 +51,11 @@ jobs:
           echo "Import"
           security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD #-T /usr/bin/codesign
 
-          echo "Set Key"
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
+          #echo "Set Key"
+          #security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
 
           echo "Find identity"
+          security find-identity -v
           security find-identity -p codesigning -s build.keychain
 
           echo "Codesign"
