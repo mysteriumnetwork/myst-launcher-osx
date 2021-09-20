@@ -51,8 +51,8 @@ jobs:
           echo "Import"
           security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -A #-T /usr/bin/codesign
 
-          #echo "Set Key"
-          #security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
+          echo "Set Key"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
 
           echo "Find identity"
           security find-identity -v
@@ -60,7 +60,8 @@ jobs:
 
           sleep 1
           echo "Codesign"
-          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" ./mysterium_launcher_macos_amd64.dmg
+          #/usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" ./mysterium_launcher_macos_amd64.dmg
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" ./build/MysteriumLauncher/Mysterium\ Launcher.app/
 
       - name: Upload
         uses: softprops/action-gh-release@v1
