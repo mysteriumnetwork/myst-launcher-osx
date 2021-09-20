@@ -58,8 +58,9 @@ jobs:
           security find-identity -v
           security find-identity -p codesigning -s build.keychain
 
+          sleep 1
           echo "Codesign"
-          /usr/bin/codesign --force -s $MACOS_CERTIFICATE_ID ./mysterium_launcher_macos_amd64.dmg
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" ./mysterium_launcher_macos_amd64.dmg
 
       - name: Upload
         uses: softprops/action-gh-release@v1
