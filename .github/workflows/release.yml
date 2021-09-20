@@ -45,11 +45,11 @@ jobs:
 
           security delete-keychain build.keychain || echo ""
           security create-keychain -p $KEYCHAIN_TMP_PWD build.keychain
-          # security default-keychain -s build.keychain
+          security default-keychain -s build.keychain
           security unlock-keychain -p $KEYCHAIN_TMP_PWD build.keychain
 
           echo "Import"
-          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD #-T /usr/bin/codesign
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -A #-T /usr/bin/codesign
 
           #echo "Set Key"
           #security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
