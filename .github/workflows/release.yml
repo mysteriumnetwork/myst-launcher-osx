@@ -63,6 +63,9 @@ jobs:
           echo "Codesign dylib"
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/Frameworks/gobridge.dylib
 
+          echo "Codesign whole build"
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/
+
           # dmg
           hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos_amd64.dmg
 
