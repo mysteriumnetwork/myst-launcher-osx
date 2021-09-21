@@ -71,9 +71,7 @@ jobs:
 
           # dmg
           hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos_amd64.dmg
-
-
-
+          
       - name: Notarize
         env: 
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
@@ -91,8 +89,7 @@ jobs:
         run: |
           # notarize
           #xcrun altool --notarize-app --primary-bundle-id "com.mysterium.launcher" -u $NOTARIZE_EMAIL -p $NOTARIZE_APP_SPEC_PWD -t osx -f ./mysterium_launcher_macos_amd64.dmg
-          sh -c ./notarize.sh
-          
+          sh -c ./notarize.sh         
 
           #echo Verify
           #/usr/bin/codesign -vvvv ./mysterium_launcher_macos_amd64.dmg
