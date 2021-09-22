@@ -51,7 +51,8 @@ jobs:
           security default-keychain -s $KEY_CHAIN
           security set-keychain-settings -t 4200 -u $KEY_CHAIN
           security unlock-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
-          xcrun altool --store-password-in-keychain-item "app-spec-pwd" -u "$MACOS_CERTIFICATE_ID" -p "$APP_SPECIFIC_PASSWORD"
+          xcrun altool --store-password-in-keychain-item app-spec-pwd -u "$MACOS_CERTIFICATE_ID" -p "$APP_SPECIFIC_PASSWORD"
+          security add-generic-password -a "$MACOS_CERTIFICATE_ID" -w "$APP_SPECIFIC_PASSWORD" -s app-spec-pwd
 
           echo "Import"
           security import certificate.p12 -k $KEY_CHAIN -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
