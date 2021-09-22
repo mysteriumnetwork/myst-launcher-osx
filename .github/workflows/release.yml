@@ -31,8 +31,8 @@ jobs:
           cd gobridge; sh -c ./mk.sh
           cd ..
 
-          echo "Make dmg >>>"
-          sh -c ./make_dmg.sh
+          echo "Make app build >>>"
+          sh -c ./make_build.sh
 
       - name: Codesign app
         env: 
@@ -40,8 +40,6 @@ jobs:
           MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
           MACOS_CERTIFICATE_ID: ${{ secrets.MACOS_CERTIFICATE_ID }}
           KEYCHAIN_TMP_PWD: tmppassword
-          NOTARIZE_EMAIL: ${{ secrets.NOTARIZE_EMAIL }}
-          NOTARIZE_APP_SPEC_PWD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
 
         run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
@@ -52,8 +50,7 @@ jobs:
           security unlock-keychain -p $KEYCHAIN_TMP_PWD build.keychain
 
           echo "Import"
-          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -A 
-          # -T /usr/bin/codesign
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
 
           echo "Set Key"
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
@@ -65,7 +62,6 @@ jobs:
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/MacOS/Mysterium\ Launcher
           echo "Codesign dylib"
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/Frameworks/gobridge.dylib
-
           echo "Codesign whole build"
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/
 
@@ -88,7 +84,6 @@ jobs:
 
         run: |
           # notarize
-          #xcrun altool --notarize-app --primary-bundle-id "com.mysterium.launcher" -u $NOTARIZE_EMAIL -p $NOTARIZE_APP_SPEC_PWD -t osx -f ./mysterium_launcher_macos_amd64.dmg
           sh -c ./notarize.sh         
 
           #echo Verify
