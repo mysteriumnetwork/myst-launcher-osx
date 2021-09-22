@@ -42,7 +42,7 @@ jobs:
           KEYCHAIN_TMP_PWD: tmppassword
           KEY_CHAIN: build.keychain
           APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
-
+          APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
         run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
 
@@ -52,7 +52,7 @@ jobs:
           security set-keychain-settings -t 4200 -u $KEY_CHAIN
           security unlock-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
           xcrun altool --store-password-in-keychain-item app-spec-pwd -u "$MACOS_CERTIFICATE_ID" -p "$APP_SPECIFIC_PASSWORD"
-          security add-generic-password -a "$MACOS_CERTIFICATE_ID" -w "$APP_SPECIFIC_PASSWORD" -s app-spec-pwd
+          security add-generic-password -a "$APPLE_ID" -w "$APP_SPECIFIC_PASSWORD" -s app-spec-pwd
 
           echo "Import"
           security import certificate.p12 -k $KEY_CHAIN -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
