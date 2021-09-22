@@ -40,23 +40,27 @@ jobs:
           MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
           MACOS_CERTIFICATE_ID: ${{ secrets.MACOS_CERTIFICATE_ID }}
           KEYCHAIN_TMP_PWD: tmppassword
+          KEY_CHAIN: build.keychain
+          APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
 
         run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
 
-          security delete-keychain build.keychain || echo ""
-          security create-keychain -p $KEYCHAIN_TMP_PWD build.keychain
-          security default-keychain -s build.keychain
-          security unlock-keychain -p $KEYCHAIN_TMP_PWD build.keychain
+          security delete-keychain $KEY_CHAIN || echo ""
+          security create-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
+          security default-keychain -s $KEY_CHAIN
+          security set-keychain-settings -t 4200 -u $KEY_CHAIN
+          security unlock-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
+          xcrun altool --store-password-in-keychain-item "app-spec-pwd" -u "$MACOS_CERTIFICATE_ID" -p "$APP_SPECIFIC_PASSWORD"
 
           echo "Import"
-          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
+          security import certificate.p12 -k $KEY_CHAIN -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
 
           echo "Set Key"
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD build.keychain
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD $KEY_CHAIN
 
           # echo "Find identity"
-          # security find-identity -p codesigning -s build.keychain
+          # security find-identity -p codesigning -s $KEY_CHAIN
 
           echo "Codesign"
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/MacOS/Mysterium\ Launcher
@@ -70,16 +74,8 @@ jobs:
           
       - name: Notarize
         env: 
-          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
-          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
-          MACOS_CERTIFICATE_ID: ${{ secrets.MACOS_CERTIFICATE_ID }}
-          KEYCHAIN_TMP_PWD: tmppassword
-          NOTARIZE_EMAIL: ${{ secrets.NOTARIZE_EMAIL }}
-          NOTARIZE_APP_SPEC_PWD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
-
           PRIMARY_BUNDLE_ID: com.mysterium.launcher
           APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
-          APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
           TARGET_BINARY: ./mysterium_launcher_macos_amd64.dmg
 
         run: |
