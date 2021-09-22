@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Submit the dmg and get REQUEST_UUID
-SUBMISSION_INFO=$(xcrun altool --notarize-app --primary-bundle-id=${PRIMARY_BUNDLE_ID} -u ${APPLE_ID} -p "@keychain:app-spec-pwd" --file ${TARGET_BINARY} 2>&1) ;
+SUBMISSION_INFO=$(xcrun altool --notarize-app --primary-bundle-id=${PRIMARY_BUNDLE_ID} -u ${APPLE_ID} -p ${APP_SPECIFIC_PASSWORD} --file ${TARGET_BINARY} 2>&1) ;
 
 if [ $? != 0 ]; then
     printf "Submission failed: $SUBMISSION_INFO \n"
@@ -15,7 +15,7 @@ if [ -z "${REQUEST_UUID}" ]; then
 fi
 
 # Wait for "Package Approved"
-while ! xcrun altool --notarization-info ${REQUEST_UUID} --username ${APPLE_ID} --password "@keychain:app-spec-pwd" --output-format xml | grep -q 'Package Approved' ; do
+while ! xcrun altool --notarization-info ${REQUEST_UUID} --username ${APPLE_ID} --password ${APP_SPECIFIC_PASSWORD} --output-format xml | grep -q 'Package Approved' ; do
     sleep 60;
 done
 
