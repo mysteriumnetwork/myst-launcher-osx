@@ -41,7 +41,6 @@
 }
 
 - (void) refreshFrame {
-    NSLog(@"refreshFrame >");
 
     if ([[self window] contentView] == self.v11) {
         [self.labelCurrentVersion setObjectValue: mod.currentVersion];
@@ -68,9 +67,13 @@
             [self.img setImage:img1];
         }
     }
+    
+    // installation
     if ([[self window] contentView] == self.v21) {
         [self.checkBoxDocker         setState:[mod.checkDocker boolValue]];
         [self.checkBoxVirtualization setState:[mod.checkVTx boolValue]];
+        [self.checkBoxDownloadFiles  setState:[mod.downloadFiles boolValue]];
+        [self.checkBoxInstallDocker  setState:[mod.installDocker boolValue]];
     }
 }
 
@@ -141,10 +144,12 @@
 - (void)notificationHandlerLog:(NSNotification *) notification
 {
     NSString *n = notification.userInfo[@"msg"];
-    
-    [self.scrollView.documentView setEditable:YES];
-    [self.scrollView.documentView insertText:n];
-    [self.scrollView.documentView setEditable:NO];
+    NSLog(@"Log > %@", n);
+
+    [self.textView setEditable:YES];
+    [self.textView setSelectedRange:NSMakeRange(-1,0)];
+    [self.textView insertText:n replacementRange:NSMakeRange(-1, 0)];
+    [self.textView setEditable:NO];
 }
 
 - (IBAction)finishPressed:(id)sender

@@ -76,6 +76,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
+extern void GoInit(char* res_path);
+extern void GoStart();
 extern void GoSetModalResult(int rc);
 extern void GoDialogueComplete();
 extern void GoOnAppExit();

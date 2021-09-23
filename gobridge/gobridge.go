@@ -10,7 +10,9 @@ import "C"
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
+	"os"
 
 	"github.com/mysteriumnetwork/myst-launcher/app"
 	"github.com/mysteriumnetwork/myst-launcher/model"
@@ -29,8 +31,39 @@ var (
 
 func init() {
 	fmt.Println("gobridge init>")
-	ap = app.NewApp()
+}
 
+func copyFile(sourceFile, destinationFile string) {
+	input, err := ioutil.ReadFile(sourceFile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = ioutil.WriteFile(destinationFile, input, 0644)
+	if err != nil {
+		fmt.Println("Error creating", destinationFile)
+		fmt.Println(err)
+		return
+	}
+}
+
+//export GoInit
+func GoInit(res_path *C.char) {
+	cfg.ResourcePath = C.GoString(res_path)
+	fmt.Println("resPath >", cfg.ResourcePath)
+
+	fileName := "com.mysterium.launcher.plist"
+
+	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
+	os.MkdirAll(targetDir, 0755)
+	copyFile(cfg.ResourcePath+"/"+fileName, targetDir+fileName)
+ }
+
+//export GoStart
+func GoStart() {
+    fmt.Println("GoStart >")
+	ap = app.NewApp()
 	mod = model.NewUIModel()
 	sendConfig()
 
@@ -66,6 +99,8 @@ func sendState() {
 	// instllation state
 	st.checkVTx = C.bool(mod.CheckVTx)
 	st.checkDocker = C.bool(mod.CheckDocker)
+    st.downloadFiles = C.bool(mod.DownloadFiles)
+    st.installDocker = C.bool(mod.InstallDocker)
 
 	C.macSendState(&st)
 }
@@ -96,11 +131,10 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-    fmt.Println("OnAppExit >")
+	ap.TriggerAction("stop")
 
-    ap.TriggerAction("stop")
-    // wait for SuperviseDockerNode to finish its work
-    ap.WaitGroup.Wait()
+	// wait for SuperviseDockerNode to finish its work
+	ap.WaitGroup.Wait()
 }
 
 //export GoSetStateAndConfig

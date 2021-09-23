@@ -94,6 +94,9 @@
             <items>
                 <menuItem title="Open Node UI" id="e8H-V9-hcv">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openNodeUIAction:" target="Voe-Tx-rLC" id="vUH-as-kdQ"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Show Main Window" id="BFM-kg-fcn">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -103,9 +106,12 @@
                 </menuItem>
                 <menuItem title="Quit" id="xu0-Cb-5LW">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="terminate:" target="-1" id="Nu1-rc-T5c"/>
+                    </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-320" y="-75"/>
+            <point key="canvasLocation" x="-253" y="-84"/>
         </menu>
     </objects>
 </document>

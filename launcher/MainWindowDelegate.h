@@ -37,11 +37,14 @@
 // installation
 @property (weak) IBOutlet NSButton *checkBoxVirtualization;
 @property (weak) IBOutlet NSButton *checkBoxDocker;
+@property (weak) IBOutlet NSButton *checkBoxDownloadFiles;
+@property (weak) IBOutlet NSButton *checkBoxInstallDocker;
+
 @property (weak) IBOutlet NSButton *finishButton;
 
 @property (weak) IBOutlet NSScrollView *scrollView;
+@property (weak) IBOutlet NSTextView *textView;
 - (IBAction)finishPressed:(id)sender;
-
 
 
 @end

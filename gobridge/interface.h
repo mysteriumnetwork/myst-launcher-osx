@@ -11,6 +11,8 @@ typedef struct _NSState {
 
     bool checkVTx;
     bool checkDocker;
+    bool downloadFiles;
+    bool installDocker;
 } NSState;
 
 typedef struct _NSConfig {

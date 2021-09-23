@@ -11,17 +11,24 @@
 #import "ModalWindowDelegate.h"
 #import "../gobridge/gobridge.h"
 
+#include <sys/stat.h>
+#include <copyfile.h>
+
 LauncherState *mod = nil;
 
 @implementation AppDelegate
 @synthesize statusBarMenu;
 
 - (void) applicationWillTerminate:(NSNotification *)aNotification {
-    NSLog(@"applicationWillTerminate >");
     GoOnAppExit();
+    NSLog(@"application exit >");
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {   
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    GoInit((char*)[resourcePath UTF8String]);
+    GoStart();
+    
     mod = [[LauncherState alloc] init];
 
     if (!self.modalWindowDelegate) {
@@ -39,19 +46,16 @@ LauncherState *mod = nil;
     statusItem.button.action = @selector(statusButtonClicked:);
     statusItem.button.target = self;
     [statusItem setMenu:self.statusBarMenu];
+    
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
-- (void)statusButtonClicked:(id)sender
+- (IBAction)openNodeUIAction:(id)sender
 {
-//      [NSApp hide:nil];
-//    if (NSApp.hidden || !self.mainWindow.visible)
-//    {
-//        [NSApp unhide:nil];
-//        [NSApp activateIgnoringOtherApps:YES];
-//        [self.mainWindow setIsVisible:YES];
-//    } else {
-//        [NSApp hide:nil];
-//    }
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
+}
+
+- (void)statusButtonClicked:(id)sender{
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{

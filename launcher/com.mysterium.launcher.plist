@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   com.mysterium.launcher.plist
+   launcher
+
+   Created by @zensey on 14/09/2021.
+   Copyright © 2021 Mysterium Network. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.mysterium.launcher</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>open</string>
+    <string>-g</string>
+    <string>/Applications/Mysterium Launcher.app</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>

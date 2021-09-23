@@ -17,6 +17,7 @@
 		9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63DEDE26E605A800594C0B /* MainWindowDelegate.m */; };
 		9A6FB69E26E8E82500069932 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB69D26E8E82500069932 /* Label.m */; };
 		9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FB6A026E8EA4200069932 /* NSAttributedString.m */; };
+		9A725ABE26F0CC6C00E0A64A /* com.mysterium.launcher.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */; };
 		9A93390526EF6856004D9F30 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756F26C919D400A99070 /* Info.plist */; };
 		9AC8756B26C919D400A99070 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756A26C919D400A99070 /* Assets.xcassets */; };
 		9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC8756C26C919D400A99070 /* MainMenu.xib */; };
@@ -74,7 +75,8 @@
 		9A6FB69D26E8E82500069932 /* Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label.m; sourceTree = "<group>"; };
 		9A6FB69F26E8EA1000069932 /* NSAttributedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAttributedString.h; sourceTree = "<group>"; };
 		9A6FB6A026E8EA4200069932 /* NSAttributedString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAttributedString.m; sourceTree = "<group>"; };
-		9AC8756426C919CB00A99070 /* Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.mysterium.launcher.plist; sourceTree = "<group>"; };
+		9AC8756426C919CB00A99070 /* Mysterium Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mysterium Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC8756726C919CC00A99070 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AC8756826C919CC00A99070 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9AC8756A26C919D400A99070 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 		9AC8756526C919CB00A99070 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AC8756426C919CB00A99070 /* Launcher.app */,
+				9AC8756426C919CB00A99070 /* Mysterium Launcher.app */,
 				9AC8757726C919D400A99070 /* launcherTests.xctest */,
 				9AC8758226C919D400A99070 /* launcherUITests.xctest */,
 			);
@@ -163,6 +165,7 @@
 		9AC8756626C919CB00A99070 /* launcher */ = {
 			isa = PBXGroup;
 			children = (
+				9A725ABD26F0CC6C00E0A64A /* com.mysterium.launcher.plist */,
 				9AC8757026C919D400A99070 /* main.m */,
 				9A16EF8C26EA5EF20036447D /* utils.h */,
 				9A16EF8A26EA5EB00036447D /* utils.m */,
@@ -206,9 +209,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9AC8756326C919CB00A99070 /* Launcher */ = {
+		9AC8756326C919CB00A99070 /* Mysterium Launcher */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AC8758B26C919D400A99070 /* Build configuration list for PBXNativeTarget "Launcher" */;
+			buildConfigurationList = 9AC8758B26C919D400A99070 /* Build configuration list for PBXNativeTarget "Mysterium Launcher" */;
 			buildPhases = (
 				9AC8756026C919CB00A99070 /* Sources */,
 				9AC8756226C919CB00A99070 /* Resources */,
@@ -219,9 +222,9 @@
 			);
 			dependencies = (
 			);
-			name = Launcher;
+			name = "Mysterium Launcher";
 			productName = launcher;
-			productReference = 9AC8756426C919CB00A99070 /* Launcher.app */;
+			productReference = 9AC8756426C919CB00A99070 /* Mysterium Launcher.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9AC8757626C919D400A99070 /* launcherTests */ = {
@@ -295,7 +298,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AC8756326C919CB00A99070 /* Launcher */,
+				9AC8756326C919CB00A99070 /* Mysterium Launcher */,
 				9AC8757626C919D400A99070 /* launcherTests */,
 				9AC8758126C919D400A99070 /* launcherUITests */,
 			);
@@ -312,6 +315,7 @@
 				9A63DEDA26E5D86E00594C0B /* ModalWindow.xib in Resources */,
 				9A93390526EF6856004D9F30 /* Info.plist in Resources */,
 				9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */,
+				9A725ABE26F0CC6C00E0A64A /* com.mysterium.launcher.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,12 +373,12 @@
 /* Begin PBXTargetDependency section */
 		9AC8757926C919D400A99070 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AC8756326C919CB00A99070 /* Launcher */;
+			target = 9AC8756326C919CB00A99070 /* Mysterium Launcher */;
 			targetProxy = 9AC8757826C919D400A99070 /* PBXContainerItemProxy */;
 		};
 		9AC8758426C919D400A99070 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AC8756326C919CB00A99070 /* Launcher */;
+			target = 9AC8756326C919CB00A99070 /* Mysterium Launcher */;
 			targetProxy = 9AC8758326C919D400A99070 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -482,7 +486,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -510,6 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -536,6 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,7 +643,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AC8758B26C919D400A99070 /* Build configuration list for PBXNativeTarget "Launcher" */ = {
+		9AC8758B26C919D400A99070 /* Build configuration list for PBXNativeTarget "Mysterium Launcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AC8758C26C919D400A99070 /* Debug */,

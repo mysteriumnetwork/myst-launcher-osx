@@ -7,7 +7,7 @@ on:
 jobs:
   releases-macos-amd64:
     name: Release
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
       - uses: actions/checkout@v2
@@ -31,14 +31,64 @@ jobs:
           cd gobridge; sh -c ./mk.sh
           cd ..
 
-          echo "Make dmg >>>"
-          sh -c ./make_dmg.sh
+          echo "Make app build >>>"
+          sh -c ./make_build.sh
+
+      - name: Codesign app
+        env: 
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
+          MACOS_CERTIFICATE_ID: ${{ secrets.MACOS_CERTIFICATE_ID }}
+          KEYCHAIN_TMP_PWD: tmppassword
+          KEY_CHAIN: build.keychain
+          APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
+        run: |
+          echo $MACOS_CERTIFICATE | base64 --decode > certificate.p12
+
+          security delete-keychain $KEY_CHAIN || echo ""
+          security create-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
+          security default-keychain -s $KEY_CHAIN
+          security set-keychain-settings -t 4200 -u $KEY_CHAIN
+          security unlock-keychain -p $KEYCHAIN_TMP_PWD $KEY_CHAIN
+
+          echo "Import"
+          security import certificate.p12 -k $KEY_CHAIN -P $MACOS_CERTIFICATE_PWD -A # -T /usr/bin/codesign
+
+          echo "Set Key"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $KEYCHAIN_TMP_PWD $KEY_CHAIN
+
+          # echo "Find identity"
+          # security find-identity -p codesigning -s $KEY_CHAIN
+
+          echo "Codesign"
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/MacOS/Mysterium\ Launcher
+          echo "Codesign dylib"
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/Frameworks/gobridge.dylib
+          echo "Codesign whole build"
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/
+
+          # dmg
+          hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos_amd64.dmg
+          
+      - name: Notarize
+        env: 
+          PRIMARY_BUNDLE_ID: com.mysterium.launcher
+          APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
+          TARGET_BINARY: ./mysterium_launcher_macos_amd64.dmg
+          APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
+
+        run: |
+          # notarize
+          sh -c ./notarize.sh         
+
+          #echo Verify
+          #/usr/bin/codesign -vvvv ./mysterium_launcher_macos_amd64.dmg
 
       - name: Upload
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            myst_launcher_macos_amd64.dmg
+            mysterium_launcher_macos_amd64.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

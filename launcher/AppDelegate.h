@@ -22,6 +22,7 @@
 
 - (IBAction)showMain:(id)sender;
 - (IBAction)enableNode:(id)sender;
+- (IBAction)openNodeUIAction:(id)sender;
 
 @end
 
