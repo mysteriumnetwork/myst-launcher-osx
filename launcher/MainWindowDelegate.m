@@ -41,7 +41,6 @@
 }
 
 - (void) refreshFrame {
-    NSLog(@"refreshFrame >");
 
     if ([[self window] contentView] == self.v11) {
         [self.labelCurrentVersion setObjectValue: mod.currentVersion];

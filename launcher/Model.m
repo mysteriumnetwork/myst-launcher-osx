@@ -42,7 +42,6 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-    NSLog(@"state >> %@ %@", notification.object, notification.userInfo); //
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
@@ -61,7 +60,6 @@
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
-//    NSLog(@"config > %@ %@", notification.object, notification.userInfo); //
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
@@ -73,7 +71,6 @@
 }
 
 - (void)notificationHandlerModal:(NSNotification *) notification{
-//    NSLog(@"modal > %@ %@", notification.object, notification.userInfo); //
     
     NSAlert *a = [[[NSAlert alloc] init] autorelease];
     [a setMessageText:notification.userInfo[@"title"]];

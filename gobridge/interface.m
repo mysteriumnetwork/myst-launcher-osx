@@ -2,8 +2,6 @@
 
 
 void macSendState(NSState *s) {
-    NSLog(@"macSendState >>>");
-
     id dict = @{
         @"imageName": [[NSString alloc] initWithUTF8String:s->imageName],
         @"latestVersion": [[NSString alloc] initWithUTF8String:s->latestVersion],
@@ -31,8 +29,6 @@ void macSendState(NSState *s) {
 }
 
 void macSendConfig(NSConfig *s) {
-//    NSLog(@"macSendConfig >>>");
-
     id dict = @{       
         @"enabled": @(s->enabled),
         @"enablePortForwarding": @(s->enablePortForwarding),
@@ -48,8 +44,6 @@ void macSendConfig(NSConfig *s) {
 }
 
 void macSendModal(NSModal *s) {
-//    NSLog(@"macSendNodal >>>");
-
     id dict = @{
         @"title": @(s->title),
         @"msg": @(s->msg),
