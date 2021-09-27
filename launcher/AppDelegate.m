@@ -55,17 +55,7 @@ LauncherState *mod = nil;
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
 }
 
-- (void)statusButtonClicked:(id)sender
-{
-//      [NSApp hide:nil];
-//    if (NSApp.hidden || !self.mainWindow.visible)
-//    {
-//        [NSApp unhide:nil];
-//        [NSApp activateIgnoringOtherApps:YES];
-//        [self.mainWindow setIsVisible:YES];
-//    } else {
-//        [NSApp hide:nil];
-//    }
+- (void)statusButtonClicked:(id)sender{
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
