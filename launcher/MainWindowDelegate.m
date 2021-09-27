@@ -127,6 +127,10 @@
             [[self window] setContentView:self.v11];
             break;
             
+        case UIState_InstallNeeded:
+            [[self window] setContentView:self.v0];
+            break;
+            
         case UIState_InstallInProgress:
             [self.finishButton setEnabled:NO];
             [[self window] setContentView:self.v21];

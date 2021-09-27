@@ -25,7 +25,7 @@
 @property (weak) IBOutlet NSTextField *labelContainer;
 @property (weak) IBOutlet NSImageView *img;
 
-
+@property (strong) IBOutlet NSView *v0;
 @property (strong) IBOutlet NSView *v11;
 @property (strong) IBOutlet NSView *v21;
 
