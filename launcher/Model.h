@@ -30,7 +30,7 @@
     
     // installation
     NSNumber *checkDocker;
-    NSNumber *checkVTx;
+    NSNumber *checkVirt;
     NSNumber *downloadFiles;
     NSNumber *installDocker;
 }
@@ -49,7 +49,7 @@
 @property (readwrite, copy) NSNumber *isContainerRunning;
 
 @property (readwrite, copy) NSNumber *checkDocker;
-@property (readwrite, copy) NSNumber *checkVTx;
+@property (readwrite, copy) NSNumber *checkVirt;
 @property (readwrite, copy) NSNumber *downloadFiles;
 @property (readwrite, copy) NSNumber *installDocker;
 

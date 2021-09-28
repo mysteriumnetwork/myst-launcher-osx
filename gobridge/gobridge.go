@@ -51,12 +51,11 @@ func copyFile(sourceFile, destinationFile string) {
 //export GoInit
 func GoInit(res_path *C.char) {
 	cfg.ResourcePath = C.GoString(res_path)
-	fmt.Println("resPath >", cfg.ResourcePath)
-
-	fileName := "com.mysterium.launcher.plist"
 
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
+
+	fileName := "com.mysterium.launcher.plist"
 	copyFile(cfg.ResourcePath+"/"+fileName, targetDir+fileName)
  }
 
@@ -97,7 +96,7 @@ func sendState() {
 	st.containerRunning = C.int(mod.StateContainer)
 
 	// instllation state
-	st.checkVTx = C.bool(mod.CheckVTx)
+	st.checkVirt = C.bool(mod.CheckVirt)
 	st.checkDocker = C.bool(mod.CheckDocker)
     st.downloadFiles = C.bool(mod.DownloadFiles)
     st.installDocker = C.bool(mod.InstallDocker)

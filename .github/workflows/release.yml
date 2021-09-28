@@ -22,9 +22,6 @@ jobs:
         run: |
           pushd ..
           git clone https://github.com/mysteriumnetwork/myst-launcher
-          pushd myst-launcher 
-          git switch feature/split-model-ui
-          popd
           popd
           
           echo "Make gobridge >>>"

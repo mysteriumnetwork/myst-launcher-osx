@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
-                <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
+                <outlet property="checkBoxAutoUpgrade" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="checkBoxDocker" destination="5ZG-Kl-H3V" id="3Qo-Yj-zMe"/>
                 <outlet property="checkBoxDownloadFiles" destination="j92-Db-0CW" id="95d-0N-zQX"/>
                 <outlet property="checkBoxInstallDocker" destination="cgz-Y5-Qa1" id="8H8-of-sRE"/>
@@ -24,6 +24,7 @@
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
                 <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
                 <outlet property="textView" destination="kIS-do-nAD" id="3O6-Wl-AOH"/>
+                <outlet property="v0" destination="up9-sX-ceo" id="6xg-fH-leD"/>
                 <outlet property="v11" destination="EiT-Mj-1SZ" id="RE8-22-Tyj"/>
                 <outlet property="v21" destination="N56-00-vZm" id="wRR-FA-eet"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="NXo-At-roL"/>
@@ -258,14 +259,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGg-4s-fBj">
-                    <rect key="frame" x="18" y="428" width="230" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Virtualization support" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Amy-0Z-JPR">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-Kl-H3V">
                     <rect key="frame" x="18" y="402" width="230" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -290,9 +283,81 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGg-4s-fBj">
+                    <rect key="frame" x="18" y="430" width="230" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Virtualization support" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Amy-0Z-JPR">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <point key="canvasLocation" x="109" y="931"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="FFb-gW-zuY"/>
+        <customView id="up9-sX-ceo" userLabel="setup view">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="532"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dvh-l1-Naf">
+                    <rect key="frame" x="18" y="496" width="70" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Installation" id="hzU-l2-ykp">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iz5-Jp-Zs9">
+                    <rect key="frame" x="272" y="35" width="132" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eb1-UB-wau">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="finishPressed:" target="-2" id="C0L-37-Zdj"/>
+                    </connections>
+                </button>
+                <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvm-nb-EEv">
+                    <rect key="frame" x="20" y="216" width="378" height="172"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
+                        <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
+                                <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <size key="minSize" width="363" height="172"/>
+                                <size key="maxSize" width="378" height="10000000"/>
+                                <attributedString key="textStorage">
+                                    <fragment>
+                                        <string key="content">This wizard will help with installation of missing components to run Mysterium Node.  Please press Install button to proceed with installation.</string>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="12" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3Jn-aL-dv1">
+                        <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="78l-Ff-q0B">
+                        <rect key="frame" x="363" y="0.0" width="15" height="172"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+            <point key="canvasLocation" x="109" y="1528"/>
+        </customView>
     </objects>
 </document>

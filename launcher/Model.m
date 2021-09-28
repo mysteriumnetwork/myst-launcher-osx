@@ -25,7 +25,7 @@
 @synthesize currentVersion;
 @synthesize imageName;
 @synthesize latestVersion;
-@synthesize checkVTx;
+@synthesize checkVirt;
 @synthesize checkDocker;
 @synthesize downloadFiles;
 @synthesize installDocker;
@@ -50,7 +50,7 @@
     self.isDockerRunning      = notification.userInfo[@"dockerRunning"];
     self.isContainerRunning   = notification.userInfo[@"containerRunning"];
     
-    self.checkVTx      = notification.userInfo[@"checkVTx"];
+    self.checkVirt     = notification.userInfo[@"checkVirt"];
     self.checkDocker   = notification.userInfo[@"checkDocker"];
     self.downloadFiles = notification.userInfo[@"downloadFiles"];
     self.installDocker = notification.userInfo[@"installDocker"];
