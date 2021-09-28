@@ -59,7 +59,7 @@
         [self.labelNetworkMode setObjectValue: v];
         [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
         [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
-        [self.checkBox setState:               [mod.autoUpgrade boolValue]];
+        [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
         
         if ([mod.isContainerRunning intValue]==2) {
             [self.img setImage:img2];
@@ -71,7 +71,7 @@
     // installation
     if ([[self window] contentView] == self.v21) {
         [self.checkBoxDocker         setState:[mod.checkDocker boolValue]];
-        [self.checkBoxVirtualization setState:[mod.checkVTx boolValue]];
+        [self.checkBoxVirtualization setState:[mod.checkVirt boolValue]];
         [self.checkBoxDownloadFiles  setState:[mod.downloadFiles boolValue]];
         [self.checkBoxInstallDocker  setState:[mod.installDocker boolValue]];
     }
@@ -138,6 +138,7 @@
             break;
         
         case UIState_InstallFinished:
+        case UIState_InstallError:
             [self.finishButton setEnabled:YES];
             break;
         default:

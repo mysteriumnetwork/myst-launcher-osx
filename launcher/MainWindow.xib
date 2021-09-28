@@ -8,7 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
-                <outlet property="checkBox" destination="LiA-48-OON" id="vwa-gP-TcS"/>
+                <outlet property="checkBoxAutoUpgrade" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="checkBoxDocker" destination="5ZG-Kl-H3V" id="3Qo-Yj-zMe"/>
                 <outlet property="checkBoxDownloadFiles" destination="j92-Db-0CW" id="95d-0N-zQX"/>
                 <outlet property="checkBoxInstallDocker" destination="cgz-Y5-Qa1" id="8H8-of-sRE"/>

@@ -13,7 +13,7 @@
     NSImage *img1, *img2;
 }
 
-@property (weak) IBOutlet NSButton *checkBox;
+@property (weak) IBOutlet NSButton *checkBoxAutoUpgrade;
 @property (weak) IBOutlet NSButton *button;
 
 @property (weak) IBOutlet NSTextField *labelImageName;

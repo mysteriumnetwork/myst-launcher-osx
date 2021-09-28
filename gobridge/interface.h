@@ -9,7 +9,7 @@ typedef struct _NSState {
     int  dockerRunning;
     int  containerRunning;
 
-    bool checkVTx;
+    bool checkVirt;
     bool checkDocker;
     bool downloadFiles;
     bool installDocker;

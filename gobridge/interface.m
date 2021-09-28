@@ -11,7 +11,7 @@ void macSendState(NSState *s) {
         @"containerRunning": @(s->containerRunning),
         
         // instllation state
-        @"checkVTx": @(s->checkVTx),
+        @"checkVirt": @(s->checkVirt),
         @"checkDocker": @(s->checkDocker),
         @"downloadFiles": @(s->downloadFiles),
         @"installDocker": @(s->installDocker),
