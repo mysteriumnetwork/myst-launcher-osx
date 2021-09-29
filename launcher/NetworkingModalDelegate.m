@@ -5,7 +5,7 @@
 //  Created by @zensey on 15/08/2021.
 //  Copyright © 2021 Mysterium Network. All rights reserved.
 //
-#import "ModalWindowDelegate.h"
+#import "NetworkingModalDelegate.h"
 #import "AppDelegate.h"
 #import "../gobridge/gobridge.h"
 
@@ -13,7 +13,7 @@
 
 - (id)init
 {
-    self = [super initWithWindowNibName:@"ModalWindow"];
+    self = [super initWithWindowNibName:@"NetworkingModal"];
 
     // enable window delegate extension
     [[self window] setDelegate:self];

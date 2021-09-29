@@ -136,6 +136,11 @@ func GoOnAppExit() {
 	ap.WaitGroup.Wait()
 }
 
+//export GoTriggerUpgrade
+func GoTriggerUpgrade() {
+    ap.TriggerAction("upgrade")
+}
+
 //export GoSetStateAndConfig
 func GoSetStateAndConfig(s *C.SetStateArgs) {
 	fmt.Println("SetState >", s)

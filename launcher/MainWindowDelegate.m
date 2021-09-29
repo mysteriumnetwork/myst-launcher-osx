@@ -6,7 +6,7 @@
 //  Copyright © 2021 Mysterium Network. All rights reserved.
 //
 #import "MainWindowDelegate.h"
-#import "ModalWindowDelegate.h"
+#import "NetworkingModalDelegate.h"
 #import "AppDelegate.h"
 #import "utils.h"
 #include "../gobridge/gobridge.h"

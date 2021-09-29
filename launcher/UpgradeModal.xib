@@ -6,17 +6,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ModalWindowDelegate">
+        <customObject id="-2" userLabel="File's Owner" customClass="UpgradeModalDelegate">
             <connections>
-                <outlet property="checkBox" destination="uY0-ML-MKK" id="S1c-Fh-kNv"/>
-                <outlet property="editPortRangeBegin" destination="bWz-9o-QGX" id="Dnv-Uq-Z7f"/>
-                <outlet property="editPortRangeEnd" destination="Ss5-ur-7CJ" id="wgn-7G-brT"/>
+                <outlet property="button" destination="jvH-iN-SNX" id="aGl-bf-F9Q"/>
+                <outlet property="lbImageName" destination="TzS-1x-xht" id="TNV-L7-Obp"/>
+                <outlet property="lbVersionCurrent" destination="wNt-f6-hg8" id="xfA-Vc-Uf0"/>
+                <outlet property="lbVersionLatest" destination="1dM-lC-SDT" id="0cD-Os-wOG"/>
                 <outlet property="window" destination="mga-Zo-dn6" id="Kq8-Jh-M20"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Modal Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mga-Zo-dn6">
+        <window title="Would you like to upgrade?" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mga-Zo-dn6">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="95" y="81" width="378" height="239"/>
@@ -39,16 +40,6 @@ DQ
                             <action selector="okPressed:" target="-2" id="yu1-15-M2u"/>
                         </connections>
                     </button>
-                    <textField identifier="edit1" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bWz-9o-QGX">
-                        <rect key="frame" x="148" y="167" width="187" height="21"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Type your text here" drawsBackground="YES" id="AIy-Vd-czC">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <accessibility description="Port range begin"/>
-                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cpb-qY-XCT">
                         <rect key="frame" x="200" y="13" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -63,41 +54,59 @@ Gw
                             <action selector="cancelPressed:" target="-2" id="d4g-I6-ZJt"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uY0-ML-MKK">
-                        <rect key="frame" x="18" y="203" width="161" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Enable port forwarding" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KgH-Ij-2WD">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-LO-ZrZ">
-                        <rect key="frame" x="18" y="170" width="106" height="16"/>
+                        <rect key="frame" x="18" y="170" width="153" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Port range begin" id="2Ef-QF-xPb">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Docker Hub image name" id="2Ef-QF-xPb">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TzS-1x-xht">
+                        <rect key="frame" x="207" y="170" width="153" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="3FB-LL-cMt">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wNt-f6-hg8">
+                        <rect key="frame" x="207" y="146" width="153" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="XC9-yX-I7n">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KzQ-J9-1b8">
-                        <rect key="frame" x="18" y="141" width="95" height="16"/>
+                        <rect key="frame" x="18" y="146" width="139" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Port range end" id="A5V-j1-Lvw">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Node version installed" id="A5V-j1-Lvw">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField identifier="edit2" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ss5-ur-7CJ">
-                        <rect key="frame" x="148" y="138" width="187" height="21"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q31-cM-Dyl">
+                        <rect key="frame" x="18" y="122" width="121" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Type your text here" drawsBackground="YES" id="fGB-QQ-JAQ">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Node version latest" id="0DB-Uy-RM1">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
-                        <accessibility description="Port range begin"/>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dM-lC-SDT">
+                        <rect key="frame" x="207" y="122" width="153" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="-" id="84t-cw-P8l">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
                     </textField>
                 </subviews>
             </view>
