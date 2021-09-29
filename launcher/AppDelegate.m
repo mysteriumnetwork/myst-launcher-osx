@@ -8,7 +8,8 @@
 	
 #import "AppDelegate.h"
 #import "MainWindowDelegate.h"
-#import "ModalWindowDelegate.h"
+#import "NetworkingModalDelegate.h"
+#import "UpgradeModalDelegate.h"
 #import "../gobridge/gobridge.h"
 
 #include <sys/stat.h>
@@ -31,11 +32,11 @@ LauncherState *mod = nil;
     
     mod = [[LauncherState alloc] init];
 
-    if (!self.modalWindowDelegate) {
-        self.modalWindowDelegate = [[MainWindowDelegate alloc] init];
+    if (!self.mainWin) {
+        self.mainWin = [[MainWindowDelegate alloc] init];
     }
-    NSWindow *modalWindow = [self.modalWindowDelegate window];
-    [self.modalWindowDelegate showWindow:modalWindow];
+    NSWindow *modalWindow = [self.mainWin window];
+    [self.mainWin showWindow:modalWindow];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerConfig:) name:@"new_config" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
@@ -69,8 +70,28 @@ LauncherState *mod = nil;
 }
 
 - (IBAction)showMain:(id)sender {   
-    NSWindow *modalWindow = [self.modalWindowDelegate window];
-    [self.modalWindowDelegate showWindow:modalWindow];
+    NSWindow *modalWindow = [self.mainWin window];
+    [self.mainWin showWindow:modalWindow];
+}
+
+- (IBAction)showUpgradeDlg:(id)sender {
+    NSWindowController *modalWindowDelegate = [[UpgradeModalDelegate alloc] init];
+    NSWindow *modalWindow = [modalWindowDelegate window];
+
+    NSModalResponse response = [NSApp runModalForWindow:modalWindow ]; // relativeToWindow:self.window - deprecated
+    if (response == NSModalResponseOK) {
+        NSLog(@"NSModalResponseOK");
+    }
+}
+
+- (IBAction)showNetworkingDlg:(id)sender {
+    NSWindowController *modalWindowDelegate = [[ModalWindowDelegate alloc] init];
+    NSWindow *modalWindow = [modalWindowDelegate window];
+
+    NSModalResponse response = [NSApp runModalForWindow:modalWindow ]; // relativeToWindow:self.window - deprecated
+    if (response == NSModalResponseOK) {
+        NSLog(@"NSModalResponseOK");
+    }
 }
 
 - (IBAction)enableNode:(id)sender {

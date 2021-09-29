@@ -42,7 +42,6 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
     self.currentVersion       = notification.userInfo[@"currentVersion"];

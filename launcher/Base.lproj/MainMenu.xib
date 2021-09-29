@@ -39,12 +39,22 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
-                            <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Enable node" state="on" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="enableNode:" target="Voe-Tx-rLC" id="WAO-hB-sFu"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Networking…" id="BOF-NM-1cW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showNetworkingDlg:" target="Voe-Tx-rLC" id="sGd-ik-R2x"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Upgrade…" id="irK-fE-Inf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showUpgradeDlg:" target="Voe-Tx-rLC" id="NDB-Ye-cSA"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
@@ -75,7 +85,7 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-7" y="55"/>
+            <point key="canvasLocation" x="21" y="-84"/>
         </menu>
         <window title="launcher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

@@ -18,9 +18,12 @@
 @property (weak) IBOutlet NSMenuItem *itemEnableNode;
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 
-@property (strong) NSWindowController *modalWindowDelegate;
+@property (strong) NSWindowController *mainWin;
 
 - (IBAction)showMain:(id)sender;
+- (IBAction)showUpgradeDlg:(id)sender;
+- (IBAction)showNetworkingDlg:(id)sender;
+
 - (IBAction)enableNode:(id)sender;
 - (IBAction)openNodeUIAction:(id)sender;
 

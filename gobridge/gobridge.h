@@ -81,6 +81,7 @@ extern void GoStart();
 extern void GoSetModalResult(int rc);
 extern void GoDialogueComplete();
 extern void GoOnAppExit();
+extern void GoTriggerUpgrade();
 extern void GoSetStateAndConfig(SetStateArgs* s);
 
 #ifdef __cplusplus
