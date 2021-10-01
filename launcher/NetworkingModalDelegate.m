@@ -76,7 +76,7 @@
     mod.portBegin = @(portBegin);
     mod.portEnd = @(portEnd);
     mod.enablePortForwarding = [NSNumber numberWithBool:[self.checkBox integerValue]];
-    [mod setState];
+    [mod setNetworkConfig];
     
     [self close];
     [NSApp stopModalWithCode:NSModalResponseOK];

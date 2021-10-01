@@ -27,7 +27,9 @@ LauncherState *mod = nil;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    GoInit((char*)[resourcePath UTF8String]);
+    id productVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+
+    GoInit((char*)[resourcePath UTF8String], (char*)[productVersion UTF8String]);
     GoStart();
     
     mod = [[LauncherState alloc] init];
