@@ -141,6 +141,11 @@ func GoTriggerUpgrade() {
     ap.TriggerAction("upgrade")
 }
 
+//export GoTriggerRefresh
+func GoTriggerRefresh() {
+    ap.TriggerAction("refresh")
+}
+
 //export GoSetStateAndConfig
 func GoSetStateAndConfig(s *C.SetStateArgs) {
 	fmt.Println("SetState >", s)
