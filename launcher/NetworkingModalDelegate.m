@@ -60,22 +60,23 @@
 {
     int portBegin = [self.editPortRangeBegin intValue];
     int portEnd = [self.editPortRangeEnd intValue];
-    bool valid = [self validatePortRange:portBegin :portEnd];
-    
-    if (!valid) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"Port range"];
-        [alert setInformativeText:@"Wrong port range.\nPorts shall be in range of 1000..65535.\nNumber of ports in the range shall be at least 100."];
-        [alert addButtonWithTitle:@"OK"];
-        [alert setAlertStyle:NSAlertStyleWarning];
-        [alert beginSheetModalForWindow:self.window completionHandler:nil];
-        return;
+       
+    if ([self.checkBox isEnabled]) {
+        bool valid = [self validatePortRange:portBegin :portEnd];
+        if (!valid) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"Port range"];
+            [alert setInformativeText:@"Wrong port range.\nPorts shall be in range of 1000..65535.\nNumber of ports in the range shall be at least 100."];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setAlertStyle:NSAlertStyleWarning];
+            [alert beginSheetModalForWindow:self.window completionHandler:nil];
+            return;
+        }
     }
-    
     mod.portBegin = @(portBegin);
     mod.portEnd = @(portEnd);
     mod.enablePortForwarding = [NSNumber numberWithBool:[self.checkBox integerValue]];
-    [mod setState];
+    [mod setNetworkConfig];
     
     [self close];
     [NSApp stopModalWithCode:NSModalResponseOK];

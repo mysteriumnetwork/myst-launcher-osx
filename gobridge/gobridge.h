@@ -76,13 +76,14 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern void GoInit(char* res_path);
+extern void GoInit(char* resPath, char* prodVer);
 extern void GoStart();
 extern void GoSetModalResult(int rc);
 extern void GoDialogueComplete();
 extern void GoOnAppExit();
 extern void GoTriggerUpgrade();
-extern void GoSetStateAndConfig(SetStateArgs* s);
+extern void GoSetState(SetStateArgs* s);
+extern void GoSetNetworkConfig(SetStateArgs* s);
 
 #ifdef __cplusplus
 }

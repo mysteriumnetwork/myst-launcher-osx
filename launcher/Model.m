@@ -42,6 +42,8 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
+//    NSLog(@"notificationHandlerState > %@", notification.userInfo);
+    
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
     self.currentVersion       = notification.userInfo[@"currentVersion"];
@@ -54,7 +56,6 @@
     self.downloadFiles = notification.userInfo[@"downloadFiles"];
     self.installDocker = notification.userInfo[@"installDocker"];
 
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_state" object:nil];
 }
 
@@ -104,13 +105,20 @@
 - (void)setState {
     SetStateArgs s;
 
-    s.enablePortForwarding = [self.enablePortForwarding boolValue];
-    s.portRangeBegin = [self.portBegin intValue];
-    s.portRangeEnd = [self.portEnd intValue];
     s.autoUpgrade = [self.autoUpgrade boolValue];
     s.enabled = [self.enabled boolValue];
 
-    GoSetStateAndConfig(&s);
+    GoSetState(&s);
+}
+
+- (void)setNetworkConfig {
+    SetStateArgs s;
+
+    s.enablePortForwarding = [self.enablePortForwarding boolValue];
+    s.portRangeBegin = [self.portBegin intValue];
+    s.portRangeEnd = [self.portEnd intValue];
+
+    GoSetNetworkConfig(&s);
 }
 
 @end

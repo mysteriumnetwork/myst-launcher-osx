@@ -55,7 +55,7 @@
 
 
 - (void)setState;
-
+- (void)setNetworkConfig;
 @end
 
 #endif /* model_h */

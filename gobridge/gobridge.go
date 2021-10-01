@@ -21,7 +21,7 @@ import (
 
 var (
 	manager *myst.Manager
-	cfg     model.Config
+	//cfg     model.Config
 	mon     *myst.DockerMonitor
 	mod     *model.UIModel
 
@@ -49,21 +49,21 @@ func copyFile(sourceFile, destinationFile string) {
 }
 
 //export GoInit
-func GoInit(res_path *C.char) {
-	cfg.ResourcePath = C.GoString(res_path)
+func GoInit(resPath *C.char, prodVer *C.char) {
+    mod = model.NewUIModel()
+    mod.Config.ProductVersion = C.GoString(prodVer)
 
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
-
 	fileName := "com.mysterium.launcher.plist"
-	copyFile(cfg.ResourcePath+"/"+fileName, targetDir+fileName)
+    resourcePath := C.GoString(resPath)
+	copyFile(resourcePath+"/"+fileName, targetDir+fileName)
  }
 
 //export GoStart
 func GoStart() {
     fmt.Println("GoStart >")
 	ap = app.NewApp()
-	mod = model.NewUIModel()
 	sendConfig()
 
 	mod.UIBus.Subscribe("state-change", func() {
@@ -141,14 +141,12 @@ func GoTriggerUpgrade() {
     ap.TriggerAction("upgrade")
 }
 
-//export GoSetStateAndConfig
-func GoSetStateAndConfig(s *C.SetStateArgs) {
-	fmt.Println("SetState >", s)
-	saveConf := false
+//export GoSetState
+func GoSetState(s *C.SetStateArgs) {
 
 	if mod.Config.AutoUpgrade != bool(s.autoUpgrade) {
 		mod.Config.AutoUpgrade = bool(s.autoUpgrade)
-		saveConf = true
+		mod.Config.Save()
 	}
 
 	if mod.Config.Enabled != bool(s.enabled) {
@@ -158,20 +156,18 @@ func GoSetStateAndConfig(s *C.SetStateArgs) {
 			ap.TriggerAction("disable")
 		}
 	}
-
-	if mod.Config.EnablePortForwarding != bool(s.enablePortForwarding) || mod.Config.PortRangeBegin != int(s.portRangeBegin) || mod.Config.PortRangeEnd != int(s.portRangeEnd) {
-		mod.Config.EnablePortForwarding = bool(s.enablePortForwarding)
-		mod.Config.PortRangeBegin = int(s.portRangeBegin)
-		mod.Config.PortRangeEnd = int(s.portRangeEnd)
-
-		ap.TriggerAction("upgrade")
-		saveConf = true
-	}
-
-	if saveConf {
-		mod.Config.Save()
-	}
 }
+
+//export GoSetNetworkConfig
+func GoSetNetworkConfig(s *C.SetStateArgs) {
+
+	mod.Config.EnablePortForwarding = bool(s.enablePortForwarding)
+	mod.Config.PortRangeBegin = int(s.portRangeBegin)
+	mod.Config.PortRangeEnd = int(s.portRangeEnd)
+
+	ap.TriggerAction("restart")
+}
+
 
 // required by runtime
 func main() {}
