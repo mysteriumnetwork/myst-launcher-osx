@@ -23,6 +23,7 @@ func newUiProxy() *UiProxy {
 	return g
 }
 
+func (g *UiProxy) PopupMain() {}
 func (g *UiProxy) ShowMain() {}
 func (g *UiProxy) ShowNotificationInstalled() {}
 func (g *UiProxy) ShowNotificationUpgrade() {}

@@ -21,7 +21,6 @@ import (
 
 var (
 	manager *myst.Manager
-	//cfg     model.Config
 	mon     *myst.DockerMonitor
 	mod     *model.UIModel
 
