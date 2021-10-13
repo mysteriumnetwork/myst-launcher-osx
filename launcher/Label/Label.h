@@ -9,7 +9,7 @@
 
 
 @property (nonatomic, strong) NSCursor *cursor;
-@property (retain)NSColor *color;
+@property (retain) NSColor *color;
 
 //- (void) setHyperlinkText;
 @end

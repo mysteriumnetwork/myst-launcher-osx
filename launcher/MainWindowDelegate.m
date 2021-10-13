@@ -28,9 +28,10 @@
 }
 
 - (void) windowDidLoad {  
-    self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
-    [self.labelNetworkMode setTarget:self];
-    [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
+    self.labelNodeUI.cursor = [NSCursor pointingHandCursor];
+    [self.labelNodeUI setTarget:self];
+    [self.labelNodeUI setAction:@selector(networkingLabelPressed:)];
+    
     
     img1 = [NSImage imageNamed:@"img_128x128"];
     img2 = [NSImage imageNamed:@"img_128x128-active"];
@@ -41,7 +42,7 @@
 }
 
 - (void) refreshFrame {
-
+    
     if ([[self window] contentView] == self.v11) {
         [self.labelCurrentVersion setObjectValue: mod.currentVersion];
         [self.labelLatestVersion setObjectValue: mod.latestVersion];
@@ -53,18 +54,46 @@
         }
         [self.labelHasUpdate setObjectValue:v];
         
-        if (mod.enablePortForwarding) {
-            v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
-        }
+        v = mod.enablePortForwarding ? @"Port forwarding mode" : @"Port restricted cone NAT";
         [self.labelNetworkMode setObjectValue: v];
+        
         [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
         [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
         [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
         
         if ([mod.isContainerRunning intValue]==2) {
-            [self.img setImage:img2];
+//            [self.img setImage:img2];
         } else {
             [self.img setImage:img1];
+        }
+        
+        switch ([mod.isDockerRunning intValue]) {
+            case 2:
+                [self.statusDocker setState:2];
+                break;
+            case 1:
+            case 3:
+                [self.statusDocker setState:1];
+                break;
+            case 0:
+                [self.statusDocker setState:0];
+                break;
+            default:
+                break;
+        }
+        switch ([mod.isContainerRunning intValue]) {
+            case 2:
+                [self.statusNode setState:2];
+                break;
+            case 1:
+            case 3:
+                [self.statusNode setState:1];
+                break;
+            case 0:
+                [self.statusNode setState:0];
+                break;
+            default:
+                break;
         }
     }
     

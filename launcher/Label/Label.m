@@ -10,8 +10,9 @@
 
 - (void)awakeFromNib
 {
-    self.color = [NSColor colorWithRed:0 green:0.4 blue:238.0/255 alpha:1];
+    self.color = [NSColor systemBlueColor];
     [super awakeFromNib];
+    [self setObjectValue: self.objectValue];
 }
 
 - (id)initWithFrame:(NSRect)frame

@@ -13,10 +13,10 @@
 
 @implementation Utils: NSObject
 
-NSString *const RunState0 = @"-";
-NSString *const RunState1 = @"Starting..";
-NSString *const RunState2 = @"Running [OK]";
-NSString *const RunState3 = @"Installing..";
+NSString *const RunState0 = @"OFFLINE";
+NSString *const RunState1 = @"STARTING..";
+NSString *const RunState2 = @"ONLINE";
+NSString *const RunState3 = @"INSTALLING..";
 NSString *const RunState_ = @"?";
 
 + (NSString*)getRunStateString:(NSNumber*)state {
