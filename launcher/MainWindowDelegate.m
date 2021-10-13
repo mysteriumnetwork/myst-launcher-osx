@@ -24,20 +24,15 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
     }
+    
+//    [self.pi ]
     return self;
 }
 
 - (void) windowDidLoad {  
-    self.labelNodeUI.cursor = [NSCursor pointingHandCursor];
-    [self.labelNodeUI setTarget:self];
-    [self.labelNodeUI setAction:@selector(networkingLabelPressed:)];
-    
-    
     img1 = [NSImage imageNamed:@"img_128x128"];
-    img2 = [NSImage imageNamed:@"img_128x128-active"];
     [img1 setSize: NSMakeSize(64, 64)];
-    [img2 setSize: NSMakeSize(64, 64)];
-
+    [self.img setImage:img1];
     [self refreshFrame];
 }
 
@@ -54,18 +49,12 @@
         }
         [self.labelHasUpdate setObjectValue:v];
         
-        v = mod.enablePortForwarding ? @"Port forwarding mode" : @"Port restricted cone NAT";
+        v = [mod.enablePortForwarding intValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
         [self.labelNetworkMode setObjectValue: v];
         
         [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
         [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
         [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
-        
-        if ([mod.isContainerRunning intValue]==2) {
-//            [self.img setImage:img2];
-        } else {
-            [self.img setImage:img1];
-        }
         
         switch ([mod.isDockerRunning intValue]) {
             case 2:
@@ -123,9 +112,19 @@
     [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
-- (IBAction)okPressed:(id)sender
+- (IBAction)linkNodeUIPressed:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
+}
+
+- (IBAction)link2Pressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost"]];
+}
+
+- (IBAction)link3Pressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost"]];
 }
 
 - (IBAction)checkBoxClick:(NSButton*)sender
@@ -178,7 +177,6 @@
 - (void)notificationHandlerLog:(NSNotification *) notification
 {
     NSString *n = notification.userInfo[@"msg"];
-    NSLog(@"Log > %@", n);
 
     [self.textView setEditable:YES];
     [self.textView setSelectedRange:NSMakeRange(-1,0)];

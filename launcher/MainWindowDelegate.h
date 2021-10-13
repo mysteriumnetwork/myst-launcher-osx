@@ -11,7 +11,7 @@
 #import "Indicator/StateView.h"
 
 @interface MainWindowDelegate : NSWindowController <NSWindowDelegate> {
-    NSImage *img1, *img2;
+    NSImage *img1;
 }
 
 @property (weak) IBOutlet NSButton *checkBoxAutoUpgrade;
@@ -24,7 +24,6 @@
 @property (weak) IBOutlet NSTextField *labelNetworkMode;
 @property (weak) IBOutlet NSTextField *labelDocker;
 @property (weak) IBOutlet NSTextField *labelContainer;
-@property (weak) IBOutlet Label *labelNodeUI;
 
 
 @property (weak) IBOutlet NSImageView *img;
@@ -37,7 +36,7 @@
 
 
 - (IBAction)cancelPressed:(id)sender;
-- (IBAction)okPressed:(id)sender;
+- (IBAction)linkNodeUIPressed:(id)sender;
 - (IBAction)checkBoxClick:(NSButton*)sender;
 - (IBAction)networkingLabelPressed:(id)sender;
 
@@ -46,11 +45,12 @@
 @property (weak) IBOutlet NSButton *checkBoxDocker;
 @property (weak) IBOutlet NSButton *checkBoxDownloadFiles;
 @property (weak) IBOutlet NSButton *checkBoxInstallDocker;
-
 @property (weak) IBOutlet NSButton *finishButton;
-
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet NSTextView *textView;
+
+@property (weak) IBOutlet NSProgressIndicator *pi;
+
 - (IBAction)finishPressed:(id)sender;
 
 

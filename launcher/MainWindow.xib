@@ -21,7 +21,6 @@
                 <outlet property="labelImageName" destination="694-Ni-LbW" id="ir1-3m-eov"/>
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
-                <outlet property="labelNodeUI" destination="4hV-tC-rKW" id="kpV-f8-4Sy"/>
                 <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
                 <outlet property="statusDocker" destination="faK-us-qhr" id="DCl-sE-sEU"/>
                 <outlet property="statusNode" destination="Kjx-Yz-2Yh" id="GWB-ZY-owM"/>
@@ -136,7 +135,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Qw-4J-Vie">
-                        <rect key="frame" x="122" y="486" width="153" height="16"/>
+                        <rect key="frame" x="121" y="486" width="115" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="---" id="Lfr-1L-LNc">
                             <font key="font" metaFont="systemSemibold" size="12"/>
@@ -149,9 +148,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Node UI" id="Jp0-cR-1zi">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="linkNodeUIPressed:" target="-2" id="33X-st-L95"/>
+                        </connections>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNr-bj-xQN">
                         <rect key="frame" x="20" y="445" width="65" height="65"/>
@@ -180,9 +182,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="My Mysterium Network" id="g2f-kN-SYu">
                             <font key="font" metaFont="cellTitle"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="link2Pressed:" target="-2" id="4nZ-0Q-tZ8"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jt0-9y-B1w">
                         <rect key="frame" x="18" y="207" width="122" height="16"/>
@@ -278,11 +283,11 @@
                             </textView>
                         </subviews>
                     </clipView>
-                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="nzq-nM-kEz">
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="nzq-nM-kEz">
                         <rect key="frame" x="-100" y="-100" width="225" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="XfU-fR-p0i">
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="XfU-fR-p0i">
                         <rect key="frame" x="363" y="0.0" width="15" height="135"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -375,11 +380,11 @@
                             </textView>
                         </subviews>
                     </clipView>
-                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="3Jn-aL-dv1">
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3Jn-aL-dv1">
                         <rect key="frame" x="-100" y="-100" width="225" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="78l-Ff-q0B">
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="78l-Ff-q0B">
                         <rect key="frame" x="363" y="0.0" width="15" height="172"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>

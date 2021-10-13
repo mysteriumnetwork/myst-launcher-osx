@@ -16,5 +16,6 @@
 
 - (IBAction)cancelPressed:(id)sender;
 - (IBAction)okPressed:(id)sender;
+- (IBAction)checkPressed:(id)sender;
 
 @end

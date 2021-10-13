@@ -10,8 +10,10 @@
 
 - (void)awakeFromNib
 {
-    self.color = [NSColor systemBlueColor];
     [super awakeFromNib];
+  
+    self.color = self.textColor;
+    self.cursor = [NSCursor pointingHandCursor];
     [self setObjectValue: self.objectValue];
 }
 
