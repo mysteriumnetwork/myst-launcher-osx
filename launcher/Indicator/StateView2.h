@@ -1,14 +1,12 @@
 #import <Cocoa/Cocoa.h>
 
 
-// show color circle
-@interface StateColorView : NSView {
+// show color circle or spinner
+@interface StateView2 : NSView {
     NSRect originalBounds;
 
-    // 0 red
-    // 1 orange
-    // 2 green
     int state;
+    NSView *v;
 }
 
 - (void)setState: (int)state;

@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Label/Label.h"
 #import "Indicator/StateView.h"
+#import "Indicator/StateView2.h"
 
 @interface MainWindowDelegate : NSWindowController <NSWindowDelegate> {
     NSImage *img1;
@@ -34,6 +35,8 @@
 @property (strong) IBOutlet StateColorView *statusDocker;
 @property (strong) IBOutlet StateColorView *statusNode;
 
+@property (strong) IBOutlet StateView2 *st;
+
 
 - (IBAction)cancelPressed:(id)sender;
 - (IBAction)linkNodeUIPressed:(id)sender;
@@ -41,10 +44,10 @@
 - (IBAction)networkingLabelPressed:(id)sender;
 
 // installation
-@property (weak) IBOutlet NSButton *checkBoxVirtualization;
-@property (weak) IBOutlet NSButton *checkBoxDocker;
-@property (weak) IBOutlet NSButton *checkBoxDownloadFiles;
-@property (weak) IBOutlet NSButton *checkBoxInstallDocker;
+@property (weak) IBOutlet StateView2 *checkBoxVirtualization;
+@property (weak) IBOutlet StateView2 *checkBoxDocker;
+@property (weak) IBOutlet StateView2 *checkBoxDownloadFiles;
+@property (weak) IBOutlet StateView2 *checkBoxInstallDocker;
 @property (weak) IBOutlet NSButton *finishButton;
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet NSTextView *textView;

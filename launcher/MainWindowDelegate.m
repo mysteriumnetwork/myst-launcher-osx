@@ -25,7 +25,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
     }
     
-//    [self.pi ]
     return self;
 }
 
@@ -33,6 +32,7 @@
     img1 = [NSImage imageNamed:@"img_128x128"];
     [img1 setSize: NSMakeSize(64, 64)];
     [self.img setImage:img1];
+    
     [self refreshFrame];
 }
 
@@ -88,10 +88,11 @@
     
     // installation
     if ([[self window] contentView] == self.v21) {
-        [self.checkBoxDocker         setState:[mod.checkDocker boolValue]];
-        [self.checkBoxVirtualization setState:[mod.checkVirt boolValue]];
-        [self.checkBoxDownloadFiles  setState:[mod.downloadFiles boolValue]];
-        [self.checkBoxInstallDocker  setState:[mod.installDocker boolValue]];
+        
+        [self.checkBoxDocker         setState:[mod.checkDocker intValue]];
+        [self.checkBoxVirtualization setState:[mod.checkVirt intValue]];
+        [self.checkBoxDownloadFiles  setState:[mod.downloadFiles intValue]];
+        [self.checkBoxInstallDocker  setState:[mod.installDocker intValue]];
     }
 }
 
@@ -117,20 +118,24 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
 }
 
-- (IBAction)link2Pressed:(id)sender
+- (IBAction)linkMMNPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost"]];
-}
-
-- (IBAction)link3Pressed:(id)sender
-{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://my.mysterium.network/"]];
 }
 
 - (IBAction)checkBoxClick:(NSButton*)sender
 {
     mod.autoUpgrade = @((long)sender.state);
     [mod setState];
+    
+    
+    if ([self.checkBoxAutoUpgrade intValue] == 0) {
+        [self.st setState:1];
+
+    } else {
+        [self.st setState:2];
+
+    }
 }
 
 - (IBAction)networkingLabelPressed:(id)sender

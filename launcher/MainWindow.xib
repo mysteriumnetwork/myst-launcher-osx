@@ -9,10 +9,10 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
                 <outlet property="checkBoxAutoUpgrade" destination="LiA-48-OON" id="vwa-gP-TcS"/>
-                <outlet property="checkBoxDocker" destination="5ZG-Kl-H3V" id="3Qo-Yj-zMe"/>
-                <outlet property="checkBoxDownloadFiles" destination="j92-Db-0CW" id="95d-0N-zQX"/>
-                <outlet property="checkBoxInstallDocker" destination="cgz-Y5-Qa1" id="8H8-of-sRE"/>
-                <outlet property="checkBoxVirtualization" destination="PGg-4s-fBj" id="f6w-1b-qoL"/>
+                <outlet property="checkBoxDocker" destination="1mK-zd-KR6" id="mmQ-37-LMN"/>
+                <outlet property="checkBoxDownloadFiles" destination="82q-eJ-AV1" id="ccK-hq-BcG"/>
+                <outlet property="checkBoxInstallDocker" destination="Fw7-u5-RR4" id="cp2-rW-cmW"/>
+                <outlet property="checkBoxVirtualization" destination="1g4-PW-1oi" id="Eth-Cu-Ie2"/>
                 <outlet property="finishButton" destination="les-Qz-lh6" id="ghC-uF-XcR"/>
                 <outlet property="img" destination="mNr-bj-xQN" id="dgF-ed-nX9"/>
                 <outlet property="labelContainer" destination="8Qw-4J-Vie" id="Vgh-JQ-PSI"/>
@@ -22,6 +22,7 @@
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
                 <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
+                <outlet property="st" destination="mk8-jZ-6e8" id="my2-QE-tnc"/>
                 <outlet property="statusDocker" destination="faK-us-qhr" id="DCl-sE-sEU"/>
                 <outlet property="statusNode" destination="Kjx-Yz-2Yh" id="GWB-ZY-owM"/>
                 <outlet property="textView" destination="kIS-do-nAD" id="3O6-Wl-AOH"/>
@@ -186,7 +187,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="link2Pressed:" target="-2" id="4nZ-0Q-tZ8"/>
+                            <action selector="linkMMNPressed:" target="-2" id="4nZ-0Q-tZ8"/>
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jt0-9y-B1w">
@@ -227,6 +228,10 @@
                             <action selector="networkingLabelPressed:" target="-2" id="HH3-Xt-6kb"/>
                         </connections>
                     </button>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk8-jZ-6e8" customClass="StateView2">
+                        <rect key="frame" x="331" y="414" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="109" y="327"/>
@@ -237,9 +242,45 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4BA-ha-k7s">
-                    <rect key="frame" x="18" y="496" width="230" height="16"/>
+                    <rect key="frame" x="18" y="496" width="324" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Installation / Requrement checking" id="9m2-6U-GrB">
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Please wait while setup installs required components" id="9m2-6U-GrB">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fIU-sf-552">
+                    <rect key="frame" x="42" y="428" width="175" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Check virtualization support" id="OBQ-SX-zkD">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Xbg-2c-gNb">
+                    <rect key="frame" x="42" y="400" width="207" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Check docker desktop availability" id="rjN-pC-0UD">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dTK-rG-XQN">
+                    <rect key="frame" x="42" y="372" width="162" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Download docker desktop" id="pCz-Hw-QxD">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="FYf-pK-moa">
+                    <rect key="frame" x="42" y="345" width="138" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Install docker desktop" id="jpj-mT-AWR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -254,30 +295,19 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="les-Qz-lh6">
-                    <rect key="frame" x="272" y="35" width="132" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Finish" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEA-DN-ezd">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="finishPressed:" target="-2" id="Rbg-YR-9Bg"/>
-                    </connections>
-                </button>
                 <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1s-Fp-bfO">
                     <rect key="frame" x="20" y="93" width="378" height="135"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
-                        <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
-                                <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="363" height="135"/>
+                                <size key="minSize" width="378" height="135"/>
                                 <size key="maxSize" width="378" height="10000000"/>
                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </textView>
@@ -288,41 +318,36 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="XfU-fR-p0i">
-                        <rect key="frame" x="363" y="0.0" width="15" height="135"/>
+                        <rect key="frame" x="362" y="0.0" width="16" height="135"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-Kl-H3V">
-                    <rect key="frame" x="18" y="402" width="230" height="18"/>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-PW-1oi" customClass="StateView2">
+                    <rect key="frame" x="20" y="428" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Check docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nib-nF-vVK">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1mK-zd-KR6" customClass="StateView2">
+                    <rect key="frame" x="20" y="400" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82q-eJ-AV1" customClass="StateView2">
+                    <rect key="frame" x="20" y="372" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fw7-u5-RR4" customClass="StateView2">
+                    <rect key="frame" x="20" y="345" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="les-Qz-lh6">
+                    <rect key="frame" x="167" y="35" width="237" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Finish and start Mysterium Node" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BEA-DN-ezd">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j92-Db-0CW">
-                    <rect key="frame" x="18" y="374" width="230" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Download docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XqU-hA-u1J">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgz-Y5-Qa1">
-                    <rect key="frame" x="18" y="347" width="230" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Install docker desktop" bezelStyle="regularSquare" imagePosition="left" inset="2" id="rSE-KW-JHE">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PGg-4s-fBj">
-                    <rect key="frame" x="18" y="430" width="230" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Virtualization support" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Amy-0Z-JPR">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
+                    <connections>
+                        <action selector="finishPressed:" target="-2" id="Rbg-YR-9Bg"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="109" y="931"/>
@@ -333,9 +358,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dvh-l1-Naf">
-                    <rect key="frame" x="18" y="496" width="70" height="16"/>
+                    <rect key="frame" x="18" y="496" width="258" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Installation" id="hzU-l2-ykp">
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Welcome to Mysterium node setup wizard" id="hzU-l2-ykp">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -344,7 +369,7 @@
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iz5-Jp-Zs9">
                     <rect key="frame" x="272" y="35" width="132" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Install" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eb1-UB-wau">
+                    <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eb1-UB-wau">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -356,15 +381,15 @@
                     <rect key="frame" x="20" y="216" width="378" height="172"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
-                        <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
-                                <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="363" height="172"/>
+                                <size key="minSize" width="378" height="172"/>
                                 <size key="maxSize" width="378" height="10000000"/>
                                 <attributedString key="textStorage">
                                     <fragment>
@@ -385,7 +410,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="78l-Ff-q0B">
-                        <rect key="frame" x="363" y="0.0" width="15" height="172"/>
+                        <rect key="frame" x="362" y="0.0" width="16" height="172"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>

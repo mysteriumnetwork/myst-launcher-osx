@@ -95,10 +95,10 @@ func sendState() {
 	st.containerRunning = C.int(mod.StateContainer)
 
 	// instllation state
-	st.checkVirt = C.bool(mod.CheckVirt)
-	st.checkDocker = C.bool(mod.CheckDocker)
-    st.downloadFiles = C.bool(mod.DownloadFiles)
-    st.installDocker = C.bool(mod.InstallDocker)
+	st.checkVirt = C.int(mod.CheckVirt)
+	st.checkDocker = C.int(mod.CheckDocker)
+    st.downloadFiles = C.int(mod.DownloadFiles)
+    st.installDocker = C.int(mod.InstallDocker)
 
 	C.macSendState(&st)
 }

@@ -103,6 +103,18 @@ Gw
                         </textFieldCell>
                         <accessibility description="Port range begin"/>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UPB-TP-3e2" customClass="Label">
+                        <rect key="frame" x="18" y="77" width="199" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Read more about network settings" id="P9P-dg-ZQR">
+                            <font key="font" metaFont="cellTitle"/>
+                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="linkInfoPressed:" target="-2" id="DXz-ay-adb"/>
+                        </connections>
+                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-29" y="59.5"/>

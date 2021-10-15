@@ -92,4 +92,8 @@
     [NSApp stopModalWithCode:NSModalResponseOK];
 }
 
+- (IBAction)linkInfoPressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://docs.mysterium.network/node-runners/troubleshooting/#port-forwarding"]];
+}
 @end

@@ -9,10 +9,11 @@ typedef struct _NSState {
     int  dockerRunning;
     int  containerRunning;
 
-    bool checkVirt;
-    bool checkDocker;
-    bool downloadFiles;
-    bool installDocker;
+    // install steps
+    int checkVirt;
+    int checkDocker;
+    int downloadFiles;
+    int installDocker;
 } NSState;
 
 typedef struct _NSConfig {

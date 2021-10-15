@@ -11,14 +11,13 @@
 
 - (id)init
 {
+    [super init];
     return self;
 }
 
 - (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
-    
     if (self) {
-        // Initialization code here.
         originalBounds = [self bounds];
     }
     return self;
@@ -26,8 +25,8 @@
 
 - (void)setFrameSize:(NSSize)newSize
 {
-  [super setFrameSize:newSize];
-  [self setBounds:originalBounds];
+    [super setFrameSize:newSize];
+    originalBounds = [self bounds];
 }
 
 - (void)setState: (int)st {
@@ -36,6 +35,7 @@
 }
 
 - (void)drawRect:(NSRect)rect {
+    
     [NSGraphicsContext saveGraphicsState];
     NSRect r = NSMakeRect(originalBounds.origin.x, originalBounds.origin.y, originalBounds.size.width, originalBounds.size.height);
     NSBezierPath* circlePath = [NSBezierPath bezierPath];
@@ -56,7 +56,6 @@
             break;
     }
     [circlePath fill];
-  
     [NSGraphicsContext restoreGraphicsState];
 }
 
