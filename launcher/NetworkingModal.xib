@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ModalWindowDelegate">
             <connections>
+                <outlet property="button" destination="jvH-iN-SNX" id="eN5-xO-qgK"/>
                 <outlet property="checkBox" destination="uY0-ML-MKK" id="S1c-Fh-kNv"/>
                 <outlet property="editPortRangeBegin" destination="bWz-9o-QGX" id="Dnv-Uq-Z7f"/>
                 <outlet property="editPortRangeEnd" destination="Ss5-ur-7CJ" id="wgn-7G-brT"/>
@@ -70,6 +71,9 @@ Gw
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="checkPressed:" target="-2" id="3xQ-bE-uWW"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-LO-ZrZ">
                         <rect key="frame" x="18" y="170" width="106" height="16"/>
@@ -98,6 +102,18 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <accessibility description="Port range begin"/>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UPB-TP-3e2" customClass="Label">
+                        <rect key="frame" x="18" y="77" width="199" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Read more about network settings" id="P9P-dg-ZQR">
+                            <font key="font" metaFont="cellTitle"/>
+                            <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="linkInfoPressed:" target="-2" id="DXz-ay-adb"/>
+                        </connections>
                     </textField>
                 </subviews>
             </view>

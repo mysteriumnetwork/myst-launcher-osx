@@ -24,6 +24,7 @@
     [self.editPortRangeEnd setStringValue:[NSString stringWithFormat:@"%@", mod.portEnd]];
     [self.checkBox setState: [mod.enablePortForwarding boolValue]];
     
+    [self checkPressed:nil];
     return self;
 }
 
@@ -34,6 +35,14 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [NSApp stopModalWithCode:NSModalResponseCancel];
+}
+
+- (IBAction)checkPressed:(id)sender
+{
+    BOOL y = (self.checkBox.state == NSControlStateValueOn);
+    
+    [self.editPortRangeBegin setEnabled:y];
+    [self.editPortRangeEnd setEnabled:y];
 }
 
 - (IBAction)cancelPressed:(id)sender
@@ -60,8 +69,9 @@
 {
     int portBegin = [self.editPortRangeBegin intValue];
     int portEnd = [self.editPortRangeEnd intValue];
-       
-    if ([self.checkBox isEnabled]) {
+    BOOL y = (self.checkBox.state == NSControlStateValueOn);
+
+    if (y) {
         bool valid = [self validatePortRange:portBegin :portEnd];
         if (!valid) {
             NSAlert *alert = [[NSAlert alloc] init];
@@ -82,4 +92,8 @@
     [NSApp stopModalWithCode:NSModalResponseOK];
 }
 
+- (IBAction)linkInfoPressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://docs.mysterium.network/node-runners/troubleshooting/#port-forwarding"]];
+}
 @end

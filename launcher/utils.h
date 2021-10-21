@@ -8,4 +8,7 @@
 
 @interface Utils : NSObject
 + (NSString*)getRunStateString:(NSNumber*)state;
++ (int)getStateViewStatus:(NSNumber*)state;
++ (int)getStateView2Status:(NSNumber*)state;
+
 @end

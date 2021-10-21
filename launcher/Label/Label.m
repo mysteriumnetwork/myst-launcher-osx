@@ -10,8 +10,11 @@
 
 - (void)awakeFromNib
 {
-    self.color = [NSColor colorWithRed:0 green:0.4 blue:238.0/255 alpha:1];
     [super awakeFromNib];
+  
+    self.color = self.textColor;
+    self.cursor = [NSCursor pointingHandCursor];
+    [self setObjectValue: self.objectValue];
 }
 
 - (id)initWithFrame:(NSRect)frame

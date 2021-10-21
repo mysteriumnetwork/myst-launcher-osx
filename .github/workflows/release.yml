@@ -24,7 +24,7 @@ jobs:
           git clone https://github.com/mysteriumnetwork/myst-launcher
           pushd myst-launcher
           git fetch --all --tags
-          git checkout tags/1.0.17
+          git checkout tags/1.0.18
           popd
           popd
           
@@ -62,11 +62,11 @@ jobs:
           # security find-identity -p codesigning -s $KEY_CHAIN
 
           echo "Codesign"
-          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/MacOS/Mysterium\ Launcher
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp ./build/MysteriumLauncher/Mysterium\ Node\ Launcher.app/Contents/MacOS/Mysterium\ Node\ Launcher
           echo "Codesign dylib"
-          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/Contents/Frameworks/gobridge.dylib
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Node\ Launcher.app/Contents/Frameworks/gobridge.dylib
           echo "Codesign whole build"
-          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Launcher.app/
+          /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Node\ Launcher.app/
 
           # dmg
           hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos_amd64.dmg

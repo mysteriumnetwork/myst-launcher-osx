@@ -9,10 +9,11 @@ typedef struct _NSState {
     int  dockerRunning;
     int  containerRunning;
 
-    bool checkVirt;
-    bool checkDocker;
-    bool downloadFiles;
-    bool installDocker;
+    // install steps
+    int checkVirt;
+    int checkDocker;
+    int downloadFiles;
+    int installDocker;
 } NSState;
 
 typedef struct _NSConfig {
@@ -77,3 +78,17 @@ typedef enum {
     UIState_InstallError      = -4,
 } UI_STATE;
 
+typedef enum {
+    RunnableState_Unknown     = 0,
+    RunnableState_Starting    = 1,
+    RunnableState_Running     = 2,
+    RunnableState_Installing  = 3,
+} RUNNABLE_STATE;
+
+// install step state
+typedef enum {
+    StepState_None     = 0,
+    StepState_Progress = 1,
+    StepState_Finished = 2,
+    StepState_Failed   = 3,
+} STEP_STATE;

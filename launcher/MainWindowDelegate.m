@@ -20,60 +20,58 @@
         [[self window] setDelegate:self];
         [self autorelease];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerMode:) name:@"mode" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerMode:) name:@"new_mode" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
     }
+    
     return self;
 }
 
 - (void) windowDidLoad {  
-    self.labelNetworkMode.cursor = [NSCursor pointingHandCursor];
-    [self.labelNetworkMode setTarget:self];
-    [self.labelNetworkMode setAction:@selector(networkingLabelPressed:)];
-    
     img1 = [NSImage imageNamed:@"img_128x128"];
-    img2 = [NSImage imageNamed:@"img_128x128-active"];
     [img1 setSize: NSMakeSize(64, 64)];
-    [img2 setSize: NSMakeSize(64, 64)];
-
+    [self.img setImage:img1];
+    
     [self refreshFrame];
 }
 
 - (void) refreshFrame {
-
-    if ([[self window] contentView] == self.v11) {
-        [self.labelCurrentVersion setObjectValue: mod.currentVersion];
-        [self.labelLatestVersion setObjectValue: mod.latestVersion];
-        [self.labelImageName setObjectValue: mod.imageName];
-
-        NSString *v = nil;
-        if (mod.hasUpdate) {
-            v = [mod.hasUpdate integerValue] ? @"YES" : @"NO";
-        }
-        [self.labelHasUpdate setObjectValue:v];
-        
-        if (mod.enablePortForwarding) {
-            v = [mod.hasUpdate integerValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
-        }
-        [self.labelNetworkMode setObjectValue: v];
-        [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
-        [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
-        [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
-        
-        if ([mod.isContainerRunning intValue]==2) {
-            [self.img setImage:img2];
-        } else {
-            [self.img setImage:img1];
-        }
-    }
     
-    // installation
-    if ([[self window] contentView] == self.v21) {
-        [self.checkBoxDocker         setState:[mod.checkDocker boolValue]];
-        [self.checkBoxVirtualization setState:[mod.checkVirt boolValue]];
-        [self.checkBoxDownloadFiles  setState:[mod.downloadFiles boolValue]];
-        [self.checkBoxInstallDocker  setState:[mod.installDocker boolValue]];
+    switch ([mod.mode intValue]) {
+        case UIState_Initial:
+        {
+            [self.labelCurrentVersion setObjectValue: mod.currentVersion];
+            [self.labelLatestVersion setObjectValue: mod.latestVersion];
+            [self.labelImageName setObjectValue: mod.imageName];
+
+            NSString *v = nil;
+            if (mod.hasUpdate) {
+                v = [mod.hasUpdate integerValue] ? @"YES" : @"NO";
+            }
+            [self.labelHasUpdate setObjectValue:v];
+            
+            v = [mod.enablePortForwarding intValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
+            [self.labelNetworkMode setObjectValue: v];
+            
+            [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
+            [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
+            [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
+            
+            [self.statusDocker setState: [Utils getStateViewStatus: mod.isDockerRunning ]];
+            [self.statusNode setState: [Utils getStateViewStatus: mod.isContainerRunning ]];
+        }
+            break;
+    
+            
+        case UIState_InstallInProgress:
+        case UIState_InstallFinished:
+        case UIState_InstallError:
+            [self.checkBoxDocker         setState:[Utils getStateView2Status: mod.checkDocker ]];
+            [self.checkBoxVirtualization setState:[Utils getStateView2Status: mod.checkVirt ]];
+            [self.checkBoxDownloadFiles  setState:[Utils getStateView2Status: mod.downloadFiles ]];
+            [self.checkBoxInstallDocker  setState:[Utils getStateView2Status: mod.installDocker ]];
+            break;
     }
 }
 
@@ -94,15 +92,29 @@
     [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
-- (IBAction)okPressed:(id)sender
+- (IBAction)linkNodeUIPressed:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
+}
+
+- (IBAction)linkMMNPressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://my.mysterium.network/"]];
 }
 
 - (IBAction)checkBoxClick:(NSButton*)sender
 {
     mod.autoUpgrade = @((long)sender.state);
     [mod setState];
+    
+    
+    if ([self.checkBoxAutoUpgrade intValue] == 0) {
+        [self.st setState:1];
+
+    } else {
+        [self.st setState:2];
+
+    }
 }
 
 - (IBAction)networkingLabelPressed:(id)sender
@@ -119,8 +131,7 @@
 // Installation mode
 - (void)notificationHandlerMode:(NSNotification *) notification
 {
-    NSNumber *n = notification.userInfo[@"mode"];
-    
+    NSNumber *n = mod.mode;
     switch ([n intValue]) {
         case UIState_Initial:
             [[self window] setContentView:self.v11];
@@ -138,9 +149,13 @@
             break;
         
         case UIState_InstallFinished:
-        case UIState_InstallError:
             [self.finishButton setEnabled:YES];
             break;
+        case UIState_InstallError:
+            [self.finishButton setEnabled:YES];
+            [self.finishButton setTitle:@"Exit"];
+            break;
+            
         default:
             break;
     }
@@ -149,7 +164,6 @@
 - (void)notificationHandlerLog:(NSNotification *) notification
 {
     NSString *n = notification.userInfo[@"msg"];
-    NSLog(@"Log > %@", n);
 
     [self.textView setEditable:YES];
     [self.textView setSelectedRange:NSMakeRange(-1,0)];
@@ -160,6 +174,9 @@
 - (IBAction)finishPressed:(id)sender
 {
     GoDialogueComplete();
+    if ([mod.mode intValue] == UIState_InstallError) {
+        [NSApp terminate:nil];
+    }
 }
 
 

@@ -35,6 +35,8 @@
     NSNumber *installDocker;
 }
 
+@property (readwrite, copy) NSNumber *mode;
+
 @property (readwrite, copy) NSNumber *portBegin;
 @property (readwrite, copy) NSNumber *portEnd;
 @property (readwrite, copy) NSNumber *enablePortForwarding;
