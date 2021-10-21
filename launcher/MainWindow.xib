@@ -22,7 +22,6 @@
                 <outlet property="labelLatestVersion" destination="wm8-LS-5ii" id="eLF-h4-fTL"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
                 <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
-                <outlet property="st" destination="mk8-jZ-6e8" id="my2-QE-tnc"/>
                 <outlet property="statusDocker" destination="faK-us-qhr" id="DCl-sE-sEU"/>
                 <outlet property="statusNode" destination="Kjx-Yz-2Yh" id="GWB-ZY-owM"/>
                 <outlet property="textView" destination="kIS-do-nAD" id="3O6-Wl-AOH"/>
@@ -38,7 +37,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="418" height="532"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1001"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" userLabel="main view">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="532"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -228,10 +227,6 @@
                             <action selector="networkingLabelPressed:" target="-2" id="HH3-Xt-6kb"/>
                         </connections>
                     </button>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk8-jZ-6e8" customClass="StateView2">
-                        <rect key="frame" x="331" y="414" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="109" y="327"/>
