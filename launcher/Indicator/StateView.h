@@ -5,9 +5,10 @@
 @interface StateColorView : NSView {
     NSRect originalBounds;
 
-    // 0 red
-    // 1 orange
-    // 2 green
+    // 0 clear
+    // 1 red
+    // 2 orange
+    // 3 green
     int state;
 }
 

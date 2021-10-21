@@ -37,25 +37,28 @@
 - (void)drawRect:(NSRect)rect {
     
     [NSGraphicsContext saveGraphicsState];
-    NSRect r = NSMakeRect(originalBounds.origin.x, originalBounds.origin.y, originalBounds.size.width, originalBounds.size.height);
-    NSBezierPath* circlePath = [NSBezierPath bezierPath];
-    [circlePath appendBezierPathWithOvalInRect: r];
     
-    switch (state) {
-        case 0:
-            [[NSColor systemRedColor] set];
-            break;
-        case 1:
-            [[NSColor systemOrangeColor] set];
-            break;
-        case 2:
-            [[NSColor systemGreenColor] set];
-            break;
+    if (state != 0) {
+        NSRect r = NSMakeRect(originalBounds.origin.x, originalBounds.origin.y, originalBounds.size.width, originalBounds.size.height);
+        NSBezierPath* circlePath = [NSBezierPath bezierPath];
+        [circlePath appendBezierPathWithOvalInRect: r];
+        
+        switch (state) {
+            case 1:
+                [[NSColor systemRedColor] set];
+                break;
+            case 2:
+                [[NSColor systemOrangeColor] set];
+                break;
+            case 3:
+                [[NSColor systemGreenColor] set];
+                break;
 
-        default:
-            break;
+            default:
+                break;
+        }
+        [circlePath fill];
     }
-    [circlePath fill];
     [NSGraphicsContext restoreGraphicsState];
 }
 

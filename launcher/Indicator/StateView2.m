@@ -30,15 +30,19 @@
 
 - (void)setState: (int)st {
   
-    if (state != st) {
-        state = st;
-        
-        if (v != nil) {
-            [v removeFromSuperview];
-            [v release];
-        }
-        
-        if (st==1) {
+    if (state == st) {
+        return;
+    }
+
+    state = st;
+    if (v != nil) {
+        [v removeFromSuperview];
+        [v release];
+    }
+            
+    switch (st) {
+        case -1:
+        {
             NSRect r = NSMakeRect(0,0,16,16);
             NSProgressIndicator *p = [[NSProgressIndicator alloc] initWithFrame:r];
 
@@ -46,18 +50,25 @@
             [p setStyle:(NSProgressIndicatorStyle)1];
             [self addSubview:p];
             v = p;
+        };
+        break;
             
-        } else if (st==2) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        {
             NSRect r = NSMakeRect(0,2,14,14);
             StateColorView *vs = [[StateColorView alloc] initWithFrame:r];
-            [vs setFrame:r];
-            
             [self addSubview:vs];
-            [vs setState:2];
+
+            [vs setState:st];
             v = vs;
-        }
-        
+        };
+        break;
+
     }
+
 }
 
 @end

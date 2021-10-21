@@ -37,8 +37,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerState:) name:@"state" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerConfig:) name:@"config" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerModal:) name:@"modal" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerMode:) name:@"mode" object:nil];
 
     return self;
+}
+
+// Installation mode
+- (void)notificationHandlerMode:(NSNotification *) notification
+{
+    self.mode = notification.userInfo[@"mode"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"new_mode" object:nil];
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{

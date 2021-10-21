@@ -20,7 +20,7 @@
         [[self window] setDelegate:self];
         [self autorelease];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerMode:) name:@"mode" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerMode:) name:@"new_mode" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
     }
@@ -38,61 +38,40 @@
 
 - (void) refreshFrame {
     
-    if ([[self window] contentView] == self.v11) {
-        [self.labelCurrentVersion setObjectValue: mod.currentVersion];
-        [self.labelLatestVersion setObjectValue: mod.latestVersion];
-        [self.labelImageName setObjectValue: mod.imageName];
+    switch ([mod.mode intValue]) {
+        case UIState_Initial:
+        {
+            [self.labelCurrentVersion setObjectValue: mod.currentVersion];
+            [self.labelLatestVersion setObjectValue: mod.latestVersion];
+            [self.labelImageName setObjectValue: mod.imageName];
 
-        NSString *v = nil;
-        if (mod.hasUpdate) {
-            v = [mod.hasUpdate integerValue] ? @"YES" : @"NO";
+            NSString *v = nil;
+            if (mod.hasUpdate) {
+                v = [mod.hasUpdate integerValue] ? @"YES" : @"NO";
+            }
+            [self.labelHasUpdate setObjectValue:v];
+            
+            v = [mod.enablePortForwarding intValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
+            [self.labelNetworkMode setObjectValue: v];
+            
+            [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
+            [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
+            [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
+            
+            [self.statusDocker setState: [Utils getStateViewStatus: mod.isDockerRunning ]];
+            [self.statusNode setState: [Utils getStateViewStatus: mod.isContainerRunning ]];
         }
-        [self.labelHasUpdate setObjectValue:v];
-        
-        v = [mod.enablePortForwarding intValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
-        [self.labelNetworkMode setObjectValue: v];
-        
-        [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
-        [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
-        [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
-        
-        switch ([mod.isDockerRunning intValue]) {
-            case 2:
-                [self.statusDocker setState:2];
-                break;
-            case 1:
-            case 3:
-                [self.statusDocker setState:1];
-                break;
-            case 0:
-                [self.statusDocker setState:0];
-                break;
-            default:
-                break;
-        }
-        switch ([mod.isContainerRunning intValue]) {
-            case 2:
-                [self.statusNode setState:2];
-                break;
-            case 1:
-            case 3:
-                [self.statusNode setState:1];
-                break;
-            case 0:
-                [self.statusNode setState:0];
-                break;
-            default:
-                break;
-        }
-    }
+            break;
     
-    // installation
-    if ([[self window] contentView] == self.v21) {
-        
-        [self.checkBoxDocker         setState:[mod.checkDocker intValue]];
-        [self.checkBoxVirtualization setState:[mod.checkVirt intValue]];
-        [self.checkBoxDownloadFiles  setState:[mod.downloadFiles intValue]];
-        [self.checkBoxInstallDocker  setState:[mod.installDocker intValue]];
+            
+        case UIState_InstallInProgress:
+        case UIState_InstallFinished:
+        case UIState_InstallError:
+            [self.checkBoxDocker         setState:[Utils getStateView2Status: mod.checkDocker ]];
+            [self.checkBoxVirtualization setState:[Utils getStateView2Status: mod.checkVirt ]];
+            [self.checkBoxDownloadFiles  setState:[Utils getStateView2Status: mod.downloadFiles ]];
+            [self.checkBoxInstallDocker  setState:[Utils getStateView2Status: mod.installDocker ]];
+            break;
     }
 }
 
@@ -152,8 +131,7 @@
 // Installation mode
 - (void)notificationHandlerMode:(NSNotification *) notification
 {
-    NSNumber *n = notification.userInfo[@"mode"];
-    
+    NSNumber *n = mod.mode;
     switch ([n intValue]) {
         case UIState_Initial:
             [[self window] setContentView:self.v11];
@@ -171,9 +149,13 @@
             break;
         
         case UIState_InstallFinished:
-        case UIState_InstallError:
             [self.finishButton setEnabled:YES];
             break;
+        case UIState_InstallError:
+            [self.finishButton setEnabled:YES];
+            [self.finishButton setTitle:@"Exit"];
+            break;
+            
         default:
             break;
     }
@@ -192,6 +174,9 @@
 - (IBAction)finishPressed:(id)sender
 {
     GoDialogueComplete();
+    if ([mod.mode intValue] == UIState_InstallError) {
+        [NSApp terminate:nil];
+    }
 }
 
 
