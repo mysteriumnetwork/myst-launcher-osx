@@ -112,7 +112,7 @@
 
 - (IBAction)linkMMNPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://my.mysterium.network/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://mystnodes.com/"]];
 }
 
 - (IBAction)linkAboutMainnetPressed:(id)sender

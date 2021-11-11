@@ -201,7 +201,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3i8-VB-gO6" customClass="Label">
                         <rect key="frame" x="247" y="472" width="153" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="My Mysterium Network" id="g2f-kN-SYu">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Mystnodes.com" id="g2f-kN-SYu">
                             <font key="font" metaFont="cellTitle"/>
                             <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
