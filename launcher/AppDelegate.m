@@ -31,8 +31,6 @@ LauncherState *mod = nil;
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     
     mod.launcherVersionCurrent = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    mod.launcherVersionCurrent = @"1.0.0";
-//    NSLog(mod.launcherVersionCurrent);
     
     GoInit((char*)[resourcePath UTF8String], (char*)[mod.launcherVersionCurrent UTF8String]);
     GoStart();
