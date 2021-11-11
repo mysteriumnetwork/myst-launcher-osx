@@ -9,12 +9,17 @@ void macSendState(NSState *s) {
         @"hasUpdate": @(s->hasUpdate),
         @"dockerRunning": @(s->dockerRunning),
         @"containerRunning": @(s->containerRunning),
-        
+        @"networkCaption": @(s->networkCaption),
+
         // instllation state
         @"checkVirt": @(s->checkVirt),
         @"checkDocker": @(s->checkDocker),
         @"downloadFiles": @(s->downloadFiles),
         @"installDocker": @(s->installDocker),
+
+        @"launcherHasUpdate": @(s->launcherHasUpdate),
+        @"productVersionLatestUrl": @(s->productVersionLatestUrl),
+        @"launcherVersionLatest": @(s->launcherVersionLatest),
     };
     
     // free strings
@@ -35,6 +40,7 @@ void macSendConfig(NSConfig *s) {
         @"portRangeBegin": @(s->portRangeBegin),
         @"portRangeEnd": @(s->portRangeEnd),
         @"autoUpgrade": @(s->autoUpgrade),
+        @"network": @(s->network),
     };
        
     dispatch_async(dispatch_get_main_queue(),^{
@@ -81,6 +87,16 @@ void macSendLog(char *s) {
     free(s);
     dispatch_async(dispatch_get_main_queue(),^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"log" object:nil userInfo:dict];
+    });
+    return;
+}
+
+void macSendOpenDialogue(int id_) {
+    id dict = @{
+        @"id": @(id_),
+    };
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"dialogue" object:nil userInfo:dict];
     });
     return;
 }

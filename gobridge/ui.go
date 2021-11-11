@@ -11,7 +11,7 @@ import "C"
 import "fmt"
 
 type UiProxy struct {
-	result chan int
+	result    chan int
 	waitClick chan int
 }
 
@@ -23,10 +23,10 @@ func newUiProxy() *UiProxy {
 	return g
 }
 
-func (g *UiProxy) PopupMain() {}
-func (g *UiProxy) ShowMain() {}
+func (g *UiProxy) PopupMain()                 {}
+func (g *UiProxy) ShowMain()                  {}
 func (g *UiProxy) ShowNotificationInstalled() {}
-func (g *UiProxy) ShowNotificationUpgrade() {}
+func (g *UiProxy) ShowNotificationUpgrade()   {}
 
 func (g *UiProxy) ConfirmModal(title, message string) int {
 	var m C.NSModal
@@ -69,9 +69,14 @@ func (g *UiProxy) CloseUI() {
 	// g.bus.Publish("exit")
 }
 
+func (g *UiProxy) OpenDialogue(id int) {
+	C.macSendOpenDialogue(C.int(id))
+	g.WaitDialogueComplete()
+}
+
 // returns false, if dialogue was terminated
 func (g *UiProxy) WaitDialogueComplete() bool {
-	fmt.Println("WaitDialogueComplete >>>")
+	fmt.Println("WaitDialogueComplete")
 	_, ok := <-g.waitClick
 	return ok
 }
@@ -87,4 +92,3 @@ func (g *UiProxy) DialogueComplete() {
 	default:
 	}
 }
-

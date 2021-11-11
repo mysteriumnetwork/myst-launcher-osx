@@ -8,12 +8,18 @@ typedef struct _NSState {
     bool hasUpdate;
     int  dockerRunning;
     int  containerRunning;
+    char *networkCaption;
 
     // install steps
     int checkVirt;
     int checkDocker;
     int downloadFiles;
     int installDocker;
+
+    // launcher
+    bool launcherHasUpdate;
+    char *productVersionLatestUrl;
+    char *launcherVersionLatest;
 } NSState;
 
 typedef struct _NSConfig {
@@ -22,15 +28,16 @@ typedef struct _NSConfig {
     bool enablePortForwarding;
     int  portRangeBegin;
     int  portRangeEnd;
+    char *network;
 } NSConfig;
 
 typedef struct _NSModal {
     char *title;
     char *msg;
-    int modal_type;
+    int  modal_type;
 } NSModal;
 
-
+/*
 typedef struct _SetStateArgs {
     bool enablePortForwarding;
     int  portRangeBegin;
@@ -38,7 +45,7 @@ typedef struct _SetStateArgs {
     bool autoUpgrade;
     bool enabled;
 } SetStateArgs;
-
+*/
 
 
 ///
@@ -47,6 +54,7 @@ void macSendConfig(NSConfig *s);
 void macSendModal(NSModal *s);
 void macSendMode(int s);
 void macSendLog(char *s);
+void macSendOpenDialogue(int id_);
 
 ///
 typedef enum {

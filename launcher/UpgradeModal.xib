@@ -20,10 +20,10 @@
         <window title="Would you like to upgrade?" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mga-Zo-dn6">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="95" y="81" width="378" height="239"/>
+            <rect key="contentRect" x="95" y="81" width="391" height="239"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="nKb-P7-bcn">
-                <rect key="frame" x="0.0" y="0.0" width="378" height="239"/>
+                <rect key="frame" x="0.0" y="0.0" width="391" height="239"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jvH-iN-SNX">
@@ -110,7 +110,7 @@ Gw
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-29" y="59.5"/>
+            <point key="canvasLocation" x="-22.5" y="59.5"/>
         </window>
     </objects>
 </document>

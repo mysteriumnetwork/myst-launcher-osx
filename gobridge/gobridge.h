@@ -82,8 +82,9 @@ extern void GoSetModalResult(int rc);
 extern void GoDialogueComplete();
 extern void GoOnAppExit();
 extern void GoTriggerUpgrade();
-extern void GoSetState(SetStateArgs* s);
-extern void GoSetNetworkConfig(SetStateArgs* s);
+extern void GoSetState(NSConfig* s);
+extern void GoSetNetworkConfig(NSConfig* s);
+extern void GoUpdateToMainnet();
 
 #ifdef __cplusplus
 }
