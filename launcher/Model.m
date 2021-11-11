@@ -79,6 +79,7 @@
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
+    NSLog(@"notificationHandlerState > %@", notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
@@ -126,11 +127,13 @@
 {
     id id_ = notification.userInfo[@"id"];
     
-    NSWindowController *modalWindowDelegate = [[UpdateLauncherModalDelegate alloc] init];
-    NSWindow *modalWindow = [modalWindowDelegate window];
-    NSModalResponse response = [NSApp runModalForWindow:modalWindow ];
-    
-    GoDialogueComplete();
+    if ([id_ intValue] == 1) {
+        NSWindowController *modalWindowDelegate = [[UpdateLauncherModalDelegate alloc] init];
+        NSWindow *modalWindow = [modalWindowDelegate window];
+        NSModalResponse response = [NSApp runModalForWindow:modalWindow ];
+        
+        GoDialogueComplete();
+    }
 }
 
 - (void)setState {

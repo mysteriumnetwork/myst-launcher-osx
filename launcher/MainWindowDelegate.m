@@ -65,6 +65,7 @@
             [self.statusNode setState: [Utils getStateViewStatus: mod.isContainerRunning ]];
             
             [self.labelLauncherUpdate setHidden:(![mod.launcherHasUpdate boolValue])];
+            [self.btnUpdateToMainnet setHidden:([mod.network isEqualToString:@"mainnet"])];
         }
             break;
     

@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
+                <outlet property="btnUpdateToMainnet" destination="zj5-DX-4O1" id="e7K-Gb-UAC"/>
                 <outlet property="checkBoxAutoUpgrade" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="checkBoxDocker" destination="1mK-zd-KR6" id="mmQ-37-LMN"/>
                 <outlet property="checkBoxDownloadFiles" destination="82q-eJ-AV1" id="ccK-hq-BcG"/>
@@ -273,7 +274,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghC-W3-Uak" customClass="Label">
                         <rect key="frame" x="247" y="448" width="153" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Update for launcher" id="SPo-5S-P9S">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Update launcher" id="SPo-5S-P9S">
                             <font key="font" metaFont="cellTitle"/>
                             <color key="textColor" name="linkColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

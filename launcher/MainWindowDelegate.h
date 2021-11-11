@@ -16,7 +16,7 @@
 }
 
 @property (weak) IBOutlet NSButton *checkBoxAutoUpgrade;
-@property (weak) IBOutlet NSButton *button;
+@property (weak) IBOutlet NSButton *btnUpdateToMainnet;
 
 @property (weak) IBOutlet NSTextField *labelImageName;
 @property (weak) IBOutlet NSTextField *labelCurrentVersion;

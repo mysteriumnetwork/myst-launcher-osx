@@ -185,6 +185,7 @@ func GoSetNetworkConfig(s *C.NSConfig) {
 //export GoUpdateToMainnet
 func GoUpdateToMainnet() {
 	mod.UpdateToMainnet()
+    sendConfig()
 }
 
 // required by runtime
