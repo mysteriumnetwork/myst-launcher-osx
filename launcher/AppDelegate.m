@@ -26,13 +26,15 @@ LauncherState *mod = nil;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    id productVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    mod = [[LauncherState alloc] init];
 
-    GoInit((char*)[resourcePath UTF8String], (char*)[productVersion UTF8String]);
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    
+    mod.launcherVersionCurrent = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+    GoInit((char*)[resourcePath UTF8String], (char*)[mod.launcherVersionCurrent UTF8String]);
     GoStart();
     
-    mod = [[LauncherState alloc] init];
 
     if (!self.mainWin) {
         self.mainWin = [[MainWindowDelegate alloc] init];

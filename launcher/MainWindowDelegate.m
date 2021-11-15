@@ -7,9 +7,11 @@
 //
 #import "MainWindowDelegate.h"
 #import "NetworkingModalDelegate.h"
+#import "UpdateNetworkModalDelegate.h"
 #import "AppDelegate.h"
 #import "utils.h"
 #include "../gobridge/gobridge.h"
+#import "UpdateLauncherModalDelegate.h"
 
 @implementation MainWindowDelegate
 
@@ -44,6 +46,7 @@
             [self.labelCurrentVersion setObjectValue: mod.currentVersion];
             [self.labelLatestVersion setObjectValue: mod.latestVersion];
             [self.labelImageName setObjectValue: mod.imageName];
+            [self.labelNetwork setObjectValue: mod.networkCaption];
 
             NSString *v = nil;
             if (mod.hasUpdate) {
@@ -60,6 +63,9 @@
             
             [self.statusDocker setState: [Utils getStateViewStatus: mod.isDockerRunning ]];
             [self.statusNode setState: [Utils getStateViewStatus: mod.isContainerRunning ]];
+            
+            [self.labelLauncherUpdate setHidden:(![mod.launcherHasUpdate boolValue])];
+            [self.btnUpdateToMainnet setHidden:([mod.network isEqualToString:@"mainnet"])];
         }
             break;
     
@@ -92,6 +98,13 @@
     [NSApp stopModalWithCode:NSModalResponseCancel];
 }
 
+- (IBAction)linkUpdateLauncherPressed:(id)sender
+{
+    NSWindowController *modalWindowDelegate = [[UpdateLauncherModalDelegate alloc] init];
+    NSWindow *modalWindow = [modalWindowDelegate window];
+    NSModalResponse response = [NSApp runModalForWindow:modalWindow];
+}
+
 - (IBAction)linkNodeUIPressed:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
@@ -99,7 +112,12 @@
 
 - (IBAction)linkMMNPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://my.mysterium.network/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://mystnodes.com/"]];
+}
+
+- (IBAction)linkAboutMainnetPressed:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://mysterium.network"]];
 }
 
 - (IBAction)checkBoxClick:(NSButton*)sender
@@ -123,9 +141,14 @@
     NSWindow *modalWindow = [modalWindowDelegate window];
 
     NSModalResponse response = [NSApp runModalForWindow:modalWindow ]; // relativeToWindow:self.window - deprecated
-    if (response == NSModalResponseOK) {
-        NSLog(@"NSModalResponseOK");
-    }
+}
+
+- (IBAction)updateNetworkPressed:(id)sender
+{
+    NSWindowController *modalWindowDelegate = [[UpdateNetworkModalDelegate alloc] init];
+    NSWindow *modalWindow = [modalWindowDelegate window];
+
+    NSModalResponse response = [NSApp runModalForWindow:modalWindow ];
 }
 
 // Installation mode
@@ -178,6 +201,5 @@
         [NSApp terminate:nil];
     }
 }
-
 
 @end

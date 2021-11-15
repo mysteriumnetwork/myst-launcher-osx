@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9A16EF8B26EA5EB00036447D /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A16EF8A26EA5EB00036447D /* utils.m */; };
+		9A1B3A8E273BA4780084DF92 /* UpdateNetwork.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B3A8D273BA4780084DF92 /* UpdateNetwork.xib */; };
+		9A1B3A92273BA5840084DF92 /* UpdateNetworkModalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3A90273BA5840084DF92 /* UpdateNetworkModalDelegate.m */; };
+		9A1B3A97273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B3A94273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m */; };
+		9A1B3A98273BD7AC0084DF92 /* UpdateLauncher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B3A96273BD7AC0084DF92 /* UpdateLauncher.xib */; };
 		9A2B0BA026E60A3700E91E7B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63DEE126E607C900594C0B /* MainWindow.xib */; };
 		9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756726C919CC00A99070 /* AppDelegate.h */; };
 		9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC8756826C919CC00A99070 /* AppDelegate.m */; };
@@ -67,6 +71,12 @@
 		9A098DA426CE2E0100DE93D0 /* gobridge */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gobridge; sourceTree = "<group>"; };
 		9A16EF8A26EA5EB00036447D /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		9A16EF8C26EA5EF20036447D /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		9A1B3A8D273BA4780084DF92 /* UpdateNetwork.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateNetwork.xib; sourceTree = "<group>"; };
+		9A1B3A8F273BA5840084DF92 /* UpdateNetworkModalDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateNetworkModalDelegate.h; sourceTree = "<group>"; };
+		9A1B3A90273BA5840084DF92 /* UpdateNetworkModalDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateNetworkModalDelegate.m; sourceTree = "<group>"; };
+		9A1B3A94273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateLauncherModalDelegate.m; sourceTree = "<group>"; };
+		9A1B3A95273BD7AC0084DF92 /* UpdateLauncherModalDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateLauncherModalDelegate.h; sourceTree = "<group>"; };
+		9A1B3A96273BD7AC0084DF92 /* UpdateLauncher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateLauncher.xib; sourceTree = "<group>"; };
 		9A3AC6E726E11B0100D5F114 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		9A3AC6E826E11B6200D5F114 /* Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9A63DED526E5D86E00594C0B /* NetworkingModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetworkingModal.xib; sourceTree = "<group>"; };
@@ -210,6 +220,12 @@
 				9AAC6F7C27045B1400907866 /* UpgradeModal.xib */,
 				9AAC6F7E27045CF600907866 /* UpgradeModalDelegate.h */,
 				9AAC6F7F27045D3C00907866 /* UpgradeModalDelegate.m */,
+				9A1B3A8D273BA4780084DF92 /* UpdateNetwork.xib */,
+				9A1B3A8F273BA5840084DF92 /* UpdateNetworkModalDelegate.h */,
+				9A1B3A90273BA5840084DF92 /* UpdateNetworkModalDelegate.m */,
+				9A1B3A96273BD7AC0084DF92 /* UpdateLauncher.xib */,
+				9A1B3A95273BD7AC0084DF92 /* UpdateLauncherModalDelegate.h */,
+				9A1B3A94273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m */,
 			);
 			path = launcher;
 			sourceTree = "<group>";
@@ -342,7 +358,9 @@
 				9A63DEDA26E5D86E00594C0B /* NetworkingModal.xib in Resources */,
 				9A93390526EF6856004D9F30 /* Info.plist in Resources */,
 				9AC8756E26C919D400A99070 /* MainMenu.xib in Resources */,
+				9A1B3A98273BD7AC0084DF92 /* UpdateLauncher.xib in Resources */,
 				9A725ABE26F0CC6C00E0A64A /* com.mysterium.launcher.plist in Resources */,
+				9A1B3A8E273BA4780084DF92 /* UpdateNetwork.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +389,7 @@
 				9A6FB69E26E8E82500069932 /* Label.m in Sources */,
 				9A3AC6E526E0C7C400D5F114 /* AppDelegate.h in Sources */,
 				9A6FB6A126E8EA4200069932 /* NSAttributedString.m in Sources */,
+				9A1B3A92273BA5840084DF92 /* UpdateNetworkModalDelegate.m in Sources */,
 				9A3AC6E626E0C7C600D5F114 /* AppDelegate.m in Sources */,
 				9A3AC6E926E11B6200D5F114 /* Model.m in Sources */,
 				9A16EF8B26EA5EB00036447D /* utils.m in Sources */,
@@ -379,6 +398,7 @@
 				9AC2415F27181CD8008BB768 /* StateView2.m in Sources */,
 				9A63DEE026E605A800594C0B /* MainWindowDelegate.m in Sources */,
 				9AC2415C2716C4F5008BB768 /* StateView.m in Sources */,
+				9A1B3A97273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +566,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -558,7 +578,7 @@
 					"$(PROJECT_DIR)/gobridge",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -574,7 +594,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = launcher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -586,7 +606,7 @@
 					"$(PROJECT_DIR)/gobridge",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.0.18;
+				MARKETING_VERSION = 1.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

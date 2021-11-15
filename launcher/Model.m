@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Model.h"
 #include "../gobridge/gobridge.h"
+#import "UpdateLauncherModalDelegate.h"
 
 @implementation LauncherState
 
@@ -30,6 +31,10 @@
 @synthesize downloadFiles;
 @synthesize installDocker;
 
+@synthesize network;
+@synthesize networkCaption;
+@synthesize launcherHasUpdate;
+@synthesize productVersionLatestUrl;
 - (id) init
 {
     self = [super init];
@@ -38,6 +43,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerConfig:) name:@"config" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerModal:) name:@"modal" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerMode:) name:@"mode" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationHandlerDialogue:) name:@"dialogue" object:nil];
 
     return self;
 }
@@ -50,31 +56,38 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-//    NSLog(@"notificationHandlerState > %@", notification.userInfo);
-    
+    NSLog(@"notificationHandlerState > %@", notification.userInfo);
+
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
     self.currentVersion       = notification.userInfo[@"currentVersion"];
     self.latestVersion        = notification.userInfo[@"latestVersion"];
     self.isDockerRunning      = notification.userInfo[@"dockerRunning"];
     self.isContainerRunning   = notification.userInfo[@"containerRunning"];
-    
+    self.networkCaption       = notification.userInfo[@"networkCaption"];
+
     self.checkVirt     = notification.userInfo[@"checkVirt"];
     self.checkDocker   = notification.userInfo[@"checkDocker"];
     self.downloadFiles = notification.userInfo[@"downloadFiles"];
     self.installDocker = notification.userInfo[@"installDocker"];
+    
+    self.launcherHasUpdate = notification.userInfo[@"launcherHasUpdate"];
+    self.productVersionLatestUrl = notification.userInfo[@"productVersionLatestUrl"];
+    self.launcherVersionLatest = notification.userInfo[@"launcherVersionLatest"];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_state" object:nil];
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
+    NSLog(@"notificationHandlerState > %@", notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
     self.enablePortForwarding = notification.userInfo[@"enablePortForwarding"];
     self.autoUpgrade          = notification.userInfo[@"autoUpgrade"];
     self.enabled              = notification.userInfo[@"enabled"];
-    
+    self.network              = notification.userInfo[@"network"];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_config" object:nil];
 }
 
@@ -110,8 +123,21 @@
     }
 }
 
+- (void)notificationHandlerDialogue:(NSNotification *) notification
+{
+    id id_ = notification.userInfo[@"id"];
+    
+    if ([id_ intValue] == 1) {
+        NSWindowController *modalWindowDelegate = [[UpdateLauncherModalDelegate alloc] init];
+        NSWindow *modalWindow = [modalWindowDelegate window];
+        NSModalResponse response = [NSApp runModalForWindow:modalWindow ];
+        
+        GoDialogueComplete();
+    }
+}
+
 - (void)setState {
-    SetStateArgs s;
+    NSConfig s;
 
     s.autoUpgrade = [self.autoUpgrade boolValue];
     s.enabled = [self.enabled boolValue];
@@ -120,7 +146,7 @@
 }
 
 - (void)setNetworkConfig {
-    SetStateArgs s;
+    NSConfig s;
 
     s.enablePortForwarding = [self.enablePortForwarding boolValue];
     s.portRangeBegin = [self.portBegin intValue];

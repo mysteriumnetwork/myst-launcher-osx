@@ -16,7 +16,7 @@
 }
 
 @property (weak) IBOutlet NSButton *checkBoxAutoUpgrade;
-@property (weak) IBOutlet NSButton *button;
+@property (weak) IBOutlet NSButton *btnUpdateToMainnet;
 
 @property (weak) IBOutlet NSTextField *labelImageName;
 @property (weak) IBOutlet NSTextField *labelCurrentVersion;
@@ -25,6 +25,8 @@
 @property (weak) IBOutlet NSTextField *labelNetworkMode;
 @property (weak) IBOutlet NSTextField *labelDocker;
 @property (weak) IBOutlet NSTextField *labelContainer;
+@property (weak) IBOutlet NSTextField *labelNetwork;
+@property (weak) IBOutlet NSTextField *labelLauncherUpdate;
 
 
 @property (weak) IBOutlet NSImageView *img;
@@ -34,14 +36,17 @@
 @property (strong) IBOutlet NSView *v21;
 @property (strong) IBOutlet StateColorView *statusDocker;
 @property (strong) IBOutlet StateColorView *statusNode;
-
 @property (strong) IBOutlet StateView2 *st;
 
 
 - (IBAction)cancelPressed:(id)sender;
 - (IBAction)linkNodeUIPressed:(id)sender;
+- (IBAction)linkAboutMainnetPressed:(id)sender;
+- (IBAction)linkUpdateLauncherPressed:(id)sender;
+
 - (IBAction)checkBoxClick:(NSButton*)sender;
 - (IBAction)networkingLabelPressed:(id)sender;
+- (IBAction)updateNetworkPressed:(id)sender;
 
 // installation
 @property (weak) IBOutlet StateView2 *checkBoxVirtualization;

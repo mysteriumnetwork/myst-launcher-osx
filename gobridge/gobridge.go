@@ -21,11 +21,15 @@ import (
 
 var (
 	manager *myst.Manager
-	mon     *myst.DockerMonitor
 	mod     *model.UIModel
 
 	ap *app.AppState
 	ui model.Gui_
+)
+
+const (
+	gitHubOrg  = "mysteriumnetwork"
+	gitHubRepo = "myst-launcher-osx"
 )
 
 func init() {
@@ -49,19 +53,20 @@ func copyFile(sourceFile, destinationFile string) {
 
 //export GoInit
 func GoInit(resPath *C.char, prodVer *C.char) {
-    mod = model.NewUIModel()
-    mod.Config.ProductVersion = C.GoString(prodVer)
+	mod = model.NewUIModel()
+	mod.SetProductVersion(C.GoString(prodVer))
+	// set product repo
 
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
 	fileName := "com.mysterium.launcher.plist"
-    resourcePath := C.GoString(resPath)
+	resourcePath := C.GoString(resPath)
 	copyFile(resourcePath+"/"+fileName, targetDir+fileName)
- }
+}
 
 //export GoStart
 func GoStart() {
-    fmt.Println("GoStart >")
+	fmt.Println("GoStart >")
 	ap = app.NewApp()
 	sendConfig()
 
@@ -70,6 +75,9 @@ func GoStart() {
 	})
 	mod.UIBus.Subscribe("log", func(p []byte) {
 		C.macSendLog(C.CString(string(p)))
+	})
+	mod.UIBus.Subscribe("launcher-update", func() {
+		C.macSendOpenDialogue(C.int(1))
 	})
 	log.SetOutput(ap)
 
@@ -82,23 +90,29 @@ func GoStart() {
 
 	ap.WaitGroup.Add(1)
 	go ap.SuperviseDockerNode()
+	go ap.CheckLauncherUpdates(gitHubOrg, gitHubRepo)
 }
 
 func sendState() {
 	var st C.NSState
 
-	st.imageName = C.CString(mod.ImgVer.ImageName)
+	st.imageName = C.CString(mod.Config.GetFullImageName())
 	st.currentVersion = C.CString(mod.ImgVer.VersionCurrent)
 	st.latestVersion = C.CString(mod.ImgVer.VersionLatest)
 	st.hasUpdate = C.bool(mod.ImgVer.HasUpdate)
 	st.dockerRunning = C.int(mod.StateDocker)
 	st.containerRunning = C.int(mod.StateContainer)
+	st.networkCaption = C.CString(mod.Config.GetNetworkCaption())
 
 	// instllation state
 	st.checkVirt = C.int(mod.CheckVirt)
 	st.checkDocker = C.int(mod.CheckDocker)
-    st.downloadFiles = C.int(mod.DownloadFiles)
-    st.installDocker = C.int(mod.InstallDocker)
+	st.downloadFiles = C.int(mod.DownloadFiles)
+	st.installDocker = C.int(mod.InstallDocker)
+
+	st.launcherHasUpdate = C.bool(mod.LauncherHasUpdate)
+	st.productVersionLatestUrl = C.CString(mod.ProductVersionLatestUrl)
+	st.launcherVersionLatest = C.CString(mod.ProductVersionLatest)
 
 	C.macSendState(&st)
 }
@@ -111,6 +125,7 @@ func sendConfig() {
 	cf.portRangeEnd = C.int(mod.Config.PortRangeEnd)
 	cf.autoUpgrade = C.bool(mod.Config.AutoUpgrade)
 	cf.enabled = C.bool(mod.Config.Enabled)
+	cf.network = C.CString(mod.Config.Network)
 
 	C.macSendConfig(&cf)
 }
@@ -137,11 +152,11 @@ func GoOnAppExit() {
 
 //export GoTriggerUpgrade
 func GoTriggerUpgrade() {
-    ap.TriggerAction("upgrade")
+	ap.TriggerAction("upgrade")
 }
 
 //export GoSetState
-func GoSetState(s *C.SetStateArgs) {
+func GoSetState(s *C.NSConfig) {
 
 	if mod.Config.AutoUpgrade != bool(s.autoUpgrade) {
 		mod.Config.AutoUpgrade = bool(s.autoUpgrade)
@@ -158,7 +173,7 @@ func GoSetState(s *C.SetStateArgs) {
 }
 
 //export GoSetNetworkConfig
-func GoSetNetworkConfig(s *C.SetStateArgs) {
+func GoSetNetworkConfig(s *C.NSConfig) {
 
 	mod.Config.EnablePortForwarding = bool(s.enablePortForwarding)
 	mod.Config.PortRangeBegin = int(s.portRangeBegin)
@@ -167,6 +182,11 @@ func GoSetNetworkConfig(s *C.SetStateArgs) {
 	ap.TriggerAction("restart")
 }
 
+//export GoUpdateToMainnet
+func GoUpdateToMainnet() {
+	mod.UpdateToMainnet()
+    sendConfig()
+}
 
 // required by runtime
 func main() {}

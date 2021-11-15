@@ -19,7 +19,9 @@
     NSNumber *enablePortForwarding;
     NSNumber *autoUpgrade;
     NSNumber *enabled;
-
+    NSString *network;
+    NSString *networkCaption;
+    
     NSNumber *hasUpdate;
     NSString *currentVersion;
     NSString *imageName;
@@ -33,6 +35,11 @@
     NSNumber *checkVirt;
     NSNumber *downloadFiles;
     NSNumber *installDocker;
+    
+    NSNumber *launcherHasUpdate;
+    NSString *productVersionLatestUrl;
+    NSString *launcherVersionLatest;
+    NSString *launcherVersionCurrent;
 }
 
 @property (readwrite, copy) NSNumber *mode;
@@ -42,6 +49,8 @@
 @property (readwrite, copy) NSNumber *enablePortForwarding;
 @property (readwrite, copy) NSNumber *autoUpgrade;
 @property (readwrite, copy) NSNumber *enabled;
+@property (readwrite, copy) NSString *network;
+@property (readwrite, copy) NSString *networkCaption;
 
 @property (readwrite, copy) NSNumber *hasUpdate;
 @property (readwrite, copy) NSString *currentVersion;
@@ -55,6 +64,10 @@
 @property (readwrite, copy) NSNumber *downloadFiles;
 @property (readwrite, copy) NSNumber *installDocker;
 
+@property (readwrite, copy) NSNumber *launcherHasUpdate;
+@property (readwrite, copy) NSString *productVersionLatestUrl;
+@property (readwrite, copy) NSString *launcherVersionLatest;
+@property (readwrite, copy) NSString *launcherVersionCurrent; // set locally
 
 - (void)setState;
 - (void)setNetworkConfig;
