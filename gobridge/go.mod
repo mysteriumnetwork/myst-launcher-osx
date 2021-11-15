@@ -5,8 +5,8 @@ go 1.16
 require (
 	github.com/Microsoft/go-winio v0.5.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/containerd/containerd v1.5.5 // indirect
-	github.com/docker/docker v20.10.8+incompatible // indirect
+	github.com/containerd/containerd v1.5.7 // indirect
+	github.com/docker/docker v20.10.10+incompatible
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/moby/term v0.0.0-20210619224110-3f7ff695adc6 // indirect
 	github.com/mysteriumnetwork/myst-launcher v0.0.0
