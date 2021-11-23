@@ -71,6 +71,7 @@
 
 - (void)setState;
 - (void)setNetworkConfig;
+- (bool)currentNetIsMainnet;
 @end
 
 #endif /* model_h */

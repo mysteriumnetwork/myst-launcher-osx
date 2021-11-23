@@ -56,7 +56,7 @@
 }
 
 - (void)notificationHandlerState:(NSNotification *) notification{
-    NSLog(@"notificationHandlerState > %@", notification.userInfo);
+    //NSLog(@"notificationHandlerState > %@", notification.userInfo);
 
     self.imageName            = notification.userInfo[@"imageName"];
     self.hasUpdate            = notification.userInfo[@"hasUpdate"];
@@ -79,7 +79,7 @@
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
-    NSLog(@"notificationHandlerState > %@", notification.userInfo);
+    //NSLog(@"notificationHandlerState > %@", notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];
@@ -153,6 +153,11 @@
     s.portRangeEnd = [self.portEnd intValue];
 
     GoSetNetworkConfig(&s);
+}
+
+
+- (bool)currentNetIsMainnet {
+    return [self.network isEqual:@"mainnet"] || [self.network isEqual:@""];
 }
 
 @end
