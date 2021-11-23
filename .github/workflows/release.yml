@@ -15,7 +15,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16
+          go-version: 1.17
 
 
       - name: "Build"
@@ -24,7 +24,7 @@ jobs:
           git clone https://github.com/mysteriumnetwork/myst-launcher
           pushd myst-launcher
           git fetch --all --tags
-          git checkout tags/1.0.19
+          git checkout tags/1.0.21
           popd
           popd
           
