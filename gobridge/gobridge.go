@@ -97,9 +97,9 @@ func sendState() {
 	var st C.NSState
 
 	st.imageName = C.CString(mod.Config.GetFullImageName())
-	st.currentVersion = C.CString(mod.ImgVer.VersionCurrent)
-	st.latestVersion = C.CString(mod.ImgVer.VersionLatest)
-	st.hasUpdate = C.bool(mod.ImgVer.HasUpdate)
+	st.currentVersion = C.CString(mod.ImageInfo.VersionCurrent)
+	st.latestVersion = C.CString(mod.ImageInfo.VersionLatest)
+	st.hasUpdate = C.bool(mod.ImageInfo.HasUpdate)
 	st.dockerRunning = C.int(mod.StateDocker)
 	st.containerRunning = C.int(mod.StateContainer)
 	st.networkCaption = C.CString(mod.Config.GetNetworkCaption())
