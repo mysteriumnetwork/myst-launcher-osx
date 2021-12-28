@@ -40,7 +40,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="418" height="542"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1001"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" userLabel="main view">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="542"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -350,15 +350,15 @@
                     <rect key="frame" x="20" y="93" width="378" height="135"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
-                        <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
-                                <rect key="frame" x="0.0" y="0.0" width="363" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="363" height="135"/>
+                                <size key="minSize" width="378" height="135"/>
                                 <size key="maxSize" width="378" height="10000000"/>
                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </textView>
@@ -369,25 +369,25 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="XfU-fR-p0i">
-                        <rect key="frame" x="363" y="0.0" width="15" height="135"/>
+                        <rect key="frame" x="362" y="0.0" width="16" height="135"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-PW-1oi" customClass="StateView2">
                     <rect key="frame" x="20" y="428" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                 </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1mK-zd-KR6" customClass="StateView2">
                     <rect key="frame" x="20" y="400" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                 </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82q-eJ-AV1" customClass="StateView2">
                     <rect key="frame" x="20" y="372" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                 </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fw7-u5-RR4" customClass="StateView2">
                     <rect key="frame" x="20" y="345" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                 </customView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="les-Qz-lh6">
                     <rect key="frame" x="167" y="35" width="237" height="32"/>
@@ -432,15 +432,15 @@
                     <rect key="frame" x="20" y="216" width="378" height="172"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
-                        <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                        <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
-                                <rect key="frame" x="0.0" y="0.0" width="363" height="172"/>
+                                <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="363" height="172"/>
+                                <size key="minSize" width="378" height="172"/>
                                 <size key="maxSize" width="378" height="10000000"/>
                                 <attributedString key="textStorage">
                                     <fragment>
@@ -461,7 +461,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="78l-Ff-q0B">
-                        <rect key="frame" x="363" y="0.0" width="15" height="172"/>
+                        <rect key="frame" x="362" y="0.0" width="16" height="172"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
