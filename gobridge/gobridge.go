@@ -79,6 +79,7 @@ func GoStart() {
 	mod.UIBus.Subscribe("launcher-update", func() {
 		C.macSendOpenDialogue(C.int(1))
 	})
+	mod.DuplicateLogToConsole = true
 	log.SetOutput(ap)
 
 	mod.UIBus.Subscribe("model-change", sendState)
@@ -88,9 +89,11 @@ func GoStart() {
 	ap.SetModel(mod)
 	ap.SetUI(ui)
 
+
 	ap.WaitGroup.Add(1)
 	go ap.SuperviseDockerNode()
 	go ap.CheckLauncherUpdates(gitHubOrg, gitHubRepo)
+
 }
 
 func sendState() {
