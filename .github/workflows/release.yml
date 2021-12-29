@@ -5,7 +5,7 @@ on:
     tags: ["*"]
 
 jobs:
-  releases-macos-amd64:
+  releases-macos:
     name: Release
     runs-on: macos-11
 
@@ -69,13 +69,13 @@ jobs:
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_ID" --timestamp -o runtime ./build/MysteriumLauncher/Mysterium\ Node\ Launcher.app/
 
           # dmg
-          hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos_amd64.dmg
+          hdiutil create -format UDZO -srcfolder build/MysteriumLauncher mysterium_launcher_macos.dmg
           
       - name: Notarize
         env: 
           PRIMARY_BUNDLE_ID: com.mysterium.launcher
           APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
-          TARGET_BINARY: ./mysterium_launcher_macos_amd64.dmg
+          TARGET_BINARY: ./mysterium_launcher_macos.dmg
           APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
 
         run: |
@@ -83,13 +83,13 @@ jobs:
           sh -c ./notarize.sh         
 
           #echo Verify
-          #/usr/bin/codesign -vvvv ./mysterium_launcher_macos_amd64.dmg
+          #/usr/bin/codesign -vvvv ./mysterium_launcher_macos.dmg
 
       - name: Upload
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            mysterium_launcher_macos_amd64.dmg
+            mysterium_launcher_macos.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
