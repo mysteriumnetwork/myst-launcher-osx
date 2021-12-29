@@ -89,7 +89,6 @@ func GoStart() {
 	ap.SetModel(mod)
 	ap.SetUI(ui)
 
-
 	ap.WaitGroup.Add(1)
 	go ap.SuperviseDockerNode()
 	go ap.CheckLauncherUpdates(gitHubOrg, gitHubRepo)
@@ -107,7 +106,7 @@ func sendState() {
 	st.containerRunning = C.int(mod.StateContainer)
 	st.networkCaption = C.CString(mod.Config.GetNetworkCaption())
 
-	// instllation state
+	// installation state
 	st.checkVirt = C.int(mod.CheckVirt)
 	st.checkDocker = C.int(mod.CheckDocker)
 	st.downloadFiles = C.int(mod.DownloadFiles)
@@ -188,7 +187,7 @@ func GoSetNetworkConfig(s *C.NSConfig) {
 //export GoUpdateToMainnet
 func GoUpdateToMainnet() {
 	mod.UpdateToMainnet()
-    sendConfig()
+	sendConfig()
 }
 
 // required by runtime
