@@ -2,7 +2,12 @@
 
 on:
   push:
-    tags: ["*"]
+    # Publish semver tags as releases.
+    tags:
+      - '!dbg*'
+      - '!*-dbg*'
+      - '!*-fix*'
+      - '*.*.*'
 
 jobs:
   releases-macos:
@@ -24,7 +29,7 @@ jobs:
           git clone https://github.com/mysteriumnetwork/myst-launcher
           pushd myst-launcher
           git fetch --all --tags
-          git checkout tags/multiarch-fix
+          git checkout tags/1.0.30
           popd
           popd
           
