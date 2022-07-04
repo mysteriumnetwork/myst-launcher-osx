@@ -101,16 +101,31 @@ LauncherState *mod = nil;
 - (IBAction)enableNode:(id)sender {
     NSLog(@"enableNode %@", mod.enabled);
 
-    if ([mod.enabled isEqualToNumber:@0]) {
-        mod.enabled = @1;
-    } else {
-        mod.enabled = @0;
+    mod.enabled = [mod.enabled isEqualToNumber:@0]? @1 : @0;
+    [mod setState];
+    [self setMenuItemState];
+}
+
+- (IBAction)enableNative:(NSButton*)sender {
+
+    switch (sender.tag) {
+    case 1:
+        mod.backend = @"native";
+        break;
+    case 2:
+        mod.backend = @"docker";
+        break;
     }
+    
     [mod setState];
     [self setMenuItemState];
 }
 
 - (void)setMenuItemState {
     [self.itemEnableNode setState:(NSControlStateValue) [mod.enabled intValue]];
+    
+    [self.itemEnableNative setState:(NSControlStateValue) [mod.backend isEqualToString:@"native"]?1:0];
+    [self.itemEnableDocker setState:(NSControlStateValue) [mod.backend isEqualToString:@"docker"]?1:0];
 }
+
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,7 +40,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="418" height="542"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="1001"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="999"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" userLabel="main view">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="542"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -349,11 +349,11 @@
                 <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1s-Fp-bfO">
                     <rect key="frame" x="20" y="93" width="378" height="135"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
                         <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -431,11 +431,11 @@
                 <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvm-nb-EEv">
                     <rect key="frame" x="20" y="216" width="378" height="172"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
+                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
                         <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

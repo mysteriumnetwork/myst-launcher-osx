@@ -19,6 +19,7 @@
 @synthesize enablePortForwarding;
 @synthesize autoUpgrade;
 @synthesize enabled;
+@synthesize backend;
 
 @synthesize hasUpdate;
 @synthesize isDockerRunning;
@@ -86,6 +87,7 @@
     self.enablePortForwarding = notification.userInfo[@"enablePortForwarding"];
     self.autoUpgrade          = notification.userInfo[@"autoUpgrade"];
     self.enabled              = notification.userInfo[@"enabled"];
+    self.backend              = notification.userInfo[@"backend"];
     self.network              = notification.userInfo[@"network"];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"new_config" object:nil];
@@ -138,9 +140,14 @@
 
 - (void)setState {
     NSConfig s;
-
+    
     s.autoUpgrade = [self.autoUpgrade boolValue];
     s.enabled = [self.enabled boolValue];
+    
+    const char *b = [self.backend UTF8String];
+    // copy string, as we work in a managed env.
+    s.backend = malloc(10);
+    strcpy(s.backend, b);
 
     GoSetState(&s);
 }

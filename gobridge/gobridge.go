@@ -89,9 +89,7 @@ func GoStart() {
 	ap.SetModel(mod)
 	ap.SetUI(ui)
 
-	ap.WaitGroup.Add(1)
-	go ap.SuperviseDockerNode()
-	go ap.CheckLauncherUpdates(gitHubOrg, gitHubRepo)
+	ap.StartAppController()
 
 }
 
@@ -128,6 +126,7 @@ func sendConfig() {
 	cf.autoUpgrade = C.bool(mod.Config.AutoUpgrade)
 	cf.enabled = C.bool(mod.Config.Enabled)
 	cf.network = C.CString(mod.Config.Network)
+	cf.backend = C.CString(mod.Config.Backend)
 
 	C.macSendConfig(&cf)
 }
@@ -146,10 +145,8 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-	ap.TriggerAction("stop")
 
-	// wait for SuperviseDockerNode to finish its work
-	ap.WaitGroup.Wait()
+	ap.StopAppController()
 }
 
 //export GoTriggerUpgrade
@@ -171,6 +168,13 @@ func GoSetState(s *C.NSConfig) {
 		} else {
 			ap.TriggerAction("disable")
 		}
+	}
+
+	if mod.Config.Backend != C.GoString(s.backend) {
+		mod.Config.Backend = C.GoString(s.backend)
+		mod.Config.Save()
+
+		mod.Bus2.Publish("backend")
 	}
 }
 
