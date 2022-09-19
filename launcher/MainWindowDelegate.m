@@ -40,6 +40,20 @@
 
 - (void) refreshFrame {
     
+    [self.labelBackend setObjectValue: mod.backend];
+    
+    if ([mod.backend isEqualToString:@"native"]) {
+        [self.btnNetworkConfig setEnabled:0];
+        [self.statusDocker setHidden:1];
+        [self.labelDocker setHidden:1];
+        [self.labelStatus setHidden:1];
+    } else {
+        // docker or unset
+        [self.btnNetworkConfig setEnabled:1];
+        [self.statusDocker setHidden:0];
+        [self.labelStatus setHidden:0];
+    }
+
     switch ([mod.mode intValue]) {
         case UIState_Initial:
         {

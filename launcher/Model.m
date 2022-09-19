@@ -80,7 +80,7 @@
 }
 
 - (void)notificationHandlerConfig:(NSNotification *) notification{
-    //NSLog(@"notificationHandlerState > %@", notification.userInfo);
+    NSLog(@"notificationHandlerState > %@", notification.userInfo);
     
     self.portBegin            = notification.userInfo[@"portRangeBegin"];
     self.portEnd              = notification.userInfo[@"portRangeEnd"];

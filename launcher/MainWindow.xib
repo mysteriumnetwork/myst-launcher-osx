@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MainWindowDelegate">
             <connections>
+                <outlet property="btnNetworkConfig" destination="x5S-y9-IVQ" id="pgq-B6-f5o"/>
                 <outlet property="btnUpdateToMainnet" destination="zj5-DX-4O1" id="e7K-Gb-UAC"/>
                 <outlet property="checkBoxAutoUpgrade" destination="LiA-48-OON" id="vwa-gP-TcS"/>
                 <outlet property="checkBoxDocker" destination="1mK-zd-KR6" id="mmQ-37-LMN"/>
@@ -16,6 +17,7 @@
                 <outlet property="checkBoxVirtualization" destination="1g4-PW-1oi" id="Eth-Cu-Ie2"/>
                 <outlet property="finishButton" destination="les-Qz-lh6" id="ghC-uF-XcR"/>
                 <outlet property="img" destination="mNr-bj-xQN" id="dgF-ed-nX9"/>
+                <outlet property="labelBackend" destination="BLH-W3-rcj" id="Zwi-FZ-Y4X"/>
                 <outlet property="labelContainer" destination="8Qw-4J-Vie" id="Vgh-JQ-PSI"/>
                 <outlet property="labelCurrentVersion" destination="SwD-U7-enq" id="Z5V-c8-HnB"/>
                 <outlet property="labelDocker" destination="JXP-LC-0R1" id="8ds-0s-tbZ"/>
@@ -24,6 +26,7 @@
                 <outlet property="labelLauncherUpdate" destination="ghC-W3-Uak" id="4pg-qk-u1c"/>
                 <outlet property="labelNetwork" destination="BFq-0a-Pvj" id="fwp-BN-Gb8"/>
                 <outlet property="labelNetworkMode" destination="ARP-7b-bqG" id="hds-bo-aCP"/>
+                <outlet property="labelStatus" destination="y7E-ne-cQG" id="EFU-kI-Upe"/>
                 <outlet property="scrollView" destination="C1s-Fp-bfO" id="fmR-AG-w50"/>
                 <outlet property="statusDocker" destination="faK-us-qhr" id="DCl-sE-sEU"/>
                 <outlet property="statusNode" destination="Kjx-Yz-2Yh" id="GWB-ZY-owM"/>
@@ -40,7 +43,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="418" height="542"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="999"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ" userLabel="main view">
                 <rect key="frame" x="0.0" y="0.0" width="418" height="542"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -109,7 +112,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LiA-48-OON">
-                        <rect key="frame" x="18" y="219" width="185" height="18"/>
+                        <rect key="frame" x="20" y="220" width="185" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="check" title="Upgrade automatically" bezelStyle="regularSquare" imagePosition="right" alignment="left" state="on" inset="2" id="WZG-42-Blx">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -129,9 +132,9 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Lr-GS-Nya">
-                        <rect key="frame" x="18" y="70" width="105" height="16"/>
+                        <rect key="frame" x="18" y="70" width="59" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Docker Desktop" id="rVT-b2-LCF">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Backend" id="rVT-b2-LCF">
                             <font key="font" metaFont="systemSemibold" size="13"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -177,9 +180,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8O-qB-JDz">
-                        <rect key="frame" x="18" y="298" width="73" height="15"/>
+                        <rect key="frame" x="18" y="298" width="128" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Image name" id="GRK-4h-dhQ">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Node package source" id="GRK-4h-dhQ">
                             <font key="font" metaFont="cellTitle"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -283,6 +286,15 @@
                             <action selector="linkUpdateLauncherPressed:" target="-2" id="PxA-C5-6OG"/>
                         </connections>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLH-W3-rcj">
+                        <rect key="frame" x="185" y="70" width="197" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="---" id="XY8-Rq-ofj">
+                            <font key="font" metaFont="cellTitle"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="109" y="327"/>
@@ -351,7 +363,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="UJv-q9-wQm">
                         <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="kIS-do-nAD">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="135"/>
@@ -433,7 +445,7 @@
                     <autoresizingMask key="autoresizingMask"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BVE-Sg-1KI">
                         <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="ZKg-fZ-gf0">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="172"/>

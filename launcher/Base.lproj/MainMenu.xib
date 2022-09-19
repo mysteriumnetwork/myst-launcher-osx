@@ -65,7 +65,7 @@
                             <menuItem title="Backend:" enabled="NO" id="RfF-90-qTi">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Native" tag="1" id="DxM-Jr-zSe">
+                            <menuItem title="Native (beta)" tag="1" id="DxM-Jr-zSe">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="enableNative:" target="Voe-Tx-rLC" id="q89-Vb-ARt"/>
@@ -111,7 +111,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="269" height="192"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="999"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="269" height="192"/>
                 <autoresizingMask key="autoresizingMask"/>

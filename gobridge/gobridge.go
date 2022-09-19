@@ -17,6 +17,7 @@ import (
 	"github.com/mysteriumnetwork/myst-launcher/app"
 	"github.com/mysteriumnetwork/myst-launcher/model"
 	"github.com/mysteriumnetwork/myst-launcher/myst"
+	"github.com/mysteriumnetwork/myst-launcher/utils"
 )
 
 var (
@@ -53,9 +54,10 @@ func copyFile(sourceFile, destinationFile string) {
 
 //export GoInit
 func GoInit(resPath *C.char, prodVer *C.char) {
+	utils.SetProductVersion(C.GoString(prodVer))
+
 	mod = model.NewUIModel()
 	mod.SetProductVersion(C.GoString(prodVer))
-	// set product repo
 
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
