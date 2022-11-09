@@ -165,11 +165,7 @@ func GoSetState(s *C.NSConfig) {
 	}
 
 	if mod.Config.Enabled != bool(s.enabled) {
-		if bool(s.enabled) {
-			ap.TriggerAction("enable")
-		} else {
-			ap.TriggerAction("disable")
-		}
+		mod.TriggerNodeEnableAction()
 	}
 
 	if mod.Config.Backend != C.GoString(s.backend) {
@@ -178,6 +174,7 @@ func GoSetState(s *C.NSConfig) {
 
 		mod.Bus2.Publish("backend")
 	}
+	sendConfig()
 }
 
 //export GoSetNetworkConfig

@@ -16,7 +16,6 @@
 }
 
 @property (weak) IBOutlet NSButton *checkBoxAutoUpgrade;
-@property (weak) IBOutlet NSButton *btnUpdateToMainnet;
 @property (weak) IBOutlet NSButton *btnNetworkConfig;
 
 @property (weak) IBOutlet NSTextField *labelImageName;
@@ -26,7 +25,6 @@
 @property (weak) IBOutlet NSTextField *labelNetworkMode;
 @property (weak) IBOutlet NSTextField *labelDocker;
 @property (weak) IBOutlet NSTextField *labelContainer;
-@property (weak) IBOutlet NSTextField *labelNetwork;
 @property (weak) IBOutlet NSTextField *labelLauncherUpdate;
 @property (weak) IBOutlet NSTextField *labelBackend;
 @property (weak) IBOutlet NSTextField *labelStatus;

@@ -28,7 +28,7 @@ jobs:
           git clone https://github.com/mysteriumnetwork/myst-launcher
           pushd myst-launcher
           git fetch --all --tags
-          git checkout tags/1.0.34-mac
+          git checkout tags/1.0.36-mac
           popd
           popd
           
