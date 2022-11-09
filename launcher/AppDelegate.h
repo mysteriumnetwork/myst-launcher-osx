@@ -16,6 +16,8 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (weak) IBOutlet NSMenuItem *itemEnableNode;
+@property (weak) IBOutlet NSMenuItem *itemEnableNative;
+@property (weak) IBOutlet NSMenuItem *itemEnableDocker;
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 
 @property (strong) NSWindowController *mainWin;
@@ -27,6 +29,8 @@
 - (IBAction)enableNode:(id)sender;
 - (IBAction)openNodeUIAction:(id)sender;
 
+- (IBAction)enableNative:(id)sender;
+- (IBAction)enableDocker:(id)sender;
 @end
 
 

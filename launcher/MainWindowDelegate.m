@@ -24,6 +24,7 @@
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerMode:) name:@"new_mode" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_config" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
     }
     
@@ -40,13 +41,26 @@
 
 - (void) refreshFrame {
     
+    [self.labelBackend setObjectValue: mod.backend];
+    
+    if ([mod.backend isEqualToString:@"native"]) {
+        [self.btnNetworkConfig setEnabled:0];
+        [self.statusDocker setHidden:1];
+        [self.labelDocker setHidden:1];
+        [self.labelStatus setHidden:1];
+    } else {
+        // docker or unset
+        [self.btnNetworkConfig setEnabled:1];
+        [self.statusDocker setHidden:0];
+        [self.labelStatus setHidden:0];
+    }
+
     switch ([mod.mode intValue]) {
         case UIState_Initial:
         {
             [self.labelCurrentVersion setObjectValue: mod.currentVersion];
             [self.labelLatestVersion setObjectValue: mod.latestVersion];
             [self.labelImageName setObjectValue: mod.imageName];
-            [self.labelNetwork setObjectValue: mod.networkCaption];
 
             NSString *v = nil;
             if (mod.hasUpdate) {
@@ -57,15 +71,14 @@
             v = [mod.enablePortForwarding intValue] ? @"Port forwarding mode" : @"Port restricted cone NAT";
             [self.labelNetworkMode setObjectValue: v];
             
-            [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning] ];
-            [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning] ];
+            [self.labelDocker setObjectValue:      [Utils getRunStateString:mod.isDockerRunning ]];
+            [self.labelContainer setObjectValue:   [Utils getRunStateString:mod.isContainerRunning ]];
             [self.checkBoxAutoUpgrade setState:    [mod.autoUpgrade boolValue]];
             
             [self.statusDocker setState: [Utils getStateViewStatus: mod.isDockerRunning ]];
             [self.statusNode setState: [Utils getStateViewStatus: mod.isContainerRunning ]];
             
             [self.labelLauncherUpdate setHidden:(![mod.launcherHasUpdate boolValue])];
-            [self.btnUpdateToMainnet setHidden:([mod currentNetIsMainnet])];
         }
             break;
     

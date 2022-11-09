@@ -29,6 +29,7 @@ typedef struct _NSConfig {
     int  portRangeBegin;
     int  portRangeEnd;
     char *network;
+    char *backend;
 } NSConfig;
 
 typedef struct _NSModal {

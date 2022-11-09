@@ -223,9 +223,9 @@
 				9A1B3A8D273BA4780084DF92 /* UpdateNetwork.xib */,
 				9A1B3A8F273BA5840084DF92 /* UpdateNetworkModalDelegate.h */,
 				9A1B3A90273BA5840084DF92 /* UpdateNetworkModalDelegate.m */,
-				9A1B3A96273BD7AC0084DF92 /* UpdateLauncher.xib */,
 				9A1B3A95273BD7AC0084DF92 /* UpdateLauncherModalDelegate.h */,
 				9A1B3A94273BD7AC0084DF92 /* UpdateLauncherModalDelegate.m */,
+				9A1B3A96273BD7AC0084DF92 /* UpdateLauncher.xib */,
 			);
 			path = launcher;
 			sourceTree = "<group>";
@@ -578,7 +578,7 @@
 					"$(PROJECT_DIR)/gobridge",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.0.30;
+				MARKETING_VERSION = 1.0.36;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -606,7 +606,7 @@
 					"$(PROJECT_DIR)/gobridge",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.0.30;
+				MARKETING_VERSION = 1.0.36;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mysterium.launcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

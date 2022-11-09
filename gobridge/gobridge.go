@@ -17,6 +17,7 @@ import (
 	"github.com/mysteriumnetwork/myst-launcher/app"
 	"github.com/mysteriumnetwork/myst-launcher/model"
 	"github.com/mysteriumnetwork/myst-launcher/myst"
+	"github.com/mysteriumnetwork/myst-launcher/utils"
 )
 
 var (
@@ -53,9 +54,10 @@ func copyFile(sourceFile, destinationFile string) {
 
 //export GoInit
 func GoInit(resPath *C.char, prodVer *C.char) {
+	utils.SetProductVersion(C.GoString(prodVer))
+
 	mod = model.NewUIModel()
 	mod.SetProductVersion(C.GoString(prodVer))
-	// set product repo
 
 	targetDir := os.Getenv("HOME") + "/Library/LaunchAgents/"
 	os.MkdirAll(targetDir, 0755)
@@ -89,9 +91,7 @@ func GoStart() {
 	ap.SetModel(mod)
 	ap.SetUI(ui)
 
-	ap.WaitGroup.Add(1)
-	go ap.SuperviseDockerNode()
-	go ap.CheckLauncherUpdates(gitHubOrg, gitHubRepo)
+	ap.StartAppController()
 
 }
 
@@ -128,6 +128,7 @@ func sendConfig() {
 	cf.autoUpgrade = C.bool(mod.Config.AutoUpgrade)
 	cf.enabled = C.bool(mod.Config.Enabled)
 	cf.network = C.CString(mod.Config.Network)
+	cf.backend = C.CString(mod.Config.Backend)
 
 	C.macSendConfig(&cf)
 }
@@ -146,10 +147,8 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-	ap.TriggerAction("stop")
 
-	// wait for SuperviseDockerNode to finish its work
-	ap.WaitGroup.Wait()
+	ap.StopAppController()
 }
 
 //export GoTriggerUpgrade
@@ -166,12 +165,16 @@ func GoSetState(s *C.NSConfig) {
 	}
 
 	if mod.Config.Enabled != bool(s.enabled) {
-		if bool(s.enabled) {
-			ap.TriggerAction("enable")
-		} else {
-			ap.TriggerAction("disable")
-		}
+		mod.TriggerNodeEnableAction()
 	}
+
+	if mod.Config.Backend != C.GoString(s.backend) {
+		mod.Config.Backend = C.GoString(s.backend)
+		mod.Config.Save()
+
+		mod.Bus2.Publish("backend")
+	}
+	sendConfig()
 }
 
 //export GoSetNetworkConfig

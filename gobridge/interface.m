@@ -41,8 +41,10 @@ void macSendConfig(NSConfig *s) {
         @"portRangeEnd": @(s->portRangeEnd),
         @"autoUpgrade": @(s->autoUpgrade),
         @"network": @(s->network),
+        @"backend": @(s->backend),
     };
-       
+    free(s->backend);
+
     dispatch_async(dispatch_get_main_queue(),^{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"config" object:nil userInfo:dict];
     });

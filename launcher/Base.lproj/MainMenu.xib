@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="itemEnableDocker" destination="19M-bp-ipp" id="ih2-dr-wyq"/>
+                <outlet property="itemEnableNative" destination="DxM-Jr-zSe" id="Bi3-km-rrG"/>
                 <outlet property="itemEnableNode" destination="NMo-om-nkz" id="pHd-EP-dkz"/>
                 <outlet property="statusBarMenu" destination="9Rz-46-1v1" id="TGN-b0-jWj"/>
             </connections>
@@ -57,7 +59,25 @@
                                     <action selector="showUpgradeDlg:" target="Voe-Tx-rLC" id="NDB-Ye-cSA"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                            <menuItem isSeparatorItem="YES" id="4je-JR-u6R">
+                                <attributedString key="attributedTitle"/>
+                            </menuItem>
+                            <menuItem title="Backend:" enabled="NO" id="RfF-90-qTi">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Native (beta)" tag="1" id="DxM-Jr-zSe">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="enableNative:" target="Voe-Tx-rLC" id="q89-Vb-ARt"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Docker" tag="2" id="19M-bp-ipp">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="enableNative:" target="Voe-Tx-rLC" id="3CD-BX-0Cr"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="gNR-Gd-iBb"/>
                             <menuItem title="Hide launcher" keyEquivalent="h" id="Olw-nP-bQN">
                                 <connections>
                                     <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
@@ -85,13 +105,13 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="21" y="-84"/>
+            <point key="canvasLocation" x="-332" y="-79"/>
         </menu>
         <window title="launcher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="269" height="192"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="269" height="192"/>
                 <autoresizingMask key="autoresizingMask"/>

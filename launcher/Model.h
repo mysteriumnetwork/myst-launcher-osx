@@ -19,6 +19,8 @@
     NSNumber *enablePortForwarding;
     NSNumber *autoUpgrade;
     NSNumber *enabled;
+    NSString *backend;
+    
     NSString *network;
     NSString *networkCaption;
     
@@ -49,6 +51,7 @@
 @property (readwrite, copy) NSNumber *enablePortForwarding;
 @property (readwrite, copy) NSNumber *autoUpgrade;
 @property (readwrite, copy) NSNumber *enabled;
+@property (readwrite, copy) NSString *backend;
 @property (readwrite, copy) NSString *network;
 @property (readwrite, copy) NSString *networkCaption;
 
