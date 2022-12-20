@@ -133,8 +133,13 @@
         NSWindowController *modalWindowDelegate = [[UpdateLauncherModalDelegate alloc] init];
         NSWindow *modalWindow = [modalWindowDelegate window];
         NSModalResponse response = [NSApp runModalForWindow:modalWindow ];
-        
-        GoDialogueComplete();
+
+        if (response == NSModalResponseCancel) {
+            GoTriggerLauncherUpdateOk(0);
+        }
+        if (response == NSModalResponseOK) {
+            GoTriggerLauncherUpdateOk(2);
+        }
     }
 }
 

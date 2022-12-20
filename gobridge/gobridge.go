@@ -193,5 +193,10 @@ func GoUpdateToMainnet() {
 	sendConfig()
 }
 
+//export GoTriggerLauncherUpdateOk
+func GoTriggerLauncherUpdateOk(action C.int) {
+    mod.UIBus.Publish("launcher-update-ok", int(action))
+}
+
 // required by runtime
 func main() {}
