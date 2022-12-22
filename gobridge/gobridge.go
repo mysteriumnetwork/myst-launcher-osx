@@ -15,6 +15,7 @@ import (
 	"os"
 
 	"github.com/mysteriumnetwork/myst-launcher/app"
+	"github.com/mysteriumnetwork/myst-launcher/controller"
 	"github.com/mysteriumnetwork/myst-launcher/model"
 	"github.com/mysteriumnetwork/myst-launcher/myst"
 	"github.com/mysteriumnetwork/myst-launcher/utils"
@@ -91,8 +92,8 @@ func GoStart() {
 	ap.SetModel(mod)
 	ap.SetUI(ui)
 
+	go controller.CheckLauncherUpdates(mod)
 	ap.StartAppController()
-
 }
 
 func sendState() {
@@ -191,6 +192,11 @@ func GoSetNetworkConfig(s *C.NSConfig) {
 func GoUpdateToMainnet() {
 	mod.UpdateToMainnet()
 	sendConfig()
+}
+
+//export GoTriggerLauncherUpdateOk
+func GoTriggerLauncherUpdateOk(action C.int) {
+	mod.UIBus.Publish("launcher-update-ok", int(action))
 }
 
 // required by runtime
