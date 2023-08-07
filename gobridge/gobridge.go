@@ -86,7 +86,7 @@ func GoStart() {
 	log.SetOutput(ap)
 
 	mod.UIBus.Subscribe("model-change", sendState)
-	ui = newUiProxy()
+	ui = newUiProxy(mod)
 
 	mod.SetApp(ap)
 	ap.SetModel(mod)
@@ -143,7 +143,7 @@ func GoSetModalResult(rc C.int) {
 //export GoDialogueComplete
 func GoDialogueComplete() {
 	fmt.Println("DialogueComplete >")
-	ui.DialogueComplete()
+	ui.DialogueComplete(model.DLG_OK)
 }
 
 //export GoOnAppExit
