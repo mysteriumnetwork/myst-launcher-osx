@@ -148,7 +148,7 @@ func GoDialogueComplete() {
 
 //export GoOnAppExit
 func GoOnAppExit() {
-
+	ui.DialogueComplete(model.DLG_TERM)
 	ap.StopAppController()
 }
 
