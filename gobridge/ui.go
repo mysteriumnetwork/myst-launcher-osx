@@ -8,17 +8,23 @@ package main
 */
 import "C"
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/mysteriumnetwork/myst-launcher/model"
+)
 
 type UiProxy struct {
 	result    chan int
-	waitClick chan int
+	//waitClick chan int
+	mod     *model.UIModel
 }
 
-func newUiProxy() *UiProxy {
+func newUiProxy(mod *model.UIModel) *UiProxy {
 	g := &UiProxy{}
+	g.mod = mod
 	g.result = make(chan int)
-	g.waitClick = make(chan int)
+	//g.waitClick = make(chan int)
 
 	return g
 }
@@ -75,20 +81,20 @@ func (g *UiProxy) OpenDialogue(id int) {
 }
 
 // returns false, if dialogue was terminated
-func (g *UiProxy) WaitDialogueComplete() bool {
-	fmt.Println("WaitDialogueComplete")
-	_, ok := <-g.waitClick
-	return ok
+func (g *UiProxy) WaitDialogueComplete() int {
+	action := make(chan int)
+
+	g.mod.UIBus.SubscribeOnce("dlg-exit", func(id int) {
+		action <- id
+	})
+	return <-action
 }
 
 func (g *UiProxy) TerminateWaitDialogueComplete() {
-	fmt.Println("TerminateWaitDialogueComplete")
-	close(g.waitClick)
+	g.mod.UIBus.Publish("dlg-exit", model.DLG_TERM)
 }
 
-func (g *UiProxy) DialogueComplete() {
-	select {
-	case g.waitClick <- 0:
-	default:
-	}
+func (g *UiProxy) DialogueComplete(action int) {
+	g.mod.UIBus.Publish("dlg-exit", action)
 }
+
