@@ -102,3 +102,10 @@ void macSendOpenDialogue(int id_) {
     });
     return;
 }
+
+void macSendOpenNodeUI() {
+    dispatch_async(dispatch_get_main_queue(),^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"nodeui" object:nil userInfo:nil];
+    });
+    return;
+}

@@ -26,12 +26,13 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_config" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerLog:) name:@"log" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerNodeUI:) name:@"nodeui" object:nil];
     }
     
     return self;
 }
 
-- (void) windowDidLoad {  
+- (void) windowDidLoad {
     img1 = [NSImage imageNamed:@"img_128x128"];
     [img1 setSize: NSMakeSize(64, 64)];
     [self.img setImage:img1];
@@ -195,6 +196,11 @@
         default:
             break;
     }
+}
+
+- (void)notificationHandlerNodeUI:(NSNotification *) notification
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://localhost:4449"]];
 }
 
 - (void)notificationHandlerLog:(NSNotification *) notification

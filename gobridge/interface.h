@@ -56,6 +56,7 @@ void macSendModal(NSModal *s);
 void macSendMode(int s);
 void macSendLog(char *s);
 void macSendOpenDialogue(int id_);
+void macSendOpenNodeUI();
 
 ///
 typedef enum {
