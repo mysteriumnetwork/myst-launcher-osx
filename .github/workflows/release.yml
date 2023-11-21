@@ -78,6 +78,7 @@ jobs:
       - name: Notarize
         env: 
           PRIMARY_BUNDLE_ID: com.mysterium.launcher
+          APPLE_TEAM_ID: ${{ secrets.NOTARIZE_TEAM_ID }}
           APPLE_ID: ${{ secrets.NOTARIZE_EMAIL }}
           TARGET_BINARY: ./mysterium_launcher_macos.dmg
           APP_SPECIFIC_PASSWORD: ${{ secrets.NOTARIZE_APP_SPEC_PWD }}
