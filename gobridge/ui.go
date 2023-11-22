@@ -75,6 +75,10 @@ func (g *UiProxy) CloseUI() {
 	// g.bus.Publish("exit")
 }
 
+func (g *UiProxy) OpenNodeUI() {
+	C.macSendOpenNodeUI()
+}
+
 func (g *UiProxy) OpenDialogue(id int) {
 	C.macSendOpenDialogue(C.int(id))
 	g.WaitDialogueComplete()
