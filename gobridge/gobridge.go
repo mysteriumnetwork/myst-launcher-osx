@@ -184,6 +184,7 @@ func GoSetNetworkConfig(s *C.NSConfig) {
 	mod.Config.EnablePortForwarding = bool(s.enablePortForwarding)
 	mod.Config.PortRangeBegin = int(s.portRangeBegin)
 	mod.Config.PortRangeEnd = int(s.portRangeEnd)
+    mod.Config.Save()
 
 	ap.TriggerAction("restart")
 }
