@@ -94,6 +94,6 @@
 
 - (IBAction)linkInfoPressed:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://docs.mysterium.network/node-runners/troubleshooting/#port-forwarding"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"https://help.mystnodes.com/en/articles/8005269-manual-port-forwarding"]];
 }
 @end
