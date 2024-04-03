@@ -14,6 +14,7 @@
 - (id)init
 {
     self = [super initWithWindowNibName:@"UpgradeModal"];
+    GoTriggerCheck();
 
     // enable window delegate extension
     [[self window] setDelegate:self];
