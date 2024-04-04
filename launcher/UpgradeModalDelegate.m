@@ -14,17 +14,28 @@
 - (id)init
 {
     self = [super initWithWindowNibName:@"UpgradeModal"];
+    GoTriggerCheck();
 
     // enable window delegate extension
     [[self window] setDelegate:self];
     [self autorelease];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandlerState:) name:@"new_state" object:nil];
+
     // init data
+    [self refreshFrame];
+    return self;
+}
+
+- (void) refreshFrame {
     [self.lbImageName setStringValue:mod.imageName];
     [self.lbVersionCurrent setStringValue:mod.currentVersion];
     [self.lbVersionLatest setStringValue:mod.latestVersion];
     [self.button setEnabled: [mod.hasUpdate boolValue]];
-    return self;
+}
+
+- (void)notificationHandlerState:(NSNotification *) notification{
+    [self refreshFrame];
 }
 
 - (void)notificationHandler:(NSNotification *) notification

@@ -157,6 +157,11 @@ func GoTriggerUpgrade() {
 	ap.TriggerAction("upgrade")
 }
 
+//export GoTriggerCheck
+func GoTriggerCheck() {
+	ap.TriggerAction("check")
+}
+
 //export GoSetState
 func GoSetState(s *C.NSConfig) {
 
