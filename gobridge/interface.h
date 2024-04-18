@@ -82,10 +82,10 @@ typedef enum {
 
 typedef enum {
     UIState_Initial           = 0,
-    UIState_InstallNeeded     = -1,
-    UIState_InstallInProgress = -2,
-    UIState_InstallFinished   = -3,
-    UIState_InstallError      = -4,
+    UIState_InstallNeeded     = 1,
+    UIState_InstallInProgress = 2,
+    UIState_InstallFinished   = 3,
+    UIState_InstallError      = 4,
 } UI_STATE;
 
 typedef enum {

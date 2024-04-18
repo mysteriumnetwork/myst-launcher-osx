@@ -17,16 +17,13 @@ import (
 	"github.com/mysteriumnetwork/myst-launcher/app"
 	"github.com/mysteriumnetwork/myst-launcher/controller"
 	"github.com/mysteriumnetwork/myst-launcher/model"
-	"github.com/mysteriumnetwork/myst-launcher/myst"
 	"github.com/mysteriumnetwork/myst-launcher/utils"
 )
 
 var (
-	manager *myst.Manager
-	mod     *model.UIModel
-
-	ap *app.AppState
-	ui model.Gui_
+	mod *model.UIModel
+	ap  *app.AppState
+	ui  model.Gui_
 )
 
 const (
@@ -136,19 +133,22 @@ func sendConfig() {
 
 //export GoSetModalResult
 func GoSetModalResult(rc C.int) {
-	fmt.Println("CloseModal >", int(rc))
 	ui.SetModalReturnCode(int(rc))
+}
+
+//export GoInstallDialogueComplete
+func GoInstallDialogueComplete(i C.int) {
+	mod.UIBus.Publish("install-dlg-exit", int(i))
 }
 
 //export GoDialogueComplete
 func GoDialogueComplete() {
-	fmt.Println("DialogueComplete >")
-	ui.DialogueComplete(model.DLG_OK)
+	mod.UIBus.Publish("dlg-exit")
 }
 
 //export GoOnAppExit
 func GoOnAppExit() {
-	ui.DialogueComplete(model.DLG_TERM)
+	mod.UIBus.Publish("dlg-exit")
 	ap.StopAppController()
 }
 
