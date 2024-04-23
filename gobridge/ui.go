@@ -15,16 +15,14 @@ import (
 )
 
 type UiProxy struct {
-	result    chan int
-	//waitClick chan int
-	mod     *model.UIModel
+	result chan int
+	mod    *model.UIModel
 }
 
 func newUiProxy(mod *model.UIModel) *UiProxy {
 	g := &UiProxy{}
 	g.mod = mod
 	g.result = make(chan int)
-	//g.waitClick = make(chan int)
 
 	return g
 }
@@ -70,9 +68,6 @@ func (g *UiProxy) SetModalReturnCode(rc int) {
 
 func (g *UiProxy) CloseUI() {
 	fmt.Println("CloseUI")
-
-	// g.model.WantExit = true
-	// g.bus.Publish("exit")
 }
 
 func (g *UiProxy) OpenNodeUI() {

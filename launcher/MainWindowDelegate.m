@@ -215,8 +215,15 @@
 
 - (IBAction)finishPressed:(id)sender
 {
-    GoDialogueComplete();
+    if ([mod.mode intValue] == UIState_InstallNeeded) {
+        GoInstallDialogueComplete(0);
+    }
+    if ([mod.mode intValue] == UIState_InstallFinished) {
+        GoInstallDialogueComplete(1);
+    }
+
     if ([mod.mode intValue] == UIState_InstallError) {
+        GoDialogueComplete();
         [NSApp terminate:nil];
     }
 }
